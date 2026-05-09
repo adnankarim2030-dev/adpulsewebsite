@@ -1,0 +1,91 @@
+.admin-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 80px auto;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--color-primary-red);
+  padding-bottom: 1rem;
+}
+
+.admin-nav {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.admin-nav button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.admin-nav button.active {
+  background: var(--color-primary-red);
+  color: white;
+  border-color: var(--color-primary-red);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.data-table th, .data-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.data-table th {
+  background: #f8f9fa;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.data-table tr:hover {
+  background: #fcfcfc;
+}
+
+.status-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.status-new { background: #e3f2fd; color: #1976d2; }
+
+.btn-action {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+}
+
+.btn-delete {
+  color: #d32f2f;
+  border-color: #ffcdd2;
+}
+
+.btn-delete:hover {
+  background: #ffebee;
+}
