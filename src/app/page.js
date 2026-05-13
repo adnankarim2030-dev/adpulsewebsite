@@ -3,6 +3,53 @@ import { FaFilm, FaBullhorn, FaRegCalendarAlt, FaUsers, FaCogs, FaMapSigns, FaLa
 import './home.css';
 
 export default function Home() {
+  // Row 1 Brands
+  const row1Brands = [
+    { name: "GitHub", sector: "Developer Platform", icon: "🐙" },
+    { name: "Young's", sector: "Food & FMCG", icon: "🍳" },
+    { name: "Kifayah", sector: "Supermarket", icon: "🛒" },
+    { name: "Imtiaz", sector: "Retail Giant", icon: "🛍️" },
+    { name: "Chase Up", sector: "Department Store", icon: "🏬" },
+    { name: "Chase Value", sector: "Retail Store", icon: "🏷️" },
+    { name: "Sunridge", sector: "Food & Agriculture", icon: "🌾" },
+    { name: "MTJ", sector: "Fashion & Apparel", icon: "✨" },
+    { name: "Diners", sector: "Premium Clothing", icon: "👔" },
+    { name: "Sahar", sector: "Luxury Apparel", icon: "👗" },
+    { name: "Oxford", sector: "Apparel Brand", icon: "🧥" },
+    { name: "Sohaye", sector: "Women's Fashion", icon: "🧣" },
+    { name: "Nine Figures", sector: "Corporate Brand", icon: "👑" },
+    { name: "Maazjee", sector: "Traditional Wear", icon: "⚜️" },
+    { name: "idemitsu", sector: "Lubricants", icon: "🛢️" },
+    { name: "Suzuki", sector: "Automotive", icon: "🚗" },
+    { name: "Toyota", sector: "Automotive", icon: "🚙" },
+    { name: "Dewan Motors", sector: "BMW Importer", icon: "🏎️" },
+    { name: "GFS Builders", sector: "Real Estate", icon: "🏗️" },
+  ];
+
+  // Row 2 Brands
+  const row2Brands = [
+    { name: "Vercel", sector: "Cloud Platform", icon: "▲" },
+    { name: "HMR Waterfront", sector: "Premium Real Estate", icon: "🌊" },
+    { name: "Sumsum Group", sector: "Builders & Developers", icon: "🏢" },
+    { name: "Falaknaz Group", sector: "Real Estate", icon: "🏛️" },
+    { name: "Siddiqsons", sector: "Corporate Giant", icon: "🏭" },
+    { name: "9th Ave.", sector: "Commercial Center", icon: "🌆" },
+    { name: "Saima Waterfront", sector: "Luxury Living", icon: "🌇" },
+    { name: "Xefan Group", sector: "Enterprise", icon: "🔺" },
+    { name: "Abbott", sector: "Healthcare & Pharma", icon: "⚕️" },
+    { name: "PJBF", sector: "Pakistan Japan Forum", icon: "🤝" },
+    { name: "Consulate of Japan", sector: "Diplomatic Mission", icon: "🇯🇵" },
+    { name: "UPITC", sector: "UzbekPak Trade Centre", icon: "🇺🇿" },
+    { name: "Z Group", sector: "Forward Thinking", icon: "⚡" },
+    { name: "Greenwich University", sector: "Higher Education", icon: "🎓" },
+    { name: "DEBS", sector: "Schooling System", icon: "🏫" },
+    { name: "SBBDU", sector: "University", icon: "🏛️" },
+    { name: "Igloo", sector: "Ice Cream & Dairy", icon: "🍦" },
+    { name: "Suaad", sector: "Apparel Brand", icon: "🏮" },
+    { name: "Sindh Health Services", sector: "Emergency Response", icon: "🚑" },
+    { name: "Sindh Police", sector: "Special Security Unit", icon: "🛡️" },
+  ];
+
   return (
     <div className="home-page">
       {/* Hero Section */}
@@ -52,10 +99,33 @@ export default function Home() {
       <section className="trusted-section">
         <div className="container">
           <p className="trusted-label reveal-fade">Trusted by Leading Brands</p>
+          
+          {/* Row 1: Scrolling Left */}
           <div className="trusted-marquee">
             <div className="trusted-track">
-              {['Coca-Cola', 'Samsung', 'LUX', 'Haier', 'Pepsi', 'Nestle', 'Unilever', 'Honda', 'Coca-Cola', 'Samsung', 'LUX', 'Haier', 'Pepsi', 'Nestle', 'Unilever', 'Honda'].map((brand, i) => (
-                <span key={i} className="trusted-brand">{brand}</span>
+              {[...row1Brands, ...row1Brands].map((brand, i) => (
+                <div key={i} className="trusted-brand-card">
+                  <span className="brand-icon">{brand.icon}</span>
+                  <div className="brand-details">
+                    <span className="brand-name">{brand.name}</span>
+                    <span className="brand-sector">{brand.sector}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2: Scrolling Right */}
+          <div className="trusted-marquee" style={{ marginTop: '1.5rem' }}>
+            <div className="trusted-track reverse">
+              {[...row2Brands, ...row2Brands].map((brand, i) => (
+                <div key={i} className="trusted-brand-card">
+                  <span className="brand-icon">{brand.icon}</span>
+                  <div className="brand-details">
+                    <span className="brand-name">{brand.name}</span>
+                    <span className="brand-sector">{brand.sector}</span>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
