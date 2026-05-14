@@ -252,9 +252,24 @@
     direction: ltr;
   }
 
+  /* Center all content in service rows */
+  .service-detail-content { align-items: center; text-align: center; }
   .service-detail-content h2 { text-align: center; }
   .service-detail-content p { text-align: center; }
-  .service-detail-content { align-items: center; }
+  .service-number { text-align: center; width: 100%; }
+
+  /* Subtitle + underline */
+  .service-detail-content .subtitle { text-align: center; }
+  .service-detail-content .subtitle::after { left: 50%; transform: translateX(-50%); }
+
+  /* Feature list items — center */
+  .service-features { align-items: center; }
+  .service-features li { justify-content: center; text-align: center; width: 100%; }
+
+  /* Buttons */
+  .service-actions { justify-content: center; }
+  .service-detail-content .btn-primary,
+  .service-detail-content .btn-outline { align-self: center; }
 
   .service-detail-image {
     max-width: 500px;
@@ -267,7 +282,18 @@
   .pricing-card.featured:hover { transform: translateY(-6px); }
 }
 
+@media (max-width: 768px) {
+  .service-detail-content .btn-primary,
+  .service-detail-content .btn-outline { width: 100%; justify-content: center; }
+  .service-actions { flex-direction: column; align-items: stretch; }
+}
+
 @media (max-width: 600px) {
   .service-detail-image { max-width: 360px; aspect-ratio: 1 / 1; }
   .services-list { gap: 4rem; }
+}
+
+@media (max-width: 480px) {
+  .service-detail-content h2 { font-size: 1.6rem; }
+  .service-features li { font-size: 0.85rem; }
 }
