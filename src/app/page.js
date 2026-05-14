@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FaFilm, FaBullhorn, FaRegCalendarAlt, FaUsers, FaCogs, FaMapSigns, FaLaptopCode } from 'react-icons/fa';
+import { FaFilm, FaBullhorn, FaRegCalendarAlt, FaUsers, FaCogs, FaMapSigns, FaLaptopCode, FaNewspaper, FaTv, FaDesktop, FaBus } from 'react-icons/fa';
 import './home.css';
 
 export default function Home() {
@@ -190,7 +190,31 @@ export default function Home() {
                 <p>Cutting-edge AI-generated video commercials and content</p>
                 <Link href="/services/ai-video-ads" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
               </div>
-              
+              <div className="service-card tilt-card">
+                <div className="service-icon"><FaNewspaper /></div>
+                <h3>PRINT MEDIA RELEASE</h3>
+                <p>Strategic press releases & placements across leading print publications</p>
+                <Link href="/services/print-media-release" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
+              </div>
+              <div className="service-card tilt-card">
+                <div className="service-icon"><FaTv /></div>
+                <h3>ELECTRONIC MEDIA</h3>
+                <p>TV & radio campaigns that capture mass audiences across Pakistan</p>
+                <Link href="/services/electronic-media" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
+              </div>
+              <div className="service-card tilt-card">
+                <div className="service-icon"><FaDesktop /></div>
+                <h3>DIGITAL DISPLAY</h3>
+                <p>Eye-catching digital display ads that convert across platforms and screens</p>
+                <Link href="/services/digital-display" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
+              </div>
+              <div className="service-card tilt-card">
+                <div className="service-icon"><FaBus /></div>
+                <h3>TRANSIT ADVERTISING</h3>
+                <p>Mobile brand exposure through buses, vehicles & transit network placements</p>
+                <Link href="/services/transit-advertising" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
+              </div>
+
               {/* Set 2 (Duplicated for seamless infinite scrolling) */}
               <div className="service-card tilt-card">
                 <div className="service-icon"><FaFilm /></div>
@@ -239,6 +263,30 @@ export default function Home() {
                 <h3>AI VIDEO ADS CREATIVE</h3>
                 <p>Cutting-edge AI-generated video commercials and content</p>
                 <Link href="/services/ai-video-ads" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
+              </div>
+              <div className="service-card tilt-card">
+                <div className="service-icon"><FaNewspaper /></div>
+                <h3>PRINT MEDIA RELEASE</h3>
+                <p>Strategic press releases & placements across leading print publications</p>
+                <Link href="/services/print-media-release" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
+              </div>
+              <div className="service-card tilt-card">
+                <div className="service-icon"><FaTv /></div>
+                <h3>ELECTRONIC MEDIA</h3>
+                <p>TV & radio campaigns that capture mass audiences across Pakistan</p>
+                <Link href="/services/electronic-media" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
+              </div>
+              <div className="service-card tilt-card">
+                <div className="service-icon"><FaDesktop /></div>
+                <h3>DIGITAL DISPLAY</h3>
+                <p>Eye-catching digital display ads that convert across platforms and screens</p>
+                <Link href="/services/digital-display" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
+              </div>
+              <div className="service-card tilt-card">
+                <div className="service-icon"><FaBus /></div>
+                <h3>TRANSIT ADVERTISING</h3>
+                <p>Mobile brand exposure through buses, vehicles & transit network placements</p>
+                <Link href="/services/transit-advertising" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
               </div>
             </div>
           </div>
