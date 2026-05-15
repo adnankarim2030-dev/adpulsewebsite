@@ -342,58 +342,28 @@ export default function Home() {
             <h2>FEATURED PROJECTS</h2>
           </div>
           <div className="projects-grid" data-stagger>
-            <div className="project-card reveal-up tilt-card">
-              <div className="project-img">
-                <img src="/images/portfolio/fitfuel.png" alt="FitFuel" />
-                <div className="project-overlay">
-                  <span className="project-tag">Social Media</span>
-                  <Link href="/portfolio" className="project-view">View Project →</Link>
+            {[
+              { name: "Young's Food", sector: "FMCG Campaign", logo: "youngsfood.com", title: "Young's Food", subtitle: "Engaging Digital Series" },
+              { name: "Chase Up", sector: "Retail Marketing", logo: "chaseup.com.pk", title: "Chase Up", subtitle: "Seasonal Promotions" },
+              { name: "MTJ (Tariq Jamil)", sector: "Fashion & Apparel", logo: "mtjonline.com", title: "MTJ (Tariq Jamil)", subtitle: "High-End Video Shoot" },
+              { name: "GFS Builders", sector: "Real Estate & TVC", logo: "gfsbuilders.com.pk", title: "GFS Builders & Developers", subtitle: "Marketing & TVC Production" }
+            ].map((project, idx) => (
+              <div className="project-card reveal-up tilt-card" key={idx}>
+                <div className="project-img">
+                  <div className="portfolio-logo-frame">
+                    <img src={`https://logo.clearbit.com/${project.logo}`} alt={project.name} onError={(e) => { e.target.style.display = 'none'; e.target.parentNode.innerHTML = `<h3 style='color:var(--color-primary);font-size:1.5rem;font-weight:900;'>${project.name}</h3>`; }} />
+                  </div>
+                  <div className="project-overlay">
+                    <span className="project-tag">{project.sector}</span>
+                    <Link href="/portfolio" className="project-view">View Project →</Link>
+                  </div>
+                </div>
+                <div className="project-info">
+                  <h4>{project.title}</h4>
+                  <p>{project.subtitle}</p>
                 </div>
               </div>
-              <div className="project-info">
-                <h4>FitFuel</h4>
-                <p>Social Media Campaign</p>
-              </div>
-            </div>
-            <div className="project-card reveal-up tilt-card">
-              <div className="project-img">
-                <img src="/images/portfolio/burgerhouse.png" alt="Burger House" />
-                <div className="project-overlay">
-                  <span className="project-tag">Paid Ads</span>
-                  <Link href="/portfolio" className="project-view">View Project →</Link>
-                </div>
-              </div>
-              <div className="project-info">
-                <h4>Burger House</h4>
-                <p>Paid Ads Campaign</p>
-              </div>
-            </div>
-            <div className="project-card reveal-up tilt-card">
-              <div className="project-img">
-                <img src="/images/portfolio/urbanpeaks.png" alt="Urban Peaks" />
-                <div className="project-overlay">
-                  <span className="project-tag">Branding</span>
-                  <Link href="/portfolio" className="project-view">View Project →</Link>
-                </div>
-              </div>
-              <div className="project-info">
-                <h4>Urban Peaks</h4>
-                <p>Branding & Design</p>
-              </div>
-            </div>
-            <div className="project-card reveal-up tilt-card">
-              <div className="project-img">
-                <img src="/images/portfolio/technova.png" alt="TechNova" />
-                <div className="project-overlay">
-                  <span className="project-tag">Video</span>
-                  <Link href="/portfolio" className="project-view">View Project →</Link>
-                </div>
-              </div>
-              <div className="project-info">
-                <h4>TechNova</h4>
-                <p>Video Production</p>
-              </div>
-            </div>
+            ))}
           </div>
           <div className="center-btn reveal-up">
              <Link href="/portfolio" className="btn-primary magnetic">VIEW ALL PROJECTS →</Link>
