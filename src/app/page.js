@@ -343,15 +343,22 @@ export default function Home() {
           </div>
           <div className="projects-grid" data-stagger>
             {[
-              { name: "Young's Food", sector: "FMCG Campaign", logo: "youngsfood.com", title: "Young's Food", subtitle: "Engaging Digital Series" },
-              { name: "Chase Up", sector: "Retail Marketing", logo: "chaseup.com.pk", title: "Chase Up", subtitle: "Seasonal Promotions" },
-              { name: "MTJ (Tariq Jamil)", sector: "Fashion & Apparel", logo: "mtjonline.com", title: "MTJ (Tariq Jamil)", subtitle: "High-End Video Shoot" },
-              { name: "GFS Builders", sector: "Real Estate & TVC", logo: "gfsbuilders.com.pk", title: "GFS Builders & Developers", subtitle: "Marketing & TVC Production" }
+              { name: "Young's Food", sector: "FMCG Campaign", logo: "youngsfood.com", youtubeId: "ntIAakOpHr4", title: "Young's Food", subtitle: "Engaging Digital Series" },
+              { name: "Chase Up", sector: "Retail Marketing", logo: "chaseup.com.pk", youtubeId: "68bC80ZdzfY", title: "Chase Up", subtitle: "Seasonal Promotions" },
+              { name: "BMW Dewan Motors", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "MDNJxzXePoM", title: "BMW Dewan Motors", subtitle: "Premium Brand Positioning" },
+              { name: "GFS Builders", sector: "Real Estate & TVC", logo: "gfsbuilders.com.pk", youtubeId: "WoAeLUmc3xo", title: "GFS Builders & Developers", subtitle: "Marketing & TVC Production" }
             ].map((project, idx) => (
               <div className="project-card reveal-up tilt-card" key={idx}>
                 <div className="project-img">
-                  <div className="portfolio-logo-frame">
-                    <img src={`https://logo.clearbit.com/${project.logo}`} alt={project.name} onError={(e) => { e.target.style.display = 'none'; e.target.parentNode.innerHTML = `<h3 style='color:var(--color-primary);font-size:1.5rem;font-weight:900;'>${project.name}</h3>`; }} />
+                  <div className="portfolio-video-bg">
+                    <iframe 
+                      src={`https://www.youtube.com/embed/${project.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${project.youtubeId}&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1`}
+                      title={project.name}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="portfolio-iframe"
+                    ></iframe>
                   </div>
                   <div className="project-overlay">
                     <span className="project-tag">{project.sector}</span>
