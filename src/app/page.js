@@ -2,52 +2,63 @@ import Link from 'next/link';
 import { FaFilm, FaBullhorn, FaRegCalendarAlt, FaUsers, FaCogs, FaMapSigns, FaLaptopCode, FaNewspaper, FaTv, FaDesktop, FaBus } from 'react-icons/fa';
 import './home.css';
 
+const BrandLogo = ({ brand }) => {
+  if (brand.logo && !brand.logo.includes('placeholder.png')) {
+    return <img src={brand.logo} alt={brand.name} className="brand-logo-img" loading="lazy" />;
+  }
+  return (
+    <div className="brand-logo-text">
+      <span>{brand.text || brand.name}</span>
+    </div>
+  );
+};
+
 export default function Home() {
-  // Row 1 Brands
+  // ── All brands with logo URLs ──
+  // logo: public URL or null (renders styled text fallback)
   const row1Brands = [
-    { name: "GitHub", sector: "Developer Platform", icon: "🐙" },
-    { name: "Young's", sector: "Food & FMCG", icon: "🍳" },
-    { name: "Kifayah", sector: "Supermarket", icon: "🛒" },
-    { name: "Imtiaz", sector: "Retail Giant", icon: "🛍️" },
-    { name: "Chase Up", sector: "Department Store", icon: "🏬" },
-    { name: "Chase Value", sector: "Retail Store", icon: "🏷️" },
-    { name: "Sunridge", sector: "Food & Agriculture", icon: "🌾" },
-    { name: "MTJ", sector: "Fashion & Apparel", icon: "✨" },
-    { name: "Diners", sector: "Premium Clothing", icon: "👔" },
-    { name: "Sahar", sector: "Luxury Apparel", icon: "👗" },
-    { name: "Oxford", sector: "Apparel Brand", icon: "🧥" },
-    { name: "Sohaye", sector: "Women's Fashion", icon: "🧣" },
-    { name: "Nine Figures", sector: "Corporate Brand", icon: "👑" },
-    { name: "Maazjee", sector: "Traditional Wear", icon: "⚜️" },
-    { name: "idemitsu", sector: "Lubricants", icon: "🛢️" },
-    { name: "Suzuki", sector: "Automotive", icon: "🚗" },
-    { name: "Toyota", sector: "Automotive", icon: "🚙" },
-    { name: "Dewan Motors", sector: "BMW Importer", icon: "🏎️" },
-    { name: "GFS Builders", sector: "Real Estate", icon: "🏗️" },
+    { name: "Young's",      sector: "Food & FMCG",          logo: "https://logo.clearbit.com/youngsfood.com" },
+    { name: "Kifayah",      sector: "Pharmacy & Supermarket", logo: "https://logo.clearbit.com/kifayah.pk", text: "KIFAYAH" },
+    { name: "Imtiaz",       sector: "Retail Giant",          logo: "https://logo.clearbit.com/imtiaz.com.pk", text: "★Imtiaz" },
+    { name: "Chase Up",     sector: "Department Store",      logo: "https://logo.clearbit.com/chaseup.com.pk", text: "CHASE UP" },
+    { name: "Chase Value",  sector: "Retail Store",          logo: "https://logo.clearbit.com/chasevalue.pk", text: "ChaseValue" },
+    { name: "Sunridge",     sector: "Food & Agriculture",    logo: "https://logo.clearbit.com/sunridgefoods.com", text: "Sünridge" },
+    { name: "MTJ",          sector: "Fashion & Apparel",     logo: "https://logo.clearbit.com/mtjonline.com", text: "MTJ" },
+    { name: "Diners",       sector: "Premium Clothing",      logo: "https://logo.clearbit.com/diners.com.pk", text: "DINERS" },
+    { name: "Sahar",        sector: "Luxury Apparel",        logo: "https://logo.clearbit.com/sahar.pk", text: "SAHAR" },
+    { name: "Oxford",       sector: "Apparel Brand",         logo: "https://logo.clearbit.com/oxford.com.pk", text: "OXFORD" },
+    { name: "Sohaye",       sector: "Women's Fashion",       logo: "https://logo.clearbit.com/sohaye.com", text: "SOHAYE" },
+    { name: "Nine Figures", sector: "Corporate Brand",       logo: null, text: "9F" },
+    { name: "Maazjee",      sector: "Traditional Wear",      logo: "https://logo.clearbit.com/maazjee.com", text: "MAAZJEE" },
+    { name: "Idemitsu",     sector: "Lubricants",            logo: "https://logo.clearbit.com/idemitsu.com", text: "IDEMITSU" },
+    { name: "Suzuki",       sector: "Automotive",            logo: "https://logo.clearbit.com/suzukipakistan.com", text: "SUZUKI" },
+    { name: "Toyota",       sector: "Automotive",            logo: "https://logo.clearbit.com/toyota-indus.com", text: "TOYOTA" },
+    { name: "BMW / Dewan",  sector: "BMW Importer",          logo: "https://logo.clearbit.com/dewanmotors.com.pk", text: "BMW" },
+    { name: "GFS Builders", sector: "Real Estate",           logo: "https://logo.clearbit.com/gfsbuilders.com.pk", text: "GFS" },
   ];
 
-  // Row 2 Brands
   const row2Brands = [
-    { name: "Vercel", sector: "Cloud Platform", icon: "▲" },
-    { name: "HMR Waterfront", sector: "Premium Real Estate", icon: "🌊" },
-    { name: "Sumsum Group", sector: "Builders & Developers", icon: "🏢" },
-    { name: "Falaknaz Group", sector: "Real Estate", icon: "🏛️" },
-    { name: "Siddiqsons", sector: "Corporate Giant", icon: "🏭" },
-    { name: "9th Ave.", sector: "Commercial Center", icon: "🌆" },
-    { name: "Saima Waterfront", sector: "Luxury Living", icon: "🌇" },
-    { name: "Xefan Group", sector: "Enterprise", icon: "🔺" },
-    { name: "Abbott", sector: "Healthcare & Pharma", icon: "⚕️" },
-    { name: "PJBF", sector: "Pakistan Japan Forum", icon: "🤝" },
-    { name: "Consulate of Japan", sector: "Diplomatic Mission", icon: "🇯🇵" },
-    { name: "UPITC", sector: "UzbekPak Trade Centre", icon: "🇺🇿" },
-    { name: "Z Group", sector: "Forward Thinking", icon: "⚡" },
-    { name: "Greenwich University", sector: "Higher Education", icon: "🎓" },
-    { name: "DEBS", sector: "Schooling System", icon: "🏫" },
-    { name: "SBBDU", sector: "University", icon: "🏛️" },
-    { name: "Igloo", sector: "Ice Cream & Dairy", icon: "🍦" },
-    { name: "Suaad", sector: "Apparel Brand", icon: "🏮" },
-    { name: "Sindh Health Services", sector: "Emergency Response", icon: "🚑" },
-    { name: "Sindh Police", sector: "Special Security Unit", icon: "🛡️" },
+    { name: "HMR Waterfront",    sector: "Premium Real Estate",    logo: "https://logo.clearbit.com/hmrwaterfront.com", text: "HMR WATERFRONT" },
+    { name: "Sumsum Group",      sector: "Builders & Developers",   logo: "https://logo.clearbit.com/sumsumgroup.com", text: "SUMSUM GROUP" },
+    { name: "Falaknaz Group",    sector: "Real Estate",             logo: "https://logo.clearbit.com/falaknazgroup.com", text: "FALAKNAZ" },
+    { name: "Siddiqsons",        sector: "Corporate Giant",         logo: "https://logo.clearbit.com/siddiqsons.com", text: "SIDDIQSONS" },
+    { name: "9th Ave.",          sector: "Commercial Center",       logo: null, text: "9TH AVE." },
+    { name: "Saima Waterfront",  sector: "Luxury Living",           logo: "https://logo.clearbit.com/saimawaterfront.com", text: "Saima Waterfront" },
+    { name: "Xefan Group",       sector: "Enterprise",              logo: null, text: "XEFAN GROUP" },
+    { name: "Abbott",            sector: "Healthcare & Pharma",     logo: "https://logo.clearbit.com/abbott.com.pk", text: "ABBOTT" },
+    { name: "PJBF",              sector: "Pak-Japan Business Forum",logo: "https://logo.clearbit.com/pjbf.org.pk", text: "Pakistan Japan Business Forum" },
+    { name: "Consulate of Japan",sector: "Diplomatic Mission",      logo: "https://logo.clearbit.com/pk.emb-japan.go.jp", text: "JAPAN" },
+    { name: "UPITC",             sector: "UzbekPak Trade Centre",   logo: null, text: "UPITC" },
+    { name: "Z Group",           sector: "Forward Thinking",        logo: null, text: "Z GROUP" },
+    { name: "Greenwich Uni.",    sector: "Higher Education",        logo: "https://logo.clearbit.com/greenwich.edu.pk", text: "Greenwich University" },
+    { name: "DEBS",              sector: "Schooling System",        logo: null, text: "DEBS" },
+    { name: "SBBDU",             sector: "University",              logo: "https://logo.clearbit.com/sbbwu.edu.pk", text: "SBBDU" },
+    { name: "Igloo",             sector: "Ice Cream & Dairy",       logo: "https://logo.clearbit.com/igloo.com.pk", text: "IGLOO" },
+    { name: "Suaad",             sector: "Apparel Brand",           logo: "https://logo.clearbit.com/suaad.pk", text: "SUAAD" },
+    { name: "Sindh Health",      sector: "Emergency Response",      logo: "https://logo.clearbit.com/shcc.org.pk", text: "SINDH" },
+    { name: "Sindh Police",      sector: "Special Security Unit",   logo: "https://logo.clearbit.com/sindhpolice.gov.pk", text: "SSU" },
+    { name: "25 Mech Division",  sector: "Armed Forces",            logo: "https://logo.clearbit.com/pakistanarmy.gov.pk", text: "25 MECH" },
+    { name: "Pakistan Navy",     sector: "Naval Force",             logo: "https://logo.clearbit.com/paknavy.gov.pk", text: "PAKISTAN NAVY" },
   ];
 
   return (
@@ -105,11 +116,10 @@ export default function Home() {
             <div className="trusted-track">
               {[...row1Brands, ...row1Brands].map((brand, i) => (
                 <div key={i} className="trusted-brand-card">
-                  <span className="brand-icon">{brand.icon}</span>
-                  <div className="brand-details">
-                    <span className="brand-name">{brand.name}</span>
-                    <span className="brand-sector">{brand.sector}</span>
+                  <div className="brand-logo-wrap">
+                    <BrandLogo brand={brand} />
                   </div>
+                  <span className="brand-sector">{brand.sector}</span>
                 </div>
               ))}
             </div>
@@ -120,11 +130,10 @@ export default function Home() {
             <div className="trusted-track reverse">
               {[...row2Brands, ...row2Brands].map((brand, i) => (
                 <div key={i} className="trusted-brand-card">
-                  <span className="brand-icon">{brand.icon}</span>
-                  <div className="brand-details">
-                    <span className="brand-name">{brand.name}</span>
-                    <span className="brand-sector">{brand.sector}</span>
+                  <div className="brand-logo-wrap">
+                    <BrandLogo brand={brand} />
                   </div>
+                  <span className="brand-sector">{brand.sector}</span>
                 </div>
               ))}
             </div>

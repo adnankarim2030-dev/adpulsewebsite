@@ -1,168 +1,301 @@
+'use client';
+
+import { useState } from 'react';
 import './gallery.css';
 
-export const metadata = {
-  title: 'Media Gallery — AdPulse Media Agency',
-  description: 'Explore our media gallery showcasing TVCs, brand activations, corporate events, outdoor campaigns, and behind-the-scenes production content.',
-};
+const ALL_VIDEOS = [
+  { id: '_dfA84gDkZ0', title: 'Governor Sindh Senator Nehal Hashmi | 1st Commemoration of Marka-e-Haq 2025', category: 'events' },
+  { id: 'VPcb1zkYWvM', title: 'Marking the 1st Commemoration of Marka-e-Haq 2025', category: 'events' },
+  { id: 'MX6DFzEmCGI', title: 'Governing the AI & Digital Assets First Policy Hackathon | by AdPulse', category: 'events' },
+  { id: '8vuI9vGcbTA', title: 'The All-Electric MINI — Explore Every MINI. Every Style | by AdPulse', category: 'tvc' },
+  { id: 'PYLHegXkvGw', title: 'Diners Grand Opening Ceremony | by AdPulse', category: 'events' },
+  { id: 'iYNogLTMDWI', title: 'Kifayah Pharmacy & Supermarket Out-of-Home Campaign | by AdPulse', category: 'ooh' },
+  { id: 'MDNJxzXePoM', title: '@BMWDewan Digital Out-of-Home (DOOH) Campaign | by AdPulse', category: 'ooh' },
+  { id: 'Pk9G0KfmKIM', title: 'Chase Up launches a new outlet | Grand Opening North Nazimabad', category: 'events' },
+  { id: 'd2T9vqyqngQ', title: 'IG Sindh Ghulam Nabi Memon Addresses Past & Present of Sindh Police Conference', category: 'events' },
+  { id: 'WVvY_-g2K2M', title: 'Senator Sarmad Ali\'s Speech on Police Reforms & Governance in Sindh', category: 'events' },
+  { id: 'uiBylMzPmKw', title: 'Mr. Sirajuddin Aziz Addresses Police Reforms & Governance in Sindh', category: 'events' },
+  { id: 'ZO94qqazjBg', title: 'Kaleem Farooqi Addresses Police Reforms & Governance in Sindh', category: 'events' },
+  { id: 'CfBSGXgwocw', title: 'Brig Tarique Quadir Lakhiar Speech | Police Reforms & Governance in Sindh', category: 'events' },
+  { id: 'NITD_9Cmos4', title: 'Seema Mughal Speech | Police Reforms & Accountability in Sindh', category: 'events' },
+  { id: 'zId3E9rpc1k', title: 'Brig (R) Haris Nawaz on Police Reforms & Governance | Sindh Police Conference', category: 'events' },
+  { id: 'ny7dHTUwzHw', title: 'Past & Present of Sindh Police Event Organized | by AdPulse', category: 'events' },
+  { id: 'CqWKW2r5KKc', title: 'Armani Builders & Developers Meet & Greet | by AdPulse', category: 'events' },
+  { id: 'cwM5IrzM2X0', title: 'AdPulse Showreel', category: 'showreel' },
+  { id: '4nAkivqPt1U', title: '@ImtiazStores OOH Campaign | by AdPulse', category: 'ooh' },
+  { id: '87Wco-cH_yU', title: 'Marka-e-Haq Jashn-e-Azadi celebrations at Governor House', category: 'events' },
+  { id: 'DQdCGUtAKE0', title: 'Inauguration Ceremony at Governor House Sindh, Karachi', category: 'events' },
+  { id: 'ntIAakOpHr4', title: 'Youngs Mayonnaise Out of Home Campaign', category: 'ooh' },
+  { id: 'ZMkyYv_e4DA', title: 'Armani Skyline Out-of-Home Campaign', category: 'ooh' },
+  { id: 'LV6p66jnifY', title: 'Imtiaz Out of Home Campaign', category: 'ooh' },
+  { id: 'yhoJHzjKdUo', title: 'Sumsum Grand 2 Executive Towers Out Of Home Campaign', category: 'ooh' },
+  { id: 'L9AW2vH-FDw', title: "Sahar's Festive Edit and Selene SS'25 Out of Home Campaign", category: 'ooh' },
+  { id: 'XNSfw7g_CLc', title: "GFS Builders' Rally in Honor of Armed Forces | Powered by Adpulse", category: 'events' },
+  { id: 'yJ1AeIOWWCo', title: 'Oxford Winter Sale 24-25 Out of Home Campaign', category: 'ooh' },
+  { id: 'LkSF15kUVsY', title: 'GFS Brand Ambassador Ayeza Khan Meet & Greet in Dubai', category: 'events' },
+  { id: 'Yj1N8mAny_M', title: 'SUMSUM GROUP GRAND II EXECUTIVE TOWERS LAUNCHING CEREMONY', category: 'events' },
+  { id: 'GmHXcTu-R_A', title: 'ChaseValue Grand Opening (Autobahn Road, Hyderabad)', category: 'events' },
+  { id: 'zM2rsXSn7gY', title: 'Grand Firework Show at Governor House | AdPulse', category: 'events' },
+  { id: 'xi18yVDTM0U', title: 'GFS Builders & Developers Out Of Home Campaign | By AdPulse', category: 'ooh' },
+  { id: 'wBZj-YskYG0', title: 'Chase Up Grand Opening In Hyderabad', category: 'events' },
+  { id: '-XeBNnNshpY', title: 'Exclusive Launch of 9F Nine Figures by Fahad Mustafa at Centaurus Mall', category: 'events' },
+  { id: 'PLXXJg-rE0k', title: 'First Cutchi Memon Living Legends Awards Powered By AdPulse', category: 'events' },
+  { id: 'ZPCBua_tSz8', title: '@sumsumgroup Out of Home Campaign | by AdPulse', category: 'ooh' },
+  { id: 'nptSoAUVM80', title: 'Print Media Campaign Otel Residency a project of Xefan | by AdPulse', category: 'tvc' },
+  { id: 'KW8FotbdJG4', title: 'OTEL Residency Electronic Media Release | by AdPulse', category: 'tvc' },
+  { id: 'DjGwBK387lY', title: 'Otel Residency OOH Campaign | by AdPulse', category: 'ooh' },
+  { id: 'WoAeLUmc3xo', title: 'Latest Commercial of @builders_gfs | by AdPulse', category: 'tvc' },
+  { id: 'v8QgwJoK9gc', title: 'AdPulse Out of Home Campaign — Chase Up, maximum brand visibility', category: 'ooh' },
+  { id: '6-4aRjwxDuc', title: 'GFS Builders and Developers — AdPulse Billboard Campaign', category: 'ooh' },
+  { id: 'SXaa9qV0s8I', title: '2nd Police Extreme Handgun Competition Promo | AdPulse', category: 'events' },
+  { id: 'XWrpNazSB20', title: 'Xtreme Competition Full Final', category: 'events' },
+  { id: 'eWxt66xPk-U', title: '@diners_official Independence Day Out Of Home Campaign | by AdPulse', category: 'ooh' },
+  { id: 'Cq6wl8zrX7w', title: '9th Avenue Out Of Home Campaign | by AdPulse', category: 'ooh' },
+  { id: '-OC8aOXQbAg', title: 'AdPulse organized a Pre Launch Ceremony & Dealer Convention Event', category: 'events' },
+  { id: 'NKckMsvjBY0', title: 'Independence Day Shooting Competition 2024 powered by AdPulse', category: 'events' },
+  { id: 'IKiZt0Kv6co', title: '@SunridgeFoods Takatwar Pakistan App Launch Ceremony | by AdPulse', category: 'events' },
+  { id: 'IZrRV4kId0Q', title: 'AdPulse brings together Ayeza Khan as GFS Builders and Developers Brand Ambassador', category: 'events' },
+  { id: 'P503EgI36Eo', title: '@builders_gfs Electronic Media Release | by AdPulse', category: 'tvc' },
+  { id: '8hAVwOeUPlU', title: '@diners_official Nationwide Streamers Campaign | by AdPulse', category: 'ooh' },
+  { id: '6_x2Gy7m0Zk', title: '@SunridgeFoods OOH Campaign | by AdPulse', category: 'ooh' },
+  { id: 'fV97GrCtuYc', title: '@oxfordstore6145 OOH Campaign | by AdPulse', category: 'ooh' },
+  { id: 'Dt_v03awSsM', title: '@diners_official Pakistan Day OOH Campaign | by AdPulse', category: 'ooh' },
+  { id: 'SsQKqNC76-Q', title: 'Crime Reporters Association Iftar & Dinner | by AdPulse', category: 'events' },
+  { id: 'rkOFL_twvwY', title: '@diners_official Pakistan Day OOH Campaign | by AdPulse', category: 'ooh' },
+  { id: 'NurxrSO1WAI', title: '@builders_gfs Annual Awards 2023-2024 | by AdPulse', category: 'events' },
+  { id: 'weY1o1mbz8Q', title: 'AUC Technologies Launch Ceremony | by AdPulse', category: 'events' },
+  { id: 'Nt3qSZ8ToHk', title: '@sahar.pakistan5207 OOH Campaign | by AdPulse', category: 'ooh' },
+  { id: 'fOpy3XZMBkg', title: '@builders_gfs Electronic Media Release | by AdPulse', category: 'tvc' },
+  { id: 'Nw_PKkPVahI', title: '@sahar.pakistan5207 Luxury Unstitched Lawn Spring Summer 24 | by AdPulse', category: 'tvc' },
+  { id: 'hjZtOJH7s1g', title: '@SunridgeFoods OOH Campaign | by AdPulse', category: 'ooh' },
+  { id: 'R1Xg_HQ7hUc', title: '@hmrwaterfront Electronic Media Release | by Adpulse', category: 'tvc' },
+  { id: 'XNWHGJ8hP2Y', title: '@builders_gfs host a dinner for Karachi Ghazis | by Adpulse', category: 'events' },
+  { id: '6o7HmoSZJH0', title: '@karachighazis957 OOH Campaign | by AdPulse', category: 'ooh' },
+  { id: 'nmamrCwAxCM', title: '@oxfordstore6145 OOH Campaign | by AdPulse', category: 'ooh' },
+  { id: 'Ip5pEUvMX4A', title: '@builders_gfs OOH Campaign | by AdPulse', category: 'ooh' },
+  { id: 'z-7ZelyxAcY', title: '@diners_official Streamers Campaign | by AdPulse', category: 'ooh' },
+  { id: 'wrjPsgfkLP8', title: '@ChaseValueOfficial Documentary | by AdPulse', category: 'tvc' },
+  { id: '68bC80ZdzfY', title: '@ChaseUpOfficial OOH Campaign | by AdPulse', category: 'ooh' },
+  { id: 'y8ml8KTXRHw', title: '@ChaseUpOfficial — Year End Dhamaka Offer — by AdPulse', category: 'tvc' },
+  { id: 'GLa4g9J6Br4', title: 'Sidra Niazi at the new outlet of @ChaseValueOfficial', category: 'events' },
+  { id: 'AAT9LV6qUJw', title: 'Komal Meer at the new outlet of @ChaseValueOfficial', category: 'events' },
+  { id: 'J7o8X4pTyBE', title: 'Junaid Khan at the new outlet of @ChaseValueOfficial', category: 'events' },
+  { id: 'rL94msn42Ig', title: '@ChaseUpOfficial — Year End Dhamaka Offer — by AdPulse', category: 'tvc' },
+  { id: '2BYxCD0mUV8', title: 'Muhammad Faizan Sheikh Shoutout for @ChaseValueOfficial', category: 'tvc' },
+  { id: 'OzMJt2MLNpg', title: 'Muhammad Faizan Sheikh at the new outlet of @ChaseValueOfficial', category: 'events' },
+  { id: 'fnQTYL5OA1E', title: 'Syed Shafaat Ali Shoutout for @ChaseValueOfficial', category: 'tvc' },
+  { id: 'umgLZEsf5jQ', title: 'Ahsan Khan Shoutout for @ChaseValueOfficial', category: 'tvc' },
+  { id: '75k92b9xaPg', title: '@builders_gfs Project Chase Mall Sukkur Launching Event', category: 'events' },
+  { id: 'b8wrZ0XIKoU', title: 'Grand Launch of @ChaseValueOfficial Korangi Outlet and Head Office', category: 'events' },
+  { id: 'RCAs_-gldqw', title: 'Documentary | 10th Anniversary of the Belt and Road Initiative (BRI)', category: 'tvc' },
+  { id: 'nt2wgcZjRc0', title: 'Ocean Downtown-Hub Groundbreaking Ceremony', category: 'events' },
+  { id: '2R2idlMRw2M', title: '10th Anniversary of the Belt and Road Initiative (BRI) Conference', category: 'events' },
+  { id: 'xnUoOsauIAg', title: 'Atlas Hybrid Documentary', category: 'tvc' },
+  { id: 'jInfdaynquE', title: 'Ocean Marina TVC', category: 'tvc' },
+  { id: 'In2AcIr-jMY', title: 'Honda CB 150F TVC', category: 'tvc' },
+  { id: 'Kqx4ZEkaN_g', title: 'Continental Biscuits Ltd Documentary', category: 'tvc' },
+  { id: '9T84w-rY2LE', title: '@SunridgeFoods OOH Nationwide Campaign | by AdPulse', category: 'ooh' },
+  { id: '8bwSsw20CCQ', title: 'Convocation Ceremony of KVTC at @greenwichuniversity5122', category: 'events' },
+  { id: 'qHmWKWPKeyI', title: '@builders_gfs OOH Campaign | by AdPulse', category: 'ooh' },
+  { id: '7-WLtJpXztY', title: 'Home Minister of Sindh Praises CEO AdPulse and Peace Conference', category: 'events' },
+  { id: '65p0gxx09d0', title: 'Media Visit at @SunridgeFoods Factory', category: 'events' },
+  { id: '6N9yAPnQmsA', title: 'Out-of-Home Advertising of FAKT', category: 'ooh' },
+  { id: 'AXbohNa5QIc', title: 'Welcome His Excellency Dr. Tawfiq Al-Rabiah — Minister Of Hajj & Umrah', category: 'events' },
+  { id: 'kOu4dXzl7yE', title: 'Signing Ceremony GFS Builders and Developers & Karachi Ghazis', category: 'events' },
+  { id: 'zWD86BQyZ-k', title: 'SSU Independence Day Shooting Competition', category: 'events' },
+  { id: 'YqzRxDzJGk0', title: '14 August Highlights With AdPulse', category: 'events' },
+  { id: '23EAXP9y3rQ', title: "Pakistan's National Anthem 🇵🇰", category: 'events' },
+  { id: 'Tt4mfTrY1SA', title: 'OOH GFS Builders and Developers', category: 'ooh' },
+  { id: 'IYJNJ05aeUc', title: 'SSU Song by AdPulse', category: 'tvc' },
+  { id: 'jF5Fe-7cyUY', title: 'ADPULSE EVENT SHOWREEL', category: 'showreel' },
+  { id: 'obF-KQEkppY', title: '102nd Founding Anniversary of the Communist Party of China (CPC)', category: 'events' },
+  { id: 'Usua2dIOv4A', title: 'AdPulse hosted a welcome dinner for Consul General of China', category: 'events' },
+  { id: 'EdIHKv86NYI', title: 'GFS Balloting Event of General Block 7 Wonders City Islamabad', category: 'events' },
+  { id: 'J8O7pTAs6u8', title: 'Vanguard School Inauguration Event Powered by Adpulse IMC Pvt Ltd', category: 'events' },
+  { id: '-eES42woVLM', title: 'ADPULSE energizes end of Ramadan with blessings at Governor House Karachi', category: 'events' },
+  { id: 't0aGvvf3gQ4', title: 'PK Visiting AdPulse', category: 'events' },
+  { id: 'mgN4E7Sf2kg', title: 'Unity Foods Shop Launch', category: 'events' },
+  { id: 'Yenbx8xUVv0', title: 'GFS Family Iftar Dinner', category: 'events' },
+  { id: 'EO4NnFnon1k', title: 'Sindh Police Peace Conference Documentary | by AdPulse', category: 'tvc' },
+  { id: 'vRdUxRsmPqg', title: 'All Pakistan Memon Federation Personality Awards', category: 'events' },
+  { id: 'FX2cduAMmJU', title: 'Unity Food | Sunridge | Taqatwar Pakistan | Lahore Shop Launch', category: 'events' },
+  { id: 'XYLneBOC0QY', title: 'Wall Street', category: 'tvc' },
+  { id: 'bsHFdv16_h4', title: 'Peace Conference Video #makepeacewithpolice', category: 'events' },
+  { id: 'reOnMZp-olw', title: 'Javed Odho — Peace Conference', category: 'events' },
+  { id: 'HapOQ9wW4OU', title: 'All Pakistan Memon Federation Documentary', category: 'tvc' },
+];
+
+const CATEGORIES = [
+  { id: 'all',      label: 'ALL VIDEOS' },
+  { id: 'showreel', label: 'SHOWREEL'   },
+  { id: 'ooh',      label: 'OOH / OUTDOOR' },
+  { id: 'events',   label: 'EVENTS'    },
+  { id: 'tvc',      label: 'TVC / FILMS' },
+];
+
+const PAGE_SIZE = 12;
 
 export default function MediaGalleryPage() {
-  const categories = [
-    { id: 'all', label: 'ALL' },
-    { id: 'tvc', label: 'TVC PRODUCTION' },
-    { id: 'events', label: 'EVENTS' },
-    { id: 'outdoor', label: 'OUTDOOR' },
-    { id: 'digital', label: 'DIGITAL' },
-    { id: 'btl', label: 'BTL' },
-  ];
+  const [activeFilter, setActiveFilter]   = useState('all');
+  const [visibleCount, setVisibleCount]   = useState(PAGE_SIZE);
+  const [playingId, setPlayingId]         = useState(null);
 
-  const galleryItems = [
-    {
-      id: 1,
-      category: 'tvc',
-      image: '/images/services/production.png',
-      title: 'TVC Production Studio',
-      description: 'Behind the scenes of our professional TVC studio setup',
-    },
-    {
-      id: 2,
-      category: 'outdoor',
-      image: '/images/services/outdoor.png',
-      title: 'Outdoor Billboard Campaign',
-      description: 'High-impact digital billboard at a premium Karachi location',
-    },
-    {
-      id: 3,
-      category: 'events',
-      image: '/images/services/events.png',
-      title: 'Corporate Gala Night',
-      description: 'Full-scale corporate event production and management',
-    },
-    {
-      id: 4,
-      category: 'digital',
-      image: '/images/portfolio/fitfuel.png',
-      title: 'FitFuel Social Campaign',
-      description: 'Digital-first social media campaign for FitFuel',
-    },
-    {
-      id: 5,
-      category: 'tvc',
-      image: '/images/services/aivideo.png',
-      title: 'AI-Powered Video Ads',
-      description: 'Cutting-edge AI video production for modern brands',
-    },
-    {
-      id: 6,
-      category: 'btl',
-      image: '/images/services/btl.png',
-      title: 'Nationwide Brand Activation',
-      description: 'BTL activation at a major product launch event',
-    },
-    {
-      id: 7,
-      category: 'digital',
-      image: '/images/portfolio/burgerhouse.png',
-      title: 'Burger House Paid Ads',
-      description: 'Performance-driven paid advertising campaign',
-    },
-    {
-      id: 8,
-      category: 'events',
-      image: '/images/services/pr.png',
-      title: 'Media PR & Press Event',
-      description: 'Strategic PR event with leading media personalities',
-    },
-    {
-      id: 9,
-      category: 'outdoor',
-      image: '/images/services/mediabuying.png',
-      title: 'Media Planning Session',
-      description: 'Strategic media buying and planning meeting with clients',
-    },
-    {
-      id: 10,
-      category: 'digital',
-      image: '/images/portfolio/urbanpeaks.png',
-      title: 'Urban Peaks Branding',
-      description: 'Complete branding and digital identity package',
-    },
-    {
-      id: 11,
-      category: 'tvc',
-      image: '/images/portfolio/technova.png',
-      title: 'TechNova Product Launch',
-      description: 'Cinematic product launch video for TechNova',
-    },
-    {
-      id: 12,
-      category: 'digital',
-      image: '/images/services/digital.png',
-      title: 'Digital Marketing Hub',
-      description: 'Comprehensive digital marketing campaign execution',
-    },
-  ];
+  const filtered = activeFilter === 'all'
+    ? ALL_VIDEOS
+    : ALL_VIDEOS.filter(v => v.category === activeFilter);
+
+  const visible = filtered.slice(0, visibleCount);
+  const hasMore = visibleCount < filtered.length;
+
+  const handleFilterChange = (id) => {
+    setActiveFilter(id);
+    setVisibleCount(PAGE_SIZE);
+    setPlayingId(null);
+  };
+
+  const categoryLabel = (cat) =>
+    CATEGORIES.find(c => c.id === cat)?.label.replace(' / OUTDOOR','').replace(' / FILMS','') || cat.toUpperCase();
 
   return (
     <div className="page-wrapper">
+
+      {/* ── Hero ── */}
       <div className="page-header">
         <div className="container">
           <h1>MEDIA GALLERY</h1>
-          <p>A visual showcase of our work across TVCs, events, outdoor, and digital campaigns.</p>
+          <p>
+            Live videos from our YouTube channel — campaigns, events, TVCs &amp; more.{' '}
+            <a
+              href="https://www.youtube.com/@AdPulse./videos"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="yt-channel-link"
+            >
+              View Full Channel ↗
+            </a>
+          </p>
         </div>
       </div>
 
+      {/* ── Video Grid Section ── */}
       <section className="container section-padding">
-        {/* Category Filter Tabs */}
+
+        {/* Filter tabs */}
         <div className="gallery-filters">
-          {categories.map((cat) => (
+          {CATEGORIES.map(cat => (
             <button
               key={cat.id}
-              className={`gallery-filter-btn ${cat.id === 'all' ? 'active' : ''}`}
-              data-category={cat.id}
+              className={`gallery-filter-btn ${activeFilter === cat.id ? 'active' : ''}`}
+              onClick={() => handleFilterChange(cat.id)}
             >
               {cat.label}
             </button>
           ))}
         </div>
 
-        {/* Gallery Grid */}
-        <div className="gallery-grid">
-          {galleryItems.map((item) => (
-            <div key={item.id} className="gallery-item" data-category={item.category}>
-              <div className="gallery-img">
-                <img src={item.image} alt={item.title} />
-                <div className="gallery-overlay">
-                  <div className="gallery-overlay-content">
-                    <span className="gallery-cat">{item.category.toUpperCase()}</span>
-                    <h3>{item.title}</h3>
-                    <p>{item.description}</p>
+        {/* Results count */}
+        <p className="gallery-count">
+          Showing <strong>{visible.length}</strong> of <strong>{filtered.length}</strong> videos
+        </p>
+
+        {/* Video Grid */}
+        <div className="video-grid">
+          {visible.map(video => (
+            <div key={video.id} className="video-card">
+              {playingId === video.id ? (
+                /* ── Live embedded player ── */
+                <div className="video-player-wrap">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0&modestbranding=1`}
+                    title={video.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                </div>
+              ) : (
+                /* ── Thumbnail (click to play) ── */
+                <div
+                  className="video-thumb-wrap"
+                  onClick={() => setPlayingId(video.id)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={e => e.key === 'Enter' && setPlayingId(video.id)}
+                  aria-label={`Play: ${video.title}`}
+                >
+                  <img
+                    src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+                    alt={video.title}
+                    className="video-thumb-img"
+                    loading="lazy"
+                  />
+                  <div className="video-thumb-overlay">
+                    <div className="play-circle">
+                      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
                   </div>
+                </div>
+              )}
+
+              {/* Card info */}
+              <div className="video-card-info">
+                <span className="video-badge">{categoryLabel(video.category)}</span>
+                <h3 className="video-card-title">{video.title}</h3>
+                <div className="video-card-actions">
+                  <button
+                    className="btn-play-inline"
+                    onClick={() => setPlayingId(playingId === video.id ? null : video.id)}
+                  >
+                    {playingId === video.id ? '■ Stop' : '▶ Play'}
+                  </button>
+                  <a
+                    href={`https://www.youtube.com/watch?v=${video.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-yt-link"
+                  >
+                    YouTube ↗
+                  </a>
                 </div>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Load More */}
+        {hasMore && (
+          <div className="load-more-wrap">
+            <button
+              className="btn btn-outline load-more-btn"
+              onClick={() => setVisibleCount(c => c + PAGE_SIZE)}
+            >
+              Load More Videos ({filtered.length - visibleCount} remaining)
+            </button>
+          </div>
+        )}
       </section>
 
-      {/* Stats Banner */}
+      {/* ── Stats Banner ── */}
       <section className="gallery-stats bg-gradient-gray">
         <div className="container">
           <div className="gallery-stats-grid">
             <div className="gallery-stat">
-              <h3>500+</h3>
-              <p>MEDIA ASSETS PRODUCED</p>
+              <h3>100+</h3>
+              <p>VIDEOS PRODUCED</p>
             </div>
             <div className="gallery-stat">
               <h3>50+</h3>
-              <p>TVC COMMERCIALS</p>
+              <p>OOH CAMPAIGNS</p>
             </div>
             <div className="gallery-stat">
               <h3>200+</h3>
               <p>EVENTS MANAGED</p>
             </div>
             <div className="gallery-stat">
-              <h3>100+</h3>
-              <p>OUTDOOR CAMPAIGNS</p>
+              <h3>500+</h3>
+              <p>MEDIA ASSETS</p>
             </div>
           </div>
         </div>
