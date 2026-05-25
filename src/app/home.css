@@ -308,9 +308,9 @@
 .trusted-brand-card {
   display: inline-flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 1.2rem;
   background: var(--surface-card);
-  padding: 0.6rem 1.25rem;
+  padding: 0.8rem 2rem;
   border-radius: var(--radius-full);
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
@@ -329,8 +329,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   background: var(--color-primary-light);
   border-radius: 50%;
   transition: transform 0.4s ease, background 0.4s ease;
@@ -342,7 +342,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 8px; /* space around the logo */
+  padding: 10px;
 }
 
 .brand-logo-text {
@@ -352,12 +352,12 @@
   align-items: center;
   justify-content: center;
   font-family: var(--font-heading);
-  font-size: 0.65rem;
+  font-size: 0.95rem;
   font-weight: 800;
   text-align: center;
   color: var(--color-primary);
   line-height: 1;
-  padding: 4px;
+  padding: 6px;
 }
 
 .trusted-brand-card:hover .brand-logo-wrap {
@@ -374,7 +374,7 @@
 
 .brand-name {
   font-family: var(--font-heading);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 800;
   color: var(--color-black);
   letter-spacing: 0.5px;

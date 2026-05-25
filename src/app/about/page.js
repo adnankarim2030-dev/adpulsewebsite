@@ -50,12 +50,15 @@ export default function AboutPage() {
               <span className="subtitle">A MESSAGE FROM OUR CEO</span>
               <h2>FOUNDER'S VISION</h2>
               <p>AdPulse IMC is a media agency that specializes in building brands. Our agency is powered by a synergy of talented creatives and strategic thinkers who work tirelessly to craft engaging, effective solutions tailored to the evolving needs of our clients.</p>
-              <p>We believe that every brand possesses a unique narrative waiting to be told. To do this effectively, we dive deep into the heart of your business and the psyche of your audience. This allows us to develop brand identities and messaging that don't just reach your target market-they resonate with them, capturing the true essence of your brand.</p>
-              <p>Our commitment: <strong>Exceptional service and results that Exceed Expectations.</strong> We are fueled by a passion for what we do and a steadfast dedication to your success. Thank you for trusting us to be the heartbeat of your brand's journey.</p>
+              <p>We believe that every brand possesses a unique narrative waiting to be told. To do this effectively, we dive deep into the heart of your business and the psyche of your audience. This allows us to develop brand identities and messaging that don't just reach your target market&mdash;they resonate with them, capturing the true essence of your brand.</p>
+              <p>
+                Our commitment: <strong>Exceptional service and results that Exceed Expectations.</strong><br/>
+                We are fueled by a passion for what we do and a steadfast dedication to your success. Thank you for trusting us to be the heartbeat of your brand's journey.
+              </p>
               <br/>
               <p>Keep Smiling,</p>
-              <h4 style={{marginBottom: 0}}>KHURRAM JAFFRANI</h4>
-              <p style={{fontSize: '0.9rem', color: 'var(--color-primary-red)', fontWeight: 'bold'}}>CHIEF EXECUTIVE OFFICER</p>
+              <h4 style={{marginTop: '1.5rem', marginBottom: '0.5rem', textTransform: 'uppercase'}}>CHIEF EXECUTIVE OFFICER</h4>
+              <h4 style={{marginBottom: 0, textTransform: 'uppercase'}}>KHURRAM JAFFRANI</h4>
             </div>
           </div>
         </div>
@@ -101,7 +104,7 @@ export default function AboutPage() {
               <span className="team-role">Business Director</span>
               <div className="team-details">
                 <p><strong>Experience:</strong> 20 Years +</p>
-                <p><strong>Expertise:</strong> TVC Production, Event Management</p>
+                <p><strong>Expertise:</strong> TVC Production, Event Management, Business Development</p>
               </div>
             </div>
 
@@ -113,7 +116,7 @@ export default function AboutPage() {
               <span className="team-role">Head Of Client Service</span>
               <div className="team-details">
                 <p><strong>Experience:</strong> 5 Years +</p>
-                <p><strong>Expertise:</strong> Operations, Budgeting, Vendor Mgt</p>
+                <p><strong>Expertise:</strong> Operations, Budgeting, Vendor Management</p>
               </div>
             </div>
 
@@ -122,7 +125,7 @@ export default function AboutPage() {
                 <img src="/images/team/naeem.png" alt="Naeem Ahmed" />
               </div>
               <h3>Naeem Ahmed</h3>
-              <span className="team-role">Head Of Media Buying</span>
+              <span className="team-role">Head Of Media Buying & Planning</span>
               <div className="team-details">
                 <p><strong>Experience:</strong> 23 Years +</p>
                 <p><strong>Expertise:</strong> Media Buying & Planning</p>
@@ -130,38 +133,38 @@ export default function AboutPage() {
             </div>
 
             <div className="team-card">
-              <div className="team-photo team-placeholder-red">
-                <span>KA</span>
+              <div className="team-photo">
+                <img src="/images/team/kashif.png" alt="Kashif Aghani" />
               </div>
               <h3>Kashif Aghani</h3>
-              <span className="team-role">Manager Business Dev</span>
+              <span className="team-role">Manager Business Development</span>
               <div className="team-details">
                 <p><strong>Experience:</strong> 20 Years +</p>
-                <p><strong>Expertise:</strong> Client Management, Programs</p>
+                <p><strong>Expertise:</strong> Client Management, Programs Execution, CRM</p>
               </div>
             </div>
 
             <div className="team-card">
-              <div className="team-photo team-placeholder-red">
-                <span>SA</span>
+              <div className="team-photo">
+                <img src="/images/team/abeel.png" alt="Syed Abeel Ahmed" />
               </div>
               <h3>Syed Abeel Ahmed</h3>
               <span className="team-role">Creative Manager</span>
               <div className="team-details">
                 <p><strong>Experience:</strong> 7 Years +</p>
-                <p><strong>Expertise:</strong> Branding, Layouting, Animation</p>
+                <p><strong>Expertise:</strong> Branding Conceptualization, Layouting, Animation, Corporate Communications</p>
               </div>
             </div>
 
             <div className="team-card">
-              <div className="team-photo team-placeholder-red">
-                <span>AK</span>
+              <div className="team-photo">
+                <img src="/images/team/adnan.png" alt="Adnan Karim" />
               </div>
               <h3>Adnan Karim</h3>
-              <span className="team-role">Digital Marketing Mgr</span>
+              <span className="team-role">Digital Marketing Manager</span>
               <div className="team-details">
                 <p><strong>Experience:</strong> 15 Years +</p>
-                <p><strong>Expertise:</strong> Digital Marketing, Social Media</p>
+                <p><strong>Expertise:</strong> Digital Marketing Brand Management, Social Media, BTL Activation, E-Commerce, AI Creative Ads</p>
               </div>
             </div>
 
