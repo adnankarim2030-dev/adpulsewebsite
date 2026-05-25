@@ -54,10 +54,10 @@ export default function Footer() {
             <p>Office #213, 2nd Floor, Pak Tower<br/>Block 5 Clifton, Karachi</p>
           </div>
           <div className="social-links">
-            <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook"><FaFacebookF /></a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><FaInstagram /></a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedinIn /></a>
-            <a href="https://youtube.com" target="_blank" rel="noreferrer" aria-label="YouTube"><FaYoutube /></a>
+            <a href="https://www.facebook.com/adpulse.pk" target="_blank" rel="noreferrer" aria-label="Facebook"><FaFacebookF /></a>
+            <a href="https://www.instagram.com/adpulse.pk" target="_blank" rel="noreferrer" aria-label="Instagram"><FaInstagram /></a>
+            <a href="https://www.linkedin.com/company/adpulsepk/posts/?feedView=all" target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedinIn /></a>
+            <a href="https://www.youtube.com/channel/UCJfBhcCIDi1nuhFsdvqQLcg" target="_blank" rel="noreferrer" aria-label="YouTube"><FaYoutube /></a>
           </div>
         </div>
       </div>
