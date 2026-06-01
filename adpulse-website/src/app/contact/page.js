@@ -41,7 +41,7 @@ export default function ContactPage() {
               <div className="info-card">
                 <div className="info-icon">📞</div>
                 <h3>Let's Stay in Touch</h3>
-                <p>+92 21 37526834<br/>www.adpulse.pk</p>
+                <p>+92 3008463041<br/>www.adpulse.pk</p>
               </div>
               <div className="info-card">
                 <div className="info-icon">✉️</div>

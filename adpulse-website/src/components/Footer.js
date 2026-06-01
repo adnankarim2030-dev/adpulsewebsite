@@ -35,7 +35,7 @@ export default function Footer() {
         </div>
         <div className="footer-col contact-col">
           <h4 style={{color: '#111'}}>CONTACT US</h4>
-          <p style={{color: '#111'}}>+92 21 37526834</p>
+          <p style={{color: '#111'}}>+92 3008463041</p>
           <p style={{color: '#111'}}>info@adpulse.pk</p>
           <p style={{color: '#111'}}>Office #213, 2nd Floor, Pak Tower<br/>Block 5 Clifton, Karachi</p>
           <div className="social-links colored-icons">
