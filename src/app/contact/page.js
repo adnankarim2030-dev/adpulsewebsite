@@ -80,10 +80,18 @@ export default function ContactPage() {
                   <label htmlFor="service">Service Interested In</label>
                   <select id="service" name="service">
                     <option value="">Select a service...</option>
-                    <option value="social">Social Media Marketing</option>
-                    <option value="ads">Paid Advertising</option>
-                    <option value="branding">Branding & Design</option>
-                    <option value="video">Video Production</option>
+                    <option value="tvc-production">TVC Productions</option>
+                    <option value="outdoor-media">Outdoor Media Advertising</option>
+                    <option value="media-buying">Media Buying & Planning</option>
+                    <option value="corporate-events">Corporate Events</option>
+                    <option value="pr-promotion">PR & Promotion</option>
+                    <option value="btl-marketing">BTL Marketing</option>
+                    <option value="digital-marketing">Digital Marketing Services</option>
+                    <option value="ai-video-ads">AI Video Ads Creative</option>
+                    <option value="print-media-release">Print Media Release</option>
+                    <option value="electronic-media">Electronic Media</option>
+                    <option value="digital-display">Digital Display</option>
+                    <option value="transit-advertising">Transit Advertising</option>
                     <option value="other">Other</option>
                   </select>
                 </div>

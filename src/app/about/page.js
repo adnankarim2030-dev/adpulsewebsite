@@ -1,6 +1,71 @@
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
 import './about.css';
 
+export const metadata = {
+  title: "About Us | AdPulse IMC Karachi",
+  description: "Learn about AdPulse IMC, a premier 360 media agency in Karachi. Meet our leadership, including CEO Khurram Jaffrani, and explore our APNS & PBA accredited marketing services.",
+  keywords: "adpulse team, khurram jaffrani, apns accredited agency, pba member agency karachi, about adpulse",
+  openGraph: {
+    title: "About Us | AdPulse IMC Karachi",
+    description: "Learn about AdPulse IMC, a premier 360 media agency in Karachi. Meet our leadership and explore our accredited marketing services.",
+    url: "https://adpulse.pk/about",
+    type: "website",
+  }
+};
+
 export default function AboutPage() {
+  const teamMembers = [
+    {
+      name: "Noel Francis",
+      role: "Business Director",
+      experience: "20 Years +",
+      expertise: "TVC Production, Event Management, Business Development",
+      image: "/images/about/Noel Francis.png"
+    },
+    {
+      name: "Shoaib Jaffrani",
+      role: "Head Of Client Service",
+      experience: "5 Years +",
+      expertise: "Brand Management, Budgeting, Operations, Vendor Management",
+      image: "/images/about/Shoaib Jaffrani.png"
+    },
+    {
+      name: "Naeem Ahmed",
+      role: "Head Of Media Buying & Planning",
+      experience: "23 Years +",
+      expertise: "Media Buying & Planning",
+      image: "/images/about/Naeem Ahmed.png"
+    },
+    {
+      name: "Kashif Aghani",
+      role: "Manager Business Development",
+      experience: "20 Years +",
+      expertise: "Client Management, Programs Execution, CRM",
+      image: "/images/about/Kashif Aghani.png"
+    },
+    {
+      name: "Syeda Musfira",
+      role: "Client Service & Operations Executive",
+      experience: "4 Years +",
+      expertise: "Client Relations Management, Operations Coordination, BTL Activations",
+      image: "/images/about/Syeda Musfira.png"
+    },
+    {
+      name: "Syed Abeel Ahmed",
+      role: "Creative Manager",
+      experience: "7 Years +",
+      expertise: "Branding, Conceptualization, Lay outing, Animation, Corporate Communications",
+      image: "/images/about/Syed Abeel Ahmed.png"
+    },
+    {
+      name: "Adnan Karim",
+      role: "Digital Marketing Manager",
+      experience: "15 Years +",
+      expertise: "Digital Marketing, Social Media, E-Commerce, AI Creative Ads",
+      image: "/images/about/Adnan Karim.png"
+    }
+  ];
+
   return (
     <div className="page-wrapper">
       <div className="page-header">
@@ -44,7 +109,7 @@ export default function AboutPage() {
         <div className="container">
           <div className="founder-grid">
             <div className="founder-image">
-              <img src="/images/about/ceo.png" alt="Khurram Jaffrani - CEO" />
+              <img src="/images/about/CEO.jpg" alt="Khurram Jaffrani - CEO" />
             </div>
             <div className="founder-content">
               <span className="subtitle">A MESSAGE FROM OUR CEO</span>
@@ -64,6 +129,30 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Chairman's Message */}
+      <section className="founder-section section-padding" style={{ borderTop: '1px solid rgba(0,0,0,0.05)' }}>
+        <div className="container">
+          <div className="founder-grid">
+            <div className="founder-image">
+              <img src="/images/about/Faisal Mubin Ganatra.jpg" alt="Faisal Mubin Ganatra - Chairman" />
+            </div>
+            <div className="founder-content">
+              <span className="subtitle">A MESSAGE FROM OUR CHAIRMAN</span>
+              <h2>CHAIRMAN'S MESSAGE</h2>
+              <p>Faisal Mubin Ganatra is a seasoned business leader, entrepreneur, and fellow member of the Institute of Chartered Accountants of Pakistan (ICAP). With over two decades of corporate leadership as CEO, COO, and CFO in multinational and leading national organizations—including Shan Foods, PepsiCo, and AES Thermal Power—he brings unparalleled strategic vision to AdPulse IMC.</p>
+              <p>We believe in establishing long-term business partnerships built on the core values of integrity, trust, and exceptional service. By marrying creative marketing concepts with solid business economics, we help brands not only reach their audiences but generate sustainable commercial success.</p>
+              <p>
+                Our mission is to translate creative ideas into real market results. We are proud of our dedicated team of professionals who strive daily to exceed client expectations. Thank you for your continued trust in AdPulse IMC.
+              </p>
+              <br/>
+              <p>Best Regards,</p>
+              <h4 style={{marginTop: '1.5rem', marginBottom: '0.5rem', textTransform: 'uppercase'}}>CHAIRMAN</h4>
+              <h4 style={{marginBottom: 0, textTransform: 'uppercase'}}>FAISAL MUBIN GANATRA</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Vision & Mission */}
       <section className="container section-padding">
         <div className="section-header">
@@ -71,103 +160,86 @@ export default function AboutPage() {
           <h2>VISION & MISSION</h2>
         </div>
         <div className="vision-mission-grid">
-          <div className="vm-card">
-            <h3 className="vm-title">Our Vision</h3>
-            <p>Our mission is to offer a distinguished marketing service for businesses within the Pakistani market. We believe that knowledge, integrity, and honesty make the core of this distinction. These qualities are manifested through the composition of our team and its culture.</p>
+          <div className="vm-image-col">
+            <img src="/images/about/about_billboard.jpg" alt="AdPulse Billboard" />
           </div>
-          <div className="vm-card">
-            <h3 className="vm-title">Our Mission</h3>
-            <ul className="vm-list">
-              <li>Deliver innovative, result-driven marketing solutions that create real business impact</li>
-              <li>Leverage the latest technology and data insights to drive smarter campaigns</li>
-              <li>Continuously enhance our knowledge to stay ahead in the evolving market</li>
-              <li>Build a strong, ethical, and high-performance corporate culture</li>
-            </ul>
+          <div className="vm-text-col">
+            <div className="vm-section">
+              <span className="vm-badge">Vision</span>
+              <p>To become Pakistan's most trusted and innovative integrated media and marketing agency, empowering brands through creative excellence, strategic communication, and impactful 360° marketing solutions.</p>
+            </div>
+            
+            <div className="vm-section">
+              <span className="vm-badge">Mission</span>
+              <p>Our mission is to deliver innovative, result-oriented, and integrated marketing solutions that help brands grow, engage, and connect with their audiences effectively. Through creativity, technology, market insight, and ethical business practices, we provide end-to-end services across <strong>Out-of-Home (OOH), Print Media, Electronic Media, Digital Media, Creative production, and event management.</strong></p>
+            </div>
+            
+            <div className="vm-commitment">
+              <h4>We are committed to:</h4>
+              <ul className="vm-commit-list">
+                <li>Creating impactful campaigns that drive measurable business results</li>
+                <li>Delivering seamless 360° marketing solutions under one roof</li>
+                <li>Building long-term partnerships through trust, integrity, and professionalism</li>
+                <li>Continuously evolving with industry trends and emerging technologies</li>
+                <li>Fostering a culture of creativity, collaboration, and excellence within our team</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Meet Our Team */}
-      <section className="team-section bg-gradient-gray section-padding" id="team">
+      <section className="team-section section-padding" id="team" style={{ background: '#f5f5f5' }}>
         <div className="container">
-          <div className="section-header">
-            <span className="subtitle">THE EXPERTS</span>
-            <h2>MEET OUR TEAM</h2>
+          <div className="section-header" style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <span className="subtitle" style={{ display: 'block', marginBottom: '0.5rem' }}>THE EXPERTS</span>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--color-black)', textAlign: 'center' }}>Meet Our Team</h2>
           </div>
-          <div className="team-grid">
-            
-            <div className="team-card">
-              <div className="team-photo">
-                <img src="/images/team/noel.png" alt="Noel Francis" />
-              </div>
-              <h3>Noel Francis</h3>
-              <span className="team-role">Business Director</span>
-              <div className="team-details">
-                <p><strong>Experience:</strong> 20 Years +</p>
-                <p><strong>Expertise:</strong> TVC Production, Event Management, Business Development</p>
-              </div>
+          
+          <div className="team-marquee">
+            <div className="team-marquee-track">
+              {/* Set 1 */}
+              {teamMembers.map((member, idx) => (
+                <div className="team-card" key={`set1-${idx}`}>
+                  <div className="team-photo">
+                    <img src={member.image} alt={member.name} />
+                  </div>
+                  <h3>{member.name}</h3>
+                  <p className="team-desc">
+                    Experience: {member.experience}<br />
+                    Expertise: {member.expertise}
+                  </p>
+                  <span className="team-role">{member.role}</span>
+                  <div className="team-socials">
+                    <a href="#" className="social-link"><FaFacebookF /></a>
+                    <a href="#" className="social-link"><FaInstagram /></a>
+                    <a href="#" className="social-link"><FaLinkedinIn /></a>
+                    <a href="#" className="social-link"><FaYoutube /></a>
+                  </div>
+                </div>
+              ))}
+              
+              {/* Set 2 */}
+              {teamMembers.map((member, idx) => (
+                <div className="team-card" key={`set2-${idx}`}>
+                  <div className="team-photo">
+                    <img src={member.image} alt={member.name} />
+                  </div>
+                  <h3>{member.name}</h3>
+                  <p className="team-desc">
+                    Experience: {member.experience}<br />
+                    Expertise: {member.expertise}
+                  </p>
+                  <span className="team-role">{member.role}</span>
+                  <div className="team-socials">
+                    <a href="#" className="social-link"><FaFacebookF /></a>
+                    <a href="#" className="social-link"><FaInstagram /></a>
+                    <a href="#" className="social-link"><FaLinkedinIn /></a>
+                    <a href="#" className="social-link"><FaYoutube /></a>
+                  </div>
+                </div>
+              ))}
             </div>
-
-            <div className="team-card">
-              <div className="team-photo">
-                <img src="/images/team/shoaib.png" alt="Shoaib Jaffrani" />
-              </div>
-              <h3>Shoaib Jaffrani</h3>
-              <span className="team-role">Head Of Client Service</span>
-              <div className="team-details">
-                <p><strong>Experience:</strong> 5 Years +</p>
-                <p><strong>Expertise:</strong> Operations, Budgeting, Vendor Management</p>
-              </div>
-            </div>
-
-            <div className="team-card">
-              <div className="team-photo">
-                <img src="/images/team/naeem.png" alt="Naeem Ahmed" />
-              </div>
-              <h3>Naeem Ahmed</h3>
-              <span className="team-role">Head Of Media Buying & Planning</span>
-              <div className="team-details">
-                <p><strong>Experience:</strong> 23 Years +</p>
-                <p><strong>Expertise:</strong> Media Buying & Planning</p>
-              </div>
-            </div>
-
-            <div className="team-card">
-              <div className="team-photo">
-                <img src="/images/team/kashif.png" alt="Kashif Aghani" />
-              </div>
-              <h3>Kashif Aghani</h3>
-              <span className="team-role">Manager Business Development</span>
-              <div className="team-details">
-                <p><strong>Experience:</strong> 20 Years +</p>
-                <p><strong>Expertise:</strong> Client Management, Programs Execution, CRM</p>
-              </div>
-            </div>
-
-            <div className="team-card">
-              <div className="team-photo">
-                <img src="/images/team/abeel.png" alt="Syed Abeel Ahmed" />
-              </div>
-              <h3>Syed Abeel Ahmed</h3>
-              <span className="team-role">Creative Manager</span>
-              <div className="team-details">
-                <p><strong>Experience:</strong> 7 Years +</p>
-                <p><strong>Expertise:</strong> Branding Conceptualization, Layouting, Animation, Corporate Communications</p>
-              </div>
-            </div>
-
-            <div className="team-card">
-              <div className="team-photo">
-                <img src="/images/team/adnan.png" alt="Adnan Karim" />
-              </div>
-              <h3>Adnan Karim</h3>
-              <span className="team-role">Digital Marketing Manager</span>
-              <div className="team-details">
-                <p><strong>Experience:</strong> 15 Years +</p>
-                <p><strong>Expertise:</strong> Digital Marketing Brand Management, Social Media, BTL Activation, E-Commerce, AI Creative Ads</p>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>

@@ -2,6 +2,19 @@ import Link from 'next/link';
 import { FaFilm, FaBullhorn, FaRegCalendarAlt, FaUsers, FaCogs, FaMapSigns, FaLaptopCode, FaNewspaper, FaTv, FaDesktop, FaBus } from 'react-icons/fa';
 import './home.css';
 
+export const metadata = {
+  title: "AdPulse IMC | Premier 360 Media & Advertising Agency in Karachi",
+  description: "Elevate your brand with AdPulse IMC, Karachi's leading full-service advertising agency. Specializing in TVC production, outdoor media, media buying, digital marketing, and corporate events.",
+  keywords: "media agency karachi, advertising agency pakistan, tvc production karachi, digital marketing agency, outdoor advertising, OOH karachi, media planning and buying, BTL marketing pakistan",
+  openGraph: {
+    title: "AdPulse IMC | Premier 360 Media & Advertising Agency in Karachi",
+    description: "Elevate your brand with AdPulse IMC, Karachi's leading full-service advertising agency. Specializing in TVC production, outdoor media, and digital marketing.",
+    url: "https://adpulse.pk",
+    siteName: "AdPulse IMC",
+    type: "website",
+  }
+};
+
 const BrandLogo = ({ brand }) => {
   if (brand.logo && !brand.logo.includes('placeholder.png')) {
     return <img src={brand.logo} alt={brand.name} className="brand-logo-img" loading="lazy" />;
@@ -87,9 +100,8 @@ export default function Home() {
               ADPULSE IMC (PVT) LTD.
             </div>
             <h1 className="reveal-up">
-              <span className="hero-line">We Create.</span>
-              <span className="hero-line">We Connect.</span>
-              <span className="hero-line highlight">We AdPulse.</span>
+              <span className="hero-line">We Don’t Just Create Campaigns,</span>
+              <span className="hero-line highlight">We Create Impact.</span>
             </h1>
             <p className="reveal-up">ADPULSE IMC is a full-service media agency – elevating brands through advertising, storytelling, and digital experiences.</p>
             <div className="hero-divider reveal-up"></div>

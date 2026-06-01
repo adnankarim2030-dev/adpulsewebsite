@@ -1,38 +1,22 @@
 import Link from 'next/link';
+import { blogPosts, getPastDate } from '@/data/blogs';
 import './blog.css';
 
-export default function BlogPage() {
-  const posts = [
-    {
-      id: 1,
-      title: "How to Scale Your Brand with Outdoor Media",
-      excerpt: "Outdoor advertising remains one of the most effective ways to build brand trust and local awareness in Karachi. Learn the strategies that work.",
-      date: "Oct 12, 2026",
-      emoji: "🏙️"
-    },
-    {
-      id: 2,
-      title: "The Future of AI in Digital Marketing",
-      excerpt: "Discover how AdPulse is leveraging artificial intelligence to create high-converting video ads and personalized campaigns at scale.",
-      date: "Oct 05, 2026",
-      emoji: "🤖"
-    },
-    {
-      id: 3,
-      title: "Why TVCs Still Matter in the Digital Age",
-      excerpt: "While digital is growing, the prestige and reach of a well-produced TV commercial are unparalleled for established brands seeking impact.",
-      date: "Sep 28, 2026",
-      emoji: "🎬"
-    },
-    {
-      id: 4,
-      title: "5 Strategies for Nationwide Brand Activation",
-      excerpt: "BTL marketing requires precision and local insight. Here are 5 strategies we use to ensure nationwide success for our clients.",
-      date: "Sep 20, 2026",
-      emoji: "🎯"
-    }
-  ];
+export const dynamic = 'force-dynamic';
 
+export const metadata = {
+  title: "Insights & Marketing News | AdPulse IMC",
+  description: "Stay ahead with the latest advertising trends, media planning insights, outdoor advertising strategies, and BTL marketing tips from the expert team at AdPulse IMC Karachi.",
+  keywords: "marketing blogs karachi, adpulse insights, media agency articles, advertising news pakistan, OOH media blog",
+  openGraph: {
+    title: "Insights & Marketing News | AdPulse IMC",
+    description: "Stay ahead with the latest advertising trends, media planning insights, and marketing tips.",
+    url: "https://adpulse.pk/blog",
+    type: "website",
+  }
+};
+
+export default function BlogPage() {
   return (
     <div className="page-wrapper">
       <div className="page-header">
@@ -44,13 +28,16 @@ export default function BlogPage() {
 
       <section className="container section-padding">
         <div className="blog-grid">
-          {posts.map((post) => (
+          {blogPosts.map((post) => (
             <div key={post.id} className="blog-card">
               <div className="blog-img-placeholder">
                 {post.emoji}
               </div>
               <div className="blog-content">
-                <span className="blog-date">{post.date}</span>
+                <div className="blog-meta">
+                  <span className="blog-date">{getPastDate(post.daysAgo)}</span>
+                  <span className="blog-read-time">{post.readTime}</span>
+                </div>
                 <h3>{post.title}</h3>
                 <p>{post.excerpt}</p>
                 <Link href={`/blog/${post.id}`} className="read-more">READ FULL ARTICLE →</Link>

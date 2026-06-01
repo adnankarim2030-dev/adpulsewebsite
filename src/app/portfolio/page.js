@@ -1,6 +1,18 @@
 import Link from 'next/link';
 import './portfolio.css';
 
+export const metadata = {
+  title: "Our Work & Case Studies | AdPulse IMC",
+  description: "Browse our advertising portfolio featuring successful TVCs, OOH media campaigns, and retail marketing results for leading Pakistani brands like Young's, Chase Up, BMW Dewan, and GFS Builders.",
+  keywords: "advertising portfolio karachi, media agency campaigns pakistan, case studies adpulse, OOH campaign portfolio",
+  openGraph: {
+    title: "Our Work & Case Studies | AdPulse IMC",
+    description: "Browse our advertising portfolio featuring successful TVCs, OOH media campaigns, and retail marketing results for leading Pakistani brands.",
+    url: "https://adpulse.pk/portfolio",
+    type: "website",
+  }
+};
+
 export default function PortfolioPage() {
   return (
     <div className="page-wrapper">

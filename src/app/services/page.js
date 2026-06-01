@@ -2,6 +2,18 @@ import Link from 'next/link';
 import { services } from '@/data/services';
 import './services.css';
 
+export const metadata = {
+  title: "Our Services & Pricing Packages | AdPulse IMC",
+  description: "Explore the full suite of marketing services offered by AdPulse IMC. From TVC production and OOH media to digital marketing, electronic media buying, and transparent pricing packages.",
+  keywords: "advertising services karachi, media buying packages, tvc production cost pakistan, outdoor media billboard pricing",
+  openGraph: {
+    title: "Our Services & Pricing Packages | AdPulse IMC",
+    description: "Explore the full suite of marketing services offered by AdPulse IMC and transparent pricing packages.",
+    url: "https://adpulse.pk/services",
+    type: "website",
+  }
+};
+
 export default function ServicesPage() {
   return (
     <div className="page-wrapper">
