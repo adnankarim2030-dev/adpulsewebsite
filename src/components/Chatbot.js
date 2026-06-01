@@ -33,6 +33,14 @@ export default function Chatbot() {
     }
   }, [messages, isOpen]);
 
+  // Auto-open chatbot window after page load with a 1.5s delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleToggle = () => {
     setIsOpen(!isOpen);
     setHasNewMessageAlert(false);
@@ -115,10 +123,11 @@ export default function Chatbot() {
       <div className={`chatbot-window ${isOpen ? 'open' : ''}`}>
         <div className="chatbot-header">
           <div className="chatbot-brand">
-            <span className="chatbot-avatar">🤖</span>
+            <span className="chatbot-avatar">
+              <img src="/images/chatbot_logo.png" alt="AdPulse Logo" />
+            </span>
             <div className="chatbot-brand-text">
               <h4>AdPulse Assistant</h4>
-              <span>Online • Auto-answering</span>
             </div>
           </div>
           <button className="chatbot-close-btn" onClick={handleToggle}>×</button>
