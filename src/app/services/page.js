@@ -17,7 +17,7 @@ export const metadata = {
 export default function ServicesPage() {
   return (
     <div className="page-wrapper">
-      <div className="page-header">
+      <div className="page-header services-hero">
         <div className="container">
           <h1>OUR SERVICES</h1>
           <p>Comprehensive digital solutions to accelerate your growth.</p>

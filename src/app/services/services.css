@@ -2,6 +2,19 @@
    SERVICES PAGE
    ======================================== */
 
+/* ---- HERO BACKGROUND ---- */
+.services-hero {
+  background-image: url('/images/services_hero_bg.png') !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.services-hero::before,
+.services-hero::after {
+  display: none !important;
+}
+
 .services-list {
   display: flex;
   flex-direction: column;
