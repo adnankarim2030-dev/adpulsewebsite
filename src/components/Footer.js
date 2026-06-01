@@ -43,7 +43,7 @@ export default function Footer() {
           <h4>CONTACT US</h4>
           <div className="contact-item">
             <FaPhoneAlt className="contact-item-icon" />
-            <p>+92 21 37526834</p>
+            <p>+92 3008463041</p>
           </div>
           <div className="contact-item">
             <FaEnvelope className="contact-item-icon" />
