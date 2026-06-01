@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { FaFilm, FaBullhorn, FaRegCalendarAlt, FaUsers, FaCogs, FaMapSigns, FaLaptopCode, FaNewspaper, FaTv, FaDesktop, FaBus } from 'react-icons/fa';
+import { FaFilm, FaBullhorn, FaRegCalendarAlt, FaUsers, FaCogs, FaMapSigns, FaLaptopCode, FaRobot } from 'react-icons/fa';
+import { services } from '@/data/services';
 import './home.css';
 
 export const metadata = {
@@ -24,6 +25,17 @@ const BrandLogo = ({ brand }) => {
       <span>{brand.text || brand.name}</span>
     </div>
   );
+};
+
+const serviceIcons = {
+  'tvc-production': FaFilm,
+  'outdoor-media': FaMapSigns,
+  'media-buying': FaCogs,
+  'corporate-events': FaRegCalendarAlt,
+  'pr-promotion': FaUsers,
+  'btl-marketing': FaBullhorn,
+  'digital-marketing': FaLaptopCode,
+  'ai-video-ads': FaRobot
 };
 
 export default function Home() {
@@ -157,152 +169,34 @@ export default function Home() {
                               <div className="services-marquee">
             <div className="services-marquee-track">
               {/* Set 1 */}
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaFilm /></div>
-                <h3>TVC PRODUCTIONS</h3>
-                <p>Concept & script development, shoot of TVC, DVC & documentaries</p>
-                <Link href="/services/tvc-production" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaMapSigns /></div>
-                <h3>OUTDOOR MEDIA ADVERTISING</h3>
-                <p>Hoardings, streamers, digital screens & transit advertising</p>
-                <Link href="/services/outdoor-media" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaCogs /></div>
-                <h3>MEDIA BUYING & PLANNING</h3>
-                <p>Print, electronic & digital release</p>
-                <Link href="/services/media-buying" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaRegCalendarAlt /></div>
-                <h3>CORPORATE EVENTS</h3>
-                <p>Planning, designing, execution & management</p>
-                <Link href="/services/corporate-events" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaUsers /></div>
-                <h3>PR & PROMOTION</h3>
-                <p>Media PR & brand amplification plan</p>
-                <Link href="/services/pr-promotion" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaBullhorn /></div>
-                <h3>BTL MARKETING</h3>
-                <p>Concept, planning & nationwide activation</p>
-                <Link href="/services/btl-marketing" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaLaptopCode /></div>
-                <h3>DIGITAL MARKETING SERVICES</h3>
-                <p>Comprehensive digital campaigns to boost online presence and engagement</p>
-                <Link href="/services/digital-marketing" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaFilm /></div>
-                <h3>AI VIDEO ADS CREATIVE</h3>
-                <p>Cutting-edge AI-generated video commercials and content</p>
-                <Link href="/services/ai-video-ads" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaNewspaper /></div>
-                <h3>PRINT MEDIA RELEASE</h3>
-                <p>Strategic press releases & placements across leading print publications</p>
-                <Link href="/services/print-media-release" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaTv /></div>
-                <h3>ELECTRONIC MEDIA</h3>
-                <p>TV & radio campaigns that capture mass audiences across Pakistan</p>
-                <Link href="/services/electronic-media" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaDesktop /></div>
-                <h3>DIGITAL DISPLAY</h3>
-                <p>Eye-catching digital display ads that convert across platforms and screens</p>
-                <Link href="/services/digital-display" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaBus /></div>
-                <h3>TRANSIT ADVERTISING</h3>
-                <p>Mobile brand exposure through buses, vehicles & transit network placements</p>
-                <Link href="/services/transit-advertising" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
+              {services.map((service, idx) => {
+                const Icon = serviceIcons[service.slug] || FaFilm;
+                return (
+                  <div className="service-card tilt-card" key={`set1-${idx}`}>
+                    <div className="service-icon"><Icon /></div>
+                    <h3>{service.title}</h3>
+                    <p>{service.tagline}</p>
+                    <Link href={`/services/${service.slug}`} className="text-red font-bold card-link">
+                      LEARN MORE <span className="arrow">→</span>
+                    </Link>
+                  </div>
+                );
+              })}
 
               {/* Set 2 (Duplicated for seamless infinite scrolling) */}
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaFilm /></div>
-                <h3>TVC PRODUCTIONS</h3>
-                <p>Concept & script development, shoot of TVC, DVC & documentaries</p>
-                <Link href="/services/tvc-production" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaMapSigns /></div>
-                <h3>OUTDOOR MEDIA ADVERTISING</h3>
-                <p>Hoardings, streamers, digital screens & transit advertising</p>
-                <Link href="/services/outdoor-media" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaCogs /></div>
-                <h3>MEDIA BUYING & PLANNING</h3>
-                <p>Print, electronic & digital release</p>
-                <Link href="/services/media-buying" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaRegCalendarAlt /></div>
-                <h3>CORPORATE EVENTS</h3>
-                <p>Planning, designing, execution & management</p>
-                <Link href="/services/corporate-events" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaUsers /></div>
-                <h3>PR & PROMOTION</h3>
-                <p>Media PR & brand amplification plan</p>
-                <Link href="/services/pr-promotion" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaBullhorn /></div>
-                <h3>BTL MARKETING</h3>
-                <p>Concept, planning & nationwide activation</p>
-                <Link href="/services/btl-marketing" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaLaptopCode /></div>
-                <h3>DIGITAL MARKETING SERVICES</h3>
-                <p>Comprehensive digital campaigns to boost online presence and engagement</p>
-                <Link href="/services/digital-marketing" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaFilm /></div>
-                <h3>AI VIDEO ADS CREATIVE</h3>
-                <p>Cutting-edge AI-generated video commercials and content</p>
-                <Link href="/services/ai-video-ads" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaNewspaper /></div>
-                <h3>PRINT MEDIA RELEASE</h3>
-                <p>Strategic press releases & placements across leading print publications</p>
-                <Link href="/services/print-media-release" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaTv /></div>
-                <h3>ELECTRONIC MEDIA</h3>
-                <p>TV & radio campaigns that capture mass audiences across Pakistan</p>
-                <Link href="/services/electronic-media" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaDesktop /></div>
-                <h3>DIGITAL DISPLAY</h3>
-                <p>Eye-catching digital display ads that convert across platforms and screens</p>
-                <Link href="/services/digital-display" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
-              <div className="service-card tilt-card">
-                <div className="service-icon"><FaBus /></div>
-                <h3>TRANSIT ADVERTISING</h3>
-                <p>Mobile brand exposure through buses, vehicles & transit network placements</p>
-                <Link href="/services/transit-advertising" className="text-red font-bold card-link">LEARN MORE <span className="arrow">→</span></Link>
-              </div>
+              {services.map((service, idx) => {
+                const Icon = serviceIcons[service.slug] || FaFilm;
+                return (
+                  <div className="service-card tilt-card" key={`set2-${idx}`}>
+                    <div className="service-icon"><Icon /></div>
+                    <h3>{service.title}</h3>
+                    <p>{service.tagline}</p>
+                    <Link href={`/services/${service.slug}`} className="text-red font-bold card-link">
+                      LEARN MORE <span className="arrow">→</span>
+                    </Link>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
