@@ -32,11 +32,10 @@ export default async function ServiceDetailPage({ params }) {
       {/* Hero Banner */}
       <div className="service-hero">
         <div className="service-hero-bg">
-          <img src={service.image} alt={service.shortTitle} />
+          <img src="/images/services_hero_bg.png" alt={service.shortTitle} />
           <div className="service-hero-overlay"></div>
         </div>
         <div className="container service-hero-content">
-          <span className="service-hero-number">{service.number}</span>
           <h1>{service.title}</h1>
           <p>{service.tagline}</p>
           <Link href="/contact" className="btn-primary">GET A QUOTE →</Link>

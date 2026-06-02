@@ -435,38 +435,38 @@
 }
 
 /* ========================================
-   RESPONSIVE DESIGN (MOBILE ADAPTABILITY)
+   RESPONSIVE DESIGN (MOBILE & TABLET ADAPTABILITY)
    ======================================== */
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .chatbot-wrapper {
+    transform: scale(0.75);
+    transform-origin: bottom right;
     bottom: 20px;
     right: 20px;
   }
 
+  /* Ensure the chatbot window remains a floating widget instead of going full-screen */
   .chatbot-window {
-    position: fixed;
-    bottom: 0;
+    position: absolute;
+    bottom: 76px;
     right: 0;
-    width: 100vw;
-    height: 100vh;
-    border-radius: 0;
-    box-shadow: none;
-    transform: translateY(100%) scale(1);
-    transform-origin: bottom center;
+    width: 380px;
+    height: 520px;
+    border-radius: 20px;
+    box-shadow: 
+      0 12px 40px rgba(0, 0, 0, 0.12),
+      0 0 0 1px rgba(0, 0, 0, 0.05);
+    transform: translateY(30px) scale(0.92);
+    transform-origin: bottom right;
   }
 
   .chatbot-window.open {
     transform: translateY(0) scale(1);
   }
 
-  .chatbot-header {
-    border-radius: 0;
-    padding: 16px 20px;
-  }
-
   .chatbot-trigger {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
   }
 }
