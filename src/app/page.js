@@ -4,11 +4,11 @@ import { services } from '@/data/services';
 import './home.css';
 
 export const metadata = {
-  title: "AdPulse IMC | Premier 360 Media & Advertising Agency in Karachi",
+  title: "AdPulse Media Agency",
   description: "Elevate your brand with AdPulse IMC, Karachi's leading full-service advertising agency. Specializing in TVC production, outdoor media, media buying, digital marketing, and corporate events.",
   keywords: "media agency karachi, advertising agency pakistan, tvc production karachi, digital marketing agency, outdoor advertising, OOH karachi, media planning and buying, BTL marketing pakistan",
   openGraph: {
-    title: "AdPulse IMC | Premier 360 Media & Advertising Agency in Karachi",
+    title: "AdPulse Media Agency",
     description: "Elevate your brand with AdPulse IMC, Karachi's leading full-service advertising agency. Specializing in TVC production, outdoor media, and digital marketing.",
     url: "https://adpulse.pk",
     siteName: "AdPulse IMC",

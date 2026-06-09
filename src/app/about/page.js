@@ -2,11 +2,11 @@ import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from 'react-icons/f
 import './about.css';
 
 export const metadata = {
-  title: "About Us | AdPulse IMC Karachi",
+  title: "About Us | AdPulse Media Agency",
   description: "Learn about AdPulse IMC, a premier 360 media agency in Karachi. Meet our leadership, including CEO Khurram Jaffrani, and explore our APNS & PBA accredited marketing services.",
   keywords: "adpulse team, khurram jaffrani, apns accredited agency, pba member agency karachi, about adpulse",
   openGraph: {
-    title: "About Us | AdPulse IMC Karachi",
+    title: "About Us | AdPulse Media Agency",
     description: "Learn about AdPulse IMC, a premier 360 media agency in Karachi. Meet our leadership and explore our accredited marketing services.",
     url: "https://adpulse.pk/about",
     type: "website",

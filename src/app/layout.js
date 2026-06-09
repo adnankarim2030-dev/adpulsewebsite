@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "AdPulse IMC | 360 Media Agency Karachi",
+  title: "AdPulse Media Agency",
   description: "AdPulse IMC is a premium 360 media agency in Karachi providing TVC production, digital marketing, outdoor media, and branding solutions.",
 };
 
