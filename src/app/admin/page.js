@@ -1,25 +1,40 @@
-import { prisma } from '@/lib/prisma';
 import './admin.css';
 
 export const dynamic = 'force-dynamic';
 
 export default async function AdminDashboard() {
-  const leads = await prisma.lead.findMany({
-    orderBy: { createdAt: 'desc' },
-  });
+  let leads = [];
+  let servicesCount = 0;
+  let projectsCount = 0;
+  let dbError = null;
 
-  const servicesCount = await prisma.service.count();
-  const projectsCount = await prisma.project.count();
+  try {
+    const { prisma } = await import('@/lib/prisma');
+    leads = await prisma.lead.findMany({
+      orderBy: { createdAt: 'desc' },
+    });
+    servicesCount = await prisma.service.count();
+    projectsCount = await prisma.project.count();
+  } catch (error) {
+    console.error('Admin Dashboard database error:', error);
+    dbError = error.message || 'Database connection error';
+  }
 
   return (
     <div className="admin-container">
       <div className="admin-header">
         <h1>Admin Dashboard</h1>
-        <div className="admin-stats">
-          <span>{leads.length} Leads</span> | 
-          <span> {servicesCount} Services</span> | 
-          <span> {projectsCount} Projects</span>
-        </div>
+        {dbError ? (
+          <div style={{ backgroundColor: '#fff5f5', color: '#c41e1e', padding: '1rem', borderRadius: '5px', border: '1px solid #fda4a4', marginTop: '1rem', width: '100%', boxSizing: 'border-box' }}>
+            ⚠️ Database connection failed: {dbError}. Please ensure DATABASE_URL is set in your server's .env file.
+          </div>
+        ) : (
+          <div className="admin-stats">
+            <span>{leads.length} Leads</span> | 
+            <span> {servicesCount} Services</span> | 
+            <span> {projectsCount} Projects</span>
+          </div>
+        )}
       </div>
 
       <div className="admin-nav">

@@ -1,6 +1,5 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
 import { sendLeadEmails } from '@/lib/email';
 
@@ -24,12 +23,23 @@ export async function submitLead(formData) {
 
     const validatedData = leadSchema.parse(rawData);
 
-    // Save to SQLite via Prisma
-    const lead = await prisma.lead.create({
-      data: validatedData,
-    });
+    // Default lead object to use for emails
+    let lead = {
+      ...validatedData,
+      createdAt: new Date(),
+    };
 
-    console.log('New lead created:', lead);
+    // Try saving to database, but don't fail the whole action if database is not configured
+    try {
+      const { prisma } = await import('@/lib/prisma');
+      const savedLead = await prisma.lead.create({
+        data: validatedData,
+      });
+      lead = savedLead;
+      console.log('New lead created in DB:', lead);
+    } catch (dbError) {
+      console.error('Database save failed (emails will still be sent):', dbError);
+    }
 
     // Send confirmation and notification emails
     await sendLeadEmails(lead);
@@ -40,3 +50,4 @@ export async function submitLead(formData) {
     return { success: false, error: 'Failed to submit form' };
   }
 }
+
