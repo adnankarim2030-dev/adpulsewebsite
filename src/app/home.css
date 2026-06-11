@@ -119,8 +119,8 @@
 }
 
 .hero-content h1 {
-  font-size: clamp(2.8rem, 5vw, 4.5rem);
-  line-height: 1.08;
+  font-size: clamp(2.4rem, 4.5vw, 4rem);
+  line-height: 1.12;
   font-weight: 900;
   letter-spacing: -0.03em;
   margin-bottom: 1.5rem;
@@ -129,6 +129,7 @@
 
 .hero-line {
   display: block;
+  white-space: nowrap;
 }
 
 .hero-line.highlight {
@@ -291,13 +292,13 @@
 .trusted-track {
   display: flex;
   gap: 1.5rem;
-  animation: scroll-marquee 45s linear infinite;
+  animation: scroll-marquee 90s linear infinite;
   width: max-content;
   padding: 0.5rem 0;
 }
 
 .trusted-track.reverse {
-  animation: scroll-marquee-reverse 50s linear infinite;
+  animation: scroll-marquee-reverse 100s linear infinite;
 }
 
 .trusted-track:hover,
@@ -327,12 +328,12 @@
 .trusted-brand-card {
   display: inline-flex;
   align-items: center;
-  gap: 1.2rem;
+  justify-content: center;
   background: var(--surface-card);
-  padding: 0.8rem 2rem;
-  border-radius: var(--radius-full);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  padding: 0.4rem;
+  border-radius: 50%;
+  border: 2.5px solid var(--color-primary);
+  box-shadow: 0 6px 20px rgba(196, 30, 30, 0.15);
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: default;
   transform-style: preserve-3d;
@@ -368,22 +369,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 110px;
-  height: 110px;
+  width: 125px;
+  height: 125px;
   background: #ffffff;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05);
   transition: transform 0.4s ease, background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
   overflow: hidden;
   flex-shrink: 0;
 }
 
 .brand-logo-img {
-  width: 80px;
-  height: 80px;
+  width: 80%;
+  height: 80%;
   object-fit: contain;
-  padding: 0;
+  padding: 6px;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
 }
@@ -953,6 +954,7 @@
   .trusted-section { padding: 1.5rem 0; }
   .project-overlay { opacity: 1; }
   .project-tag, .project-view { transform: translateY(0); }
+  .hero-line { white-space: normal; }
 }
 
 @media (max-width: 480px) {

@@ -112,8 +112,10 @@ export default function Home() {
               ADPULSE IMC (PVT) LTD.
             </div>
             <h1 className="reveal-up">
-              <span className="hero-line">We Don’t Just Create Campaigns,</span>
-              <span className="hero-line highlight">We Create Impact.</span>
+              <span className="hero-line">We Don’t Just Create</span>
+              <span className="hero-line">Campaigns,</span>
+              <span className="hero-line">We Create</span>
+              <span className="hero-line highlight">Impact.</span>
             </h1>
             <p className="reveal-up">ADPULSE IMC is a full-service media agency – elevating brands through advertising, storytelling, and digital experiences.</p>
             <div className="hero-divider reveal-up"></div>
@@ -147,10 +149,6 @@ export default function Home() {
                 <div key={i} className="trusted-brand-card">
                   <div className="brand-logo-wrap">
                     <BrandLogo brand={brand} />
-                  </div>
-                  <div className="brand-details">
-                    <span className="brand-name">{brand.name}</span>
-                    <span className="brand-sector">{brand.sector}</span>
                   </div>
                 </div>
               ))}
@@ -243,9 +241,9 @@ export default function Home() {
           </div>
           <div className="projects-grid" data-stagger>
             {[
+              { name: "BMW Dewan Motors", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "MDNJxzXePoM", title: "BMW Dewan Motors", subtitle: "Premium Brand Positioning" },
               { name: "Young's Food", sector: "FMCG Campaign", logo: "youngsfood.com", youtubeId: "ntIAakOpHr4", title: "Young's Food", subtitle: "Engaging Digital Series" },
               { name: "Chase Up", sector: "Retail Marketing", logo: "chaseup.com.pk", youtubeId: "68bC80ZdzfY", title: "Chase Up", subtitle: "Seasonal Promotions" },
-              { name: "BMW Dewan Motors", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "MDNJxzXePoM", title: "BMW Dewan Motors", subtitle: "Premium Brand Positioning" },
               { name: "GFS Builders", sector: "Real Estate & TVC", logo: "gfsbuilders.com.pk", youtubeId: "WoAeLUmc3xo", title: "GFS Builders & Developers", subtitle: "Marketing & TVC Production" }
             ].map((project, idx) => (
               <div className="project-card reveal-up tilt-card" key={idx}>

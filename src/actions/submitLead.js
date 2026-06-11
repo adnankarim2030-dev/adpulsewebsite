@@ -2,6 +2,7 @@
 
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
+import { sendLeadEmails } from '@/lib/email';
 
 const leadSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -29,6 +30,9 @@ export async function submitLead(formData) {
     });
 
     console.log('New lead created:', lead);
+
+    // Send confirmation and notification emails
+    await sendLeadEmails(lead);
 
     return { success: true };
   } catch (error) {
