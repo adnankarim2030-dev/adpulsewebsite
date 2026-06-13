@@ -10,7 +10,7 @@ export default function Chatbot() {
     {
       sender: 'bot',
       text: 'Hello! I am AdPulse Assistant. What can I help you?',
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      time: '12:00 PM'
     }
   ]);
   const [inputValue, setInputValue] = useState('');
@@ -33,8 +33,16 @@ export default function Chatbot() {
     }
   }, [messages, isOpen]);
 
-  // Auto-open chatbot window after page load with a 1.5s delay
+  // Auto-open chatbot window after page load with a 1.5s delay & set local time
   useEffect(() => {
+    setMessages([
+      {
+        sender: 'bot',
+        text: 'Hello! I am AdPulse Assistant. What can I help you?',
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      }
+    ]);
+
     const timer = setTimeout(() => {
       setIsOpen(true);
     }, 1500);
