@@ -169,6 +169,9 @@ export default function Chatbot() {
             </span>
             <div className="chatbot-brand-text">
               <h4>AdPulse Assistant</h4>
+              <span className="online-status">
+                <span className="status-dot"></span> Online
+              </span>
             </div>
           </div>
           <button className="chatbot-close-btn" onClick={handleToggle}>×</button>
