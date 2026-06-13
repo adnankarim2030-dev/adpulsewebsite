@@ -46,7 +46,7 @@ export default function Chatbot() {
     setHasNewMessageAlert(false);
   };
 
-  const handleSendMessage = (textToSend) => {
+  const handleSendMessage = async (textToSend) => {
     const text = textToSend || inputValue.trim();
     if (!text) return;
 
@@ -57,25 +57,58 @@ export default function Chatbot() {
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     };
 
+    const currentHistory = [...messages];
+
     setMessages((prev) => [...prev, userMsg]);
     if (!textToSend) setInputValue('');
 
     // Simulate AI thinking status
     setIsTyping(true);
 
-    setTimeout(() => {
-      // Fetch engine response
-      const response = getChatbotResponse(text);
-      
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: text,
+          history: currentHistory
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Chat API route returned non-OK status');
+      }
+
+      const data = await res.json();
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
       const botMsg = {
         sender: 'bot',
-        text: response.text,
+        text: data.text,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
 
       setMessages((prev) => [...prev, botMsg]);
       setIsTyping(false);
-    }, 900);
+    } catch (err) {
+      console.warn('API error, falling back to local chatbot engine:', err);
+      
+      // Fallback: Local getChatbotResponse
+      setTimeout(() => {
+        const response = getChatbotResponse(text);
+        const botMsg = {
+          sender: 'bot',
+          text: response.text,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        };
+        setMessages((prev) => [...prev, botMsg]);
+        setIsTyping(false);
+      }, 700);
+    }
   };
 
   const handleKeyDown = (e) => {
