@@ -9,7 +9,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState([
     {
       sender: 'bot',
-      text: 'Hello! I am AdPulse Assistant. What can I help you? (I support English, Urdu, Arabic, and Spanish)',
+      text: 'Hello! I am AdPulse Assistant. What can I help you?',
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);

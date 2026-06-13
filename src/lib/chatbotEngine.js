@@ -2,11 +2,11 @@
 
 const KNOWLEDGE_BASE = {
   en: {
-    greeting: "Hello! I am AdPulse Assistant. What can I help you? (I support English, Urdu, Arabic, and Spanish)",
+    greeting: "Hello! I am AdPulse Assistant. What can I help you?",
     services: "AdPulse IMC offers full 360-degree media services: \n• 📺 <strong>TVC Productions</strong> (TV Commercials & Documentaries)\n• 🏙️ <strong>Outdoor Media Advertising</strong> (OOH Billboards & Transit Ads)\n• 📊 <strong>Media Buying & Planning</strong> (PBA & APNS Accredited)\n• 🤝 <strong>Corporate Events</strong> (Conventions & Launches)\n• 📱 <strong>Digital Marketing Services</strong> (SEO & AI Ads Creative)\n• 🚌 <strong>Transit Advertising</strong> (Rickshaws & Bus Wraps)\n\nWhich of these would you like to explore?",
     location: "Our head office is located at:\n📍 <strong>Office #213, 2nd Floor, Pak Tower, Block 5 Clifton, Karachi, Pakistan</strong>.\nFeel free to drop by or check our location details on our [Contact Page](/contact).",
     contact: "You can reach the AdPulse team through several channels:\n• 📞 Phone: <strong>+92 3008463041</strong>\n• ✉️ Email: <strong>info@adpulse.pk</strong>\n• 💬 Online Form: Visit our [Contact Page](/contact) to send a message directly.\n\nWe look forward to hearing from you!",
-    pricing: "We offer transparent and tailored pricing packages for brands:\n• 🚀 <strong>STARTER Package</strong> ($999/mo) - Social Media & basic management\n• 📈 <strong>GROWTH Package</strong> ($2,499/mo) - Advanced social media & up to $5,000 ad spend management\n• 👑 <strong>ENTERPRISE Package</strong> (Custom) - Full omnichannel strategy & dedicated account management.\n\nSee full details on our [Services Page](/services#packages).",
+    pricing: "We offer transparent and tailored growth packages for brands:\n• 🚀 <strong>BRAND FOUNDATION Package</strong> - Core SMM & website setup\n• 📈 <strong>OMNI-CHANNEL SCALE Package</strong> - Advanced SMM & corporate website with video content\n• 👑 <strong>PERFORMANCE ENTERPRISE Package</strong> - Premium SMM & complete e-commerce store.\n\nSee full details on our [Services Page](/services#packages).",
     thanks: "You are very welcome! It is a pleasure to help you. Let me know if you have any other questions.",
     fallback: "I didn't quite catch that. Could you please specify if you'd like to know about our services, pricing, office location, or how to contact us?",
     
@@ -25,11 +25,11 @@ const KNOWLEDGE_BASE = {
     transit_detail: "🚌 <strong>Transit Advertising</strong>:<br/>Mobilize your brand with moving billboards! We manage full/half wraps for public transport buses, corporate vans, and highly visible rickshaw back placements that traverse high-density residential and commercial routes daily."
   },
   ur: {
-    greeting: "ہیلو! میں ایڈ پلس اسسٹنٹ ہوں۔ میں آپ کی کیا مدد کر سکتا ہوں؟ (میں انگریزی، اردو، عربی اور ہسپانوی میں بات چیت کر سکتا ہوں)",
+    greeting: "ہیلو! میں ایڈ پلس اسسٹنٹ ہوں۔ میں آپ کی کیا مدد کر سکتا ہوں؟",
     services: "ایڈ پلس (AdPulse IMC) یہ خدمات فراہم کرتا ہے:\n• 📺 <strong>TVC پروڈکشنز</strong> (ٹی وی کمرشلز اور دستاویزی فلمیں)\n• 🏙️ <strong>آؤٹ ڈور میڈیا</strong> (بل بورڈز اور ٹرانزٹ اشتہارات)\n• 📊 <strong>میڈیا بائنگ اور پلاننگ</strong> (PBA اور APNS رجسٹرڈ)\n• 🤝 <strong>کارپوریٹ ایونٹس</strong> (لانچز اور ڈیلر کنونشنز)\n• 📱 <strong>ڈیجیٹل مارکیٹنگ</strong> (ایس ای او اور اے آئی ویڈیوز)\n• 🚌 <strong>ٹرانزٹ اشتہارات</strong> (بس اور رکشہ ایڈز)\n\nآپ کس سروس کے بارے میں معلومات حاصل کرنا چاہتے ہیں؟",
     location: "ہمارا ہیڈ آفس کراچی میں یہاں واقع ہے:\n📍 <strong>آفس نمبر 213، دوسری منزل، پاک ٹاور، بلاک 5 کلفٹن، کراچی، پاکستان</strong>۔\nآپ ہمارے [رابطہ صفحہ](/contact) پر بھی نقشہ دیکھ سکتے ہیں۔",
     contact: "آپ ان طریقوں سے ایڈ پلس ٹیم سے رابطہ کر سکتے ہیں:\n• 📞 فون نمبر: <strong>3008463041 92+</strong>\n• ✉️ ای میل: <strong>info@adpulse.pk</strong>\n• 💬 آن لائن فارم: ہمارے [رابطہ صفحہ](/contact) پر پیغام بھیجیں۔\n\nہم جلد ہی آپ سے رابطہ کریں گے!",
-    pricing: "ہم مختلف پیکجز پیش کرتے ہیں:\n• 🚀 <strong>اسٹارٹر پیکج</strong> ($999/ماہ)\n• 📈 <strong>گروتھ پیکج</strong> ($2,499/ماہ)\n• 👑 <strong>انٹرپرائز پیکج</strong> (کسٹم حل)\n\nتفصیلات کے لیے ہمارا [سروسز صفحہ](/services) وزٹ کریں۔",
+    pricing: "ہم برانڈز کے لیے مختلف گروتھ پیکجز پیش کرتے ہیں:\n• 🚀 <strong>برانڈ فاؤنڈیشن پیکج (Brand Foundation)</strong> - بنیادی سوشل میڈیا اور ویب سائٹ سیٹ اپ\n• 📈 <strong>اومنی چینل اسکیل پیکج (Omni-Channel Scale)</strong> - ایڈوانسڈ سوشل میڈیا، کارپوریٹ ویب سائٹ اور ویڈیوز\n• 👑 <strong>پرفارمنس انٹرپرائز پیکج (Performance Enterprise)</strong> - پریمیئم سوشل میڈیا اور مکمل ای کامرس اسٹور\n\nتفصیلات کے لیے ہمارا [سروسز صفحہ](/services) وزٹ کریں۔",
     thanks: "بہت بہت شکریہ! آپ کی مدد کرنا میرے لیے خوشی کا باعث ہے۔ اگر کوئی اور سوال ہے تو ضرور پوچھیں۔",
     fallback: "معذرت، میں آپ کی بات پوری طرح سمجھ نہیں سکا۔ کیا آپ سروسز، قیمت، آفس کا پتہ یا رابطہ کی تفصیلات کے بارے میں پوچھنا چاہتے ہیں؟",
     
@@ -48,11 +48,11 @@ const KNOWLEDGE_BASE = {
     transit_detail: "🚌 <strong>ٹرانزٹ اشتہارات</strong>:<br/>متحرک اشتہارات! بسوں، گاڑیوں اور رکشوں پر برانڈ کی تشہیر جو روزانہ ہزاروں مسافروں کی توجہ حاصل کرتی ہے۔"
   },
   ar: {
-    greeting: "مرحباً! أنا مساعد AdPulse. كيف يمكنني مساعدتك؟ (أنا أدعم اللغات الإنجليزية والأردية والعربية والإسبانية)",
+    greeting: "مرحباً! أنا مساعد AdPulse. كيف يمكنني مساعدتك؟",
     services: "تقدم AdPulse IMC خدمات إعلامية متكاملة 360 درجة:\n• 📺 <strong>إنتاج إعلانات التلفزيون (TVC)</strong>\n• 🏙️ <strong>الإعلانات الخارجية (OOH)</strong> (اللوحات ووسائل النقل)\n• 📊 <strong>تخطيط وشراء المساحات الإعلانية</strong> (معتمد من APNS و PBA)\n• 🤝 <strong>الفعاليات والمؤتمرات</strong> للشركات\n• 📱 <strong>خدمات التسويق الرقمي</strong> (السيو وإعلانات الذكاء الاصطناعي)\n• 🚌 <strong>إعلانات النقل</strong> (الحافلات وRickshaws)\n\nأي خدمة تود استكشافها؟",
     location: "يقع مكتبنا الرئيسي في كراتشي:\n📍 <strong>مكتب رقم 213، الطابق الثاني، باك تاور، بلوك 5 كليفتون، كراتشي، باكستان</strong>.\nمرحبًا بك في زيارتنا أو مراجعة [صفحة الاتصال](/contact).",
     contact: "يمكنك التواصل معنا عبر القنوات التالية:\n• 📞 الهاتف: <strong>3008463041 92+</strong>\n• ✉️ البريد الإلكتروني: <strong>info@adpulse.pk</strong>\n• 💬 نموذج الاتصال: تفضل بزيارة [صفحة الاتصال](/contact).\n\nيسعدنا تواصلك معنا!",
-    pricing: "نحن نقدم باقات أسعار مرنة ومناسبة:\n• 🚀 <strong>باقة Starter</strong> (999 دولار/شهرياً)\n• 📈 <strong>باقة Growth</strong> (2499 دولار/شهرياً)\n• 👑 <strong>باقة Enterprise</strong> (باقة مخصصة للشركات الكبرى)\n\nاطلع على التفاصيل الكاملة في [صفحة الخدمات](/services#packages).",
+    pricing: "نحن نقدم باقات نمو متكاملة ومخصصة للعلامات التجارية:\n• 🚀 <strong>باقة Brand Foundation</strong> - إدارة وسائل التواصل الأساسية وإنشاء موقع إلكتروني\n• 📈 <strong>باقة Omni-Channel Scale</strong> - إدارة متقدمة للتواصل الاجتماعي وموقع مؤسسي مع محتوى فيديو\n• 👑 <strong>باقة Performance Enterprise</strong> - تسويق رقمي ممتاز ومتجر تجارة إلكترونية متكامل\n\nاطلع على التفاصيل الكاملة في [صفحة الخدمات](/services#packages).",
     thanks: "على الرحب والسعة! يسعدني جداً مساعدتك. لا تتردد في الاستفسار عن أي شيء آخر.",
     fallback: "عذراً، لم أفهم سؤالك تماماً. هل تريد الاستفسار عن خدماتنا، باقات الأسعار، موقع مكتبنا، أو تفاصيل الاتصال؟",
     
@@ -71,11 +71,11 @@ const KNOWLEDGE_BASE = {
     transit_detail: "🚌 <strong>إعلانات وسائل النقل</strong>:<br/>إعلانات متحركة على الحافلات وسيارات الأجرة وعربات الريكشا لزيادة وعي الجمهور بالبرانڈ."
   },
   es: {
-    greeting: "¡Hola! Soy Asistente AdPulse. ¿Cómo puedo ayudarte? (Hablo inglés, urdu, árabe y español)",
+    greeting: "¡Hola! Soy Asistente AdPulse. ¿Cómo puedo ayudarte?",
     services: "AdPulse IMC ofrece servicios de medios de 360 grados:\n• 📺 <strong>Producciones de TVC</strong> (Comerciales de TV y Documentales)\n• 🏙️ <strong>Medios Exteriores (OOH)</strong> (Vallas Publicitarias y Tránsito)\n• 📊 <strong>Compra y Planificación de Medios</strong> (PBA y APNS Acreditados)\n• 🤝 <strong>Eventos Corporativos</strong> (Lanzamientos y Convenciones)\n• 📱 <strong>Marketing Digital</strong> (SEO y Creativos de Video con IA)\n• 🚌 <strong>Publicidad de Tránsito</strong> (Rickshaws y Buses)\n\n¿Qué servicio te gustaría explorar?",
     location: "Nuestra oficina central se encuentra en Karachi:\n📍 <strong>Oficina #213, 2do piso, Pak Tower, Block 5 Clifton, Karachi, Pakistán</strong>.\nEres bienvenido a visitarnos. Consulta el mapa en la [Página de Contacto](/contact).",
     contact: "Puedes ponerte en contacto con nosotros a través de:\n• 📞 Teléfono: <strong>+92 3008463041</strong>\n• ✉️ Correo: <strong>info@adpulse.pk</strong>\n• 💬 Formulario: Envíanos un mensaje en nuestra [Página de Contacto](/contact).\n\n¡Esperamos trabajar contigo!",
-    pricing: "Ofrecemos paquetes transparentes y flexibles para marcas:\n• 🚀 <strong>Paquete STARTER</strong> ($999/mes) - Gestión básica y redes sociales\n• 📈 <strong>Paquete GROWTH</strong> ($2,499/mes) - Gestión avanzada y optimización publicitaria\n• 👑 <strong>Paquete ENTERPRISE</strong> (Personalizado) - Estrategia omnicanal completa.\n\nVer detalles en nuestra [Página de Servicios](/services#packages).",
+    pricing: "Ofrecemos paquetes de crecimiento adaptados para marcas:\n• 🚀 <strong>Paquete BRAND FOUNDATION</strong> - Gestión de redes básica y creación de sitio web\n• 📈 <strong>Paquete OMNI-CHANNEL SCALE</strong> - Gestión de redes avanzada, sitio corporativo y contenido de video\n• 👑 <strong>Paquete PERFORMANCE ENTERPRISE</strong> - Redes premium y tienda de comercio electrónico completa.\n\nVer detalles en nuestra [Página de Servicios](/services#packages).",
     thanks: "¡De nada! Es un placer ayudarte. Avísame si tienes alguna otra pregunta. ¡Que tengas un excelente día!",
     fallback: "¿Lo siento, no entendí del todo. ¿Deseas saber sobre nuestros servicios, precios, ubicación de la oficina o cómo contactarnos?",
     

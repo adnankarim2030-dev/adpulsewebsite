@@ -1,11 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import './contact.css';
 import { submitLead } from '@/actions/submitLead';
 
-export default function ContactPage() {
+function ContactForm() {
   const [status, setStatus] = useState(null); // 'loading', 'success', 'error'
+  const searchParams = useSearchParams();
+  const selectedPackage = searchParams.get('package') || '';
 
   async function handleSubmit(formData) {
     setStatus('loading');
@@ -17,6 +20,79 @@ export default function ContactPage() {
     }
   }
 
+  return (
+    <>
+      {status === 'success' ? (
+        <div className="success-message">
+          <h4>Thank you!</h4>
+          <p>Your message has been received. We will get back to you shortly.</p>
+        </div>
+      ) : (
+        <form action={handleSubmit} className="contact-form">
+          <div className="form-group">
+            <label htmlFor="name">Full Name *</label>
+            <input type="text" id="name" name="name" required placeholder="John Doe" />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="email">Email Address *</label>
+            <input type="email" id="email" name="email" required placeholder="john@example.com" />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="service">Service or Package Interested In</label>
+            <select id="service" name="service" defaultValue={selectedPackage}>
+              <option value="">Select a service or package...</option>
+              
+              <optgroup label="Growth Packages">
+                <option value="brand-foundation">Brand Foundation Package</option>
+                <option value="omni-channel-scale">Omni-Channel Scale Package</option>
+                <option value="performance-enterprise">Performance Enterprise Package</option>
+              </optgroup>
+              
+              <optgroup label="Individual Media Services">
+                <option value="tvc-production">TVC Productions</option>
+                <option value="outdoor-media">Outdoor Media Advertising</option>
+                <option value="media-buying">Media Buying & Planning</option>
+                <option value="corporate-events">Corporate Events</option>
+                <option value="pr-promotion">PR & Promotion</option>
+                <option value="btl-marketing">BTL Marketing</option>
+                <option value="digital-marketing">Digital Marketing Services</option>
+                <option value="ai-video-ads">AI Video Ads Creative</option>
+                <option value="print-media-release">Print Media Release</option>
+                <option value="electronic-media">Electronic Media</option>
+                <option value="digital-display">Digital Display</option>
+                <option value="transit-advertising">Transit Advertising</option>
+              </optgroup>
+              
+              <option value="other">Other</option>
+            </select>
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="message">Message *</label>
+            <textarea id="message" name="message" required rows="5" placeholder="Tell us about your project..."></textarea>
+          </div>
+          
+          <button type="submit" className="btn-primary form-submit" disabled={status === 'loading'}>
+            {status === 'loading' ? 'SENDING...' : 'SEND MESSAGE →'}
+          </button>
+          
+          {status === 'error' && (
+            <p className="error-message">Something went wrong. Please try again.</p>
+          )}
+        </form>
+      )}
+    </>
+  );
+}
+
+export default function ContactPage() {
   return (
     <div className="page-wrapper">
       <div className="page-header">
@@ -53,63 +129,9 @@ export default function ContactPage() {
 
           <div className="contact-form-container">
             <h3>SEND US A MESSAGE</h3>
-            
-            {status === 'success' ? (
-              <div className="success-message">
-                <h4>Thank you!</h4>
-                <p>Your message has been received. We will get back to you shortly.</p>
-              </div>
-            ) : (
-              <form action={handleSubmit} className="contact-form">
-                <div className="form-group">
-                  <label htmlFor="name">Full Name *</label>
-                  <input type="text" id="name" name="name" required placeholder="John Doe" />
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="email">Email Address *</label>
-                  <input type="email" id="email" name="email" required placeholder="john@example.com" />
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="phone">Phone Number</label>
-                  <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" />
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="service">Service Interested In</label>
-                  <select id="service" name="service">
-                    <option value="">Select a service...</option>
-                    <option value="tvc-production">TVC Productions</option>
-                    <option value="outdoor-media">Outdoor Media Advertising</option>
-                    <option value="media-buying">Media Buying & Planning</option>
-                    <option value="corporate-events">Corporate Events</option>
-                    <option value="pr-promotion">PR & Promotion</option>
-                    <option value="btl-marketing">BTL Marketing</option>
-                    <option value="digital-marketing">Digital Marketing Services</option>
-                    <option value="ai-video-ads">AI Video Ads Creative</option>
-                    <option value="print-media-release">Print Media Release</option>
-                    <option value="electronic-media">Electronic Media</option>
-                    <option value="digital-display">Digital Display</option>
-                    <option value="transit-advertising">Transit Advertising</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="message">Message *</label>
-                  <textarea id="message" name="message" required rows="5" placeholder="Tell us about your project..."></textarea>
-                </div>
-                
-                <button type="submit" className="btn-primary form-submit" disabled={status === 'loading'}>
-                  {status === 'loading' ? 'SENDING...' : 'SEND MESSAGE →'}
-                </button>
-                
-                {status === 'error' && (
-                  <p className="error-message">Something went wrong. Please try again.</p>
-                )}
-              </form>
-            )}
+            <Suspense fallback={<div className="contact-form-loading">Loading form...</div>}>
+              <ContactForm />
+            </Suspense>
           </div>
         </div>
       </section>
