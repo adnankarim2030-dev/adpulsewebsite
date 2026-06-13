@@ -205,10 +205,10 @@ function detectIntent(text, lang) {
       es: ["publicidad de transito", "publicidad en autobuses", "rickshaw", "rotulacion de vehiculos"]
     },
     services: {
-      en: ["service", "services", "offer", "do you do", "capabilities", "what you do"],
-      ur: ["خدمات", "کام", "سروس", "سروسز", "سہولت"],
-      ar: ["خدمة", "خدمات", "عرض", "ماذا تفعلون"],
-      es: ["servicio", "servicios", "ofrecen", "hacen"]
+      en: ["service", "services", "offer", "do you do", "capabilities", "what you do", "detail", "details", "more detail", "more details", "info", "information"],
+      ur: ["خدمات", "کام", "سروس", "سروسز", "سہولت", "تفصیل", "تفصیلات", "مزید تفصیل", "انفارمیشن"],
+      ar: ["خدمة", "خدمات", "عرض", "ماذا تفعلون", "تفاصيل", "تفصيل"],
+      es: ["servicio", "servicios", "ofrecen", "hacen", "detalle", "detalles", "mas detalles"]
     },
     location: {
       en: ["location", "office", "address", "where is", "located", "karachi", "clifton", "find you"],
