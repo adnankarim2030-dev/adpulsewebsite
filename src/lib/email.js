@@ -90,15 +90,26 @@ export async function sendLeadEmails(lead) {
     `,
   };
 
+  let senderSuccess = false;
+  let adminSuccess = false;
+
+  // 1. Send confirmation email to the customer
   try {
-    await Promise.all([
-      transporter.sendMail(senderMailOptions),
-      transporter.sendMail(adminMailOptions),
-    ]);
-    console.log('Lead emails successfully sent.');
-    return true;
-  } catch (error) {
-    console.error('Error sending lead emails:', error);
-    return false;
+    const info = await transporter.sendMail(senderMailOptions);
+    console.log('Customer confirmation email sent successfully:', info.messageId);
+    senderSuccess = true;
+  } catch (senderError) {
+    console.error('Failed to send customer confirmation email (external relay):', senderError);
   }
+
+  // 2. Send notification email to the admin
+  try {
+    const info = await transporter.sendMail(adminMailOptions);
+    console.log('Admin notification email sent successfully:', info.messageId);
+    adminSuccess = true;
+  } catch (adminError) {
+    console.error('Failed to send admin notification email:', adminError);
+  }
+
+  return senderSuccess || adminSuccess;
 }
