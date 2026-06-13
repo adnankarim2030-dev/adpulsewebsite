@@ -13,6 +13,29 @@ const inter = Inter({
 export const metadata = {
   title: "AdPulse Media Agency",
   description: "AdPulse IMC is a premium 360 media agency in Karachi providing TVC production, digital marketing, outdoor media, and branding solutions.",
+  metadataBase: new URL('https://adpulse.pk'),
+  openGraph: {
+    title: "AdPulse Media Agency",
+    description: "AdPulse IMC is a premium 360 media agency in Karachi providing TVC production, digital marketing, outdoor media, and branding solutions.",
+    url: "https://adpulse.pk",
+    siteName: "AdPulse IMC",
+    images: [
+      {
+        url: "/logo.png",
+        width: 800,
+        height: 800,
+        alt: "AdPulse Logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "AdPulse Media Agency",
+    description: "AdPulse IMC is a premium 360 media agency in Karachi providing TVC production, digital marketing, outdoor media, and branding solutions.",
+    images: ["/logo.png"],
+  },
 };
 
 export default function RootLayout({ children }) {
