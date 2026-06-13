@@ -20,6 +20,9 @@ export async function sendLeadEmails(lead) {
       user,
       pass,
     },
+    tls: {
+      rejectUnauthorized: false // Bypasses SSL certificate verification errors (crucial for localhost/cPanel mail)
+    }
   });
 
   // 1. Email to the user (sender)
