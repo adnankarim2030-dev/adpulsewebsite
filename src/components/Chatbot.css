@@ -499,3 +499,88 @@
     height: 60px;
   }
 }
+
+/* ========================================
+   VOICE CHAT INTEGRATION
+   ======================================== */
+
+.chatbot-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chatbot-sound-toggle {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.15rem;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatbot-sound-toggle:hover {
+  color: #fff;
+  transform: scale(1.15);
+}
+
+.message-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.message-speak-btn {
+  background: transparent;
+  border: none;
+  font-size: 0.82rem;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.45;
+  transition: all 0.2s ease;
+  outline: none;
+  display: flex;
+  align-items: center;
+}
+
+.message-speak-btn:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.chatbot-mic-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  outline: none;
+  color: #6c757d;
+}
+
+.chatbot-mic-btn:hover {
+  color: #10b981;
+  transform: scale(1.15);
+}
+
+.chatbot-mic-btn.listening {
+  color: #ef4444;
+  animation: mic-pulse 1.2s infinite ease-in-out;
+}
+
+@keyframes mic-pulse {
+  0% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(239, 68, 68, 0.4)); }
+  50% { transform: scale(1.2); filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.7)); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(239, 68, 68, 0.4)); }
+}

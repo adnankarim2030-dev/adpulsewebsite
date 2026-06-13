@@ -16,8 +16,11 @@ export default function Chatbot() {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [hasNewMessageAlert, setHasNewMessageAlert] = useState(false);
+  const [isListening, setIsListening] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   const messagesEndRef = useRef(null);
+  const recognitionRef = useRef(null);
 
   // Auto-scroll to bottom of conversation
   useEffect(() => {
@@ -48,6 +51,78 @@ export default function Chatbot() {
     }, 1500);
     return () => clearTimeout(timer);
   }, []);
+
+  // Initialize Speech Recognition
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      const recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.lang = 'ur-PK'; // Pakistani region (handles English & Urdu mixed speech well)
+      recognition.interimResults = false;
+
+      recognition.onstart = () => {
+        setIsListening(true);
+      };
+
+      recognition.onend = () => {
+        setIsListening(false);
+      };
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        setInputValue((prev) => (prev ? prev + ' ' + transcript : transcript));
+      };
+
+      recognition.onerror = (event) => {
+        console.error('Speech recognition error:', event.error);
+        setIsListening(false);
+      };
+
+      recognitionRef.current = recognition;
+    }
+  }, []);
+
+  // Text to Speech
+  const speakText = (text) => {
+    if (typeof window === 'undefined' || !window.speechSynthesis) return;
+
+    // Stop any ongoing speech
+    window.speechSynthesis.cancel();
+
+    // Clean HTML tags, emojis, icons and markdown links
+    const cleanText = text
+      .replace(/<[^>]*>/g, '') // remove HTML tags
+      .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1') // replace markdown links with text
+      .replace(/[•📺🏙️📊🤝📱🚌🚀📈👑📍✉️💬📞➔×]/g, '') // remove emojis/icons
+      .trim();
+
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+
+    // Dynamic language selection based on content
+    const isUrdu = /[\u0600-\u06FF]/.test(cleanText);
+    utterance.lang = isUrdu ? 'ur-PK' : 'en-US';
+
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const toggleListening = () => {
+    if (!recognitionRef.current) {
+      alert("Voice input is not supported in this browser. Please try Chrome, Edge, or Safari.");
+      return;
+    }
+
+    if (isListening) {
+      recognitionRef.current.stop();
+    } else {
+      try {
+        recognitionRef.current.start();
+      } catch (err) {
+        console.warn('Speech recognition start failed:', err);
+      }
+    }
+  };
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -102,6 +177,10 @@ export default function Chatbot() {
 
       setMessages((prev) => [...prev, botMsg]);
       setIsTyping(false);
+
+      if (!isMuted) {
+        speakText(data.text);
+      }
     } catch (err) {
       console.warn('API error, falling back to local chatbot engine:', err);
       
@@ -115,6 +194,10 @@ export default function Chatbot() {
         };
         setMessages((prev) => [...prev, botMsg]);
         setIsTyping(false);
+
+        if (!isMuted) {
+          speakText(response.text);
+        }
       }, 700);
     }
   };
@@ -174,7 +257,25 @@ export default function Chatbot() {
               </span>
             </div>
           </div>
-          <button className="chatbot-close-btn" onClick={handleToggle}>×</button>
+          <div className="chatbot-header-actions">
+            <button 
+              className={`chatbot-sound-toggle ${isMuted ? 'muted' : 'unmuted'}`}
+              onClick={() => {
+                const newMuted = !isMuted;
+                setIsMuted(newMuted);
+                if (newMuted) {
+                  window.speechSynthesis?.cancel();
+                } else {
+                  const lastBotMsg = [...messages].reverse().find(m => m.sender === 'bot');
+                  if (lastBotMsg) speakText(lastBotMsg.text);
+                }
+              }}
+              title={isMuted ? "Unmute Bot Voice" : "Mute Bot Voice"}
+            >
+              {isMuted ? "🔇" : "🔊"}
+            </button>
+            <button className="chatbot-close-btn" onClick={handleToggle}>×</button>
+          </div>
         </div>
 
         {/* Conversation list */}
@@ -186,7 +287,18 @@ export default function Chatbot() {
                   className="message-text" 
                   dangerouslySetInnerHTML={{ __html: msg.text.replace(/\n/g, '<br/>') }}
                 />
-                <span className="message-time">{msg.time}</span>
+                <div className="message-meta">
+                  <span className="message-time">{msg.time}</span>
+                  {msg.sender === 'bot' && (
+                    <button 
+                      className="message-speak-btn"
+                      onClick={() => speakText(msg.text)}
+                      title="Read aloud"
+                    >
+                      🔊
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           ))}
@@ -222,17 +334,25 @@ export default function Chatbot() {
 
         {/* Input area */}
         <div className="chatbot-input-area">
+          <button 
+            className={`chatbot-mic-btn ${isListening ? 'listening' : ''}`}
+            onClick={toggleListening}
+            title={isListening ? "Stop listening" : "Type with voice"}
+          >
+            {isListening ? "🎙️" : "🎤"}
+          </button>
           <input 
             type="text" 
-            placeholder="Type a message in any language..." 
+            placeholder={isListening ? "Listening... Speak now" : "Type a message in any language..."}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={handleKeyDown}
+            disabled={isListening}
           />
           <button 
             className="chatbot-send-btn" 
             onClick={() => handleSendMessage()}
-            disabled={!inputValue.trim()}
+            disabled={!inputValue.trim() || isListening}
           >
             ➔
           </button>
