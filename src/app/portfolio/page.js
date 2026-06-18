@@ -26,9 +26,10 @@ export default function PortfolioPage() {
       <section className="container section-padding">
         <div className="portfolio-grid">
           {[
+            { name: "BMW Dewan Motors (Grand Opening)", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "g9eQ8jU-wJg", desc: "Grand opening of BMW by Dewan Motors, showcasing premium brand positioning and elite customer engagement events." },
+            { name: "Dewan Motors MINI (Launching Ceremony)", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "kCUwvT6nokc", desc: "Official MINI launching ceremony by Dewan Motors, highlighting premium style and brand innovation." },
             { name: "Young's Food", sector: "FMCG Campaign", logo: "youngsfood.com", youtubeId: "ntIAakOpHr4", desc: "Engaging digital content and recipe series designed to build community." },
             { name: "Chase Up", sector: "Retail Marketing", logo: "chaseup.com.pk", youtubeId: "68bC80ZdzfY", desc: "Targeted seasonal promotional campaigns that resulted in record-breaking sales." },
-            { name: "BMW Dewan Motors", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "MDNJxzXePoM", desc: "Premium brand positioning and elite customer engagement events." },
             { name: "GFS Builders", sector: "Real Estate & TVC", logo: "gfsbuilders.com.pk", youtubeId: "WoAeLUmc3xo", desc: "Extensive real estate marketing, including TVC production and 3D visualization." },
             { name: "Diners", sector: "Apparel Marketing", logo: "diners.com.pk", youtubeId: "eWxt66xPk-U", desc: "Premium menswear catalog shoots and targeted performance marketing." },
             { name: "Oxford", sector: "E-commerce", logo: "oxford.com.pk", youtubeId: "fV97GrCtuYc", desc: "E-commerce optimization and paid social scaling to increase transactions." },

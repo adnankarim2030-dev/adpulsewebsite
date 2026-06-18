@@ -241,7 +241,7 @@ export default function Home() {
           </div>
           <div className="projects-grid" data-stagger>
             {[
-              { name: "BMW Dewan Motors", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "MDNJxzXePoM", title: "BMW Dewan Motors", subtitle: "Premium Brand Positioning" },
+              { name: "BMW Dewan Motors", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "g9eQ8jU-wJg", title: "BMW Dewan Motors", subtitle: "Grand Opening Showcase" },
               { name: "Young's Food", sector: "FMCG Campaign", logo: "youngsfood.com", youtubeId: "ntIAakOpHr4", title: "Young's Food", subtitle: "Engaging Digital Series" },
               { name: "Chase Up", sector: "Retail Marketing", logo: "chaseup.com.pk", youtubeId: "68bC80ZdzfY", title: "Chase Up", subtitle: "Seasonal Promotions" },
               { name: "GFS Builders", sector: "Real Estate & TVC", logo: "gfsbuilders.com.pk", youtubeId: "WoAeLUmc3xo", title: "GFS Builders & Developers", subtitle: "Marketing & TVC Production" }

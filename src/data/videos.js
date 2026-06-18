@@ -1,5 +1,7 @@
-// Shared list of all 119 videos from the AdPulse YouTube channel
+// Shared list of all 121 videos from the AdPulse YouTube channel
 export const ALL_VIDEOS = [
+  { id: 'g9eQ8jU-wJg', title: 'Grand opening of BMW by Dewan Motors | by AdPulse', category: 'events' },
+  { id: 'kCUwvT6nokc', title: 'Dewan Motors Mini Launching Ceremony | by AdPulse', category: 'events' },
   { id: '_dfA84gDkZ0', title: 'Governor Sindh Senator Nehal Hashmi | 1st Commemoration of Marka-e-Haq 2025', category: 'events' },
   { id: 'VPcb1zkYWvM', title: 'Marking the 1st Commemoration of Marka-e-Haq 2025', category: 'events' },
   { id: 'MX6DFzEmCGI', title: 'Governing the AI & Digital Assets First Policy Hackathon | by AdPulse', category: 'events' },
