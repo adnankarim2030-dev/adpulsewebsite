@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { services, getServiceBySlug, getAllServiceSlugs } from '@/data/services';
+import ServiceImageSlider from '@/components/ServiceImageSlider';
 import './service-detail.css';
+
 
 export async function generateStaticParams() {
   return getAllServiceSlugs().map((slug) => ({ slug }));
@@ -52,7 +54,11 @@ export default async function ServiceDetailPage({ params }) {
             <Link href="/contact" className="btn-primary mt-sm">START YOUR PROJECT →</Link>
           </div>
           <div className="service-overview-image">
-            <img src={service.image} alt={service.shortTitle} />
+            {service.images && service.images.length > 0 ? (
+              <ServiceImageSlider images={service.images} alt={service.shortTitle} />
+            ) : (
+              <img src={service.image} alt={service.shortTitle} />
+            )}
           </div>
         </div>
       </section>

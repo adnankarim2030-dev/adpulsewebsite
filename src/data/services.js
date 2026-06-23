@@ -123,6 +123,13 @@ export const services = [
     tagline: 'Nationwide activations',
     description: 'Our Below-The-Line marketing services create direct, memorable connections between your brand and consumers. From large-scale nationwide activations to intimate experiential events, we design campaigns that drive engagement and deliver measurable results across Pakistan.',
     image: '/images/services/BTL.jpg',
+    images: [
+      '/images/services/btl_0.jpg',
+      '/images/services/btl_1.jpg',
+      '/images/services/btl_2.jpg',
+      '/images/services/btl_3.jpg',
+      '/images/services/btl_4.jpg'
+    ],
     features: [
       'Concept & Strategy Planning',
       'Nationwide Brand Activations',
