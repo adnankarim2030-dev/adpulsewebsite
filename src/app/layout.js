@@ -4,6 +4,9 @@ import Footer from "@/components/Footer";
 import ScrollAnimations from "@/components/ScrollAnimations";
 import Chatbot from "@/components/Chatbot";
 import "./globals.css";
+import "./home.css";
+import "./services/services.css";
+import "./services/[slug]/service-detail.css";
 
 const inter = Inter({
   subsets: ["latin"],
