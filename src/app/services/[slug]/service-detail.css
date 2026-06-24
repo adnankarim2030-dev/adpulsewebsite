@@ -113,7 +113,7 @@
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   width: 100%;
-  aspect-ratio: 3 / 2; /* Changed to landscape-friendly 3:2 aspect ratio */
+  aspect-ratio: 16 / 9; /* Changed to widescreen 16:9 aspect ratio */
   position: relative;
   background-color: #0d0d0d; /* Premium dark background to frame contained images */
 }
@@ -419,7 +419,7 @@
   .service-overview-image {
     max-width: 440px;
     margin: 0 auto;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 16 / 9; /* Changed to widescreen 16:9 aspect ratio */
   }
 
   /* Features — 2 cols on tablet */
