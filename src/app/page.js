@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { FaFilm, FaBullhorn, FaRegCalendarAlt, FaUsers, FaCogs, FaMapSigns, FaLaptopCode, FaRobot } from 'react-icons/fa';
 import { services } from '@/data/services';
+import VideoPopup from '@/components/VideoPopup';
 import './home.css';
 
 export const metadata = {
@@ -93,6 +94,7 @@ export default function Home() {
 
   return (
     <div className="home-page">
+      <VideoPopup />
       {/* Hero Section */}
       <section className="hero-wrapper">
         {/* Animated background particles */}
@@ -113,7 +115,7 @@ export default function Home() {
             </div>
             <h1 className="reveal-up">
               <span className="hero-line">We Don’t Just Create</span>
-              <span className="hero-line">Campaigns,</span>
+              <span className="hero-line"><span style={{ color: 'var(--color-primary)' }}>Campaigns</span>,</span>
               <span className="hero-line">We Create</span>
               <span className="hero-line highlight">Impact.</span>
             </h1>
@@ -241,6 +243,7 @@ export default function Home() {
           </div>
           <div className="projects-grid" data-stagger>
             {[
+              { name: "Idemitsu Lube Pakistan", sector: "Lubricants & Events", logo: "idemitsu.com.pk", youtubeId: "3fMrYlwwfYI", title: "Idemitsu Lube Pakistan", subtitle: "Dealers Meet 2026 Sheikhupura" },
               { name: "BMW Dewan Motors", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "g9eQ8jU-wJg", title: "BMW Dewan Motors", subtitle: "Grand Opening Showcase" },
               { name: "Young's Food", sector: "FMCG Campaign", logo: "youngsfood.com", youtubeId: "ntIAakOpHr4", title: "Young's Food", subtitle: "Engaging Digital Series" },
               { name: "Chase Up", sector: "Retail Marketing", logo: "chaseup.com.pk", youtubeId: "68bC80ZdzfY", title: "Chase Up", subtitle: "Seasonal Promotions" },

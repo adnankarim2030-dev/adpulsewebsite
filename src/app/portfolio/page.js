@@ -26,6 +26,7 @@ export default function PortfolioPage() {
       <section className="container section-padding">
         <div className="portfolio-grid">
           {[
+            { name: "Idemitsu Lube Pakistan Dealers Meet 2026", sector: "Lubricants & Events", logo: "idemitsu.com.pk", youtubeId: "3fMrYlwwfYI", desc: "Idemitsu Lube Pakistan Private Limited Dealers Meet 2026 in Sheikhupura, showcasing corporate excellence and dealer engagement events." },
             { name: "BMW Dewan Motors (Grand Opening)", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "g9eQ8jU-wJg", desc: "Grand opening of BMW by Dewan Motors, showcasing premium brand positioning and elite customer engagement events." },
             { name: "Dewan Motors MINI (Launching Ceremony)", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "kCUwvT6nokc", desc: "Official MINI launching ceremony by Dewan Motors, highlighting premium style and brand innovation." },
             { name: "Young's Food", sector: "FMCG Campaign", logo: "youngsfood.com", youtubeId: "ntIAakOpHr4", desc: "Engaging digital content and recipe series designed to build community." },

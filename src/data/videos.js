@@ -1,5 +1,6 @@
 // Shared list of all 121 videos from the AdPulse YouTube channel
 export const ALL_VIDEOS = [
+  { id: '3fMrYlwwfYI', title: 'Idemitsu Lube Pakistan Private Limited Dealers Meet 2026 | Sheikhupura', category: 'events' },
   { id: 'g9eQ8jU-wJg', title: 'Grand opening of BMW by Dewan Motors | by AdPulse', category: 'events' },
   { id: 'kCUwvT6nokc', title: 'Dewan Motors Mini Launching Ceremony | by AdPulse', category: 'events' },
   { id: '_dfA84gDkZ0', title: 'Governor Sindh Senator Nehal Hashmi | 1st Commemoration of Marka-e-Haq 2025', category: 'events' },
