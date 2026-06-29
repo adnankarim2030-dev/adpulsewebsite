@@ -50,7 +50,7 @@ export default function VideoPopup() {
         <div className="video-popup-player-wrapper">
           <video
             ref={videoRef}
-            src="/popup-video.mp4"
+            src="/AdPulse 5 Years Celebration.mp4"
             autoPlay
             muted={isMuted}
             controls
