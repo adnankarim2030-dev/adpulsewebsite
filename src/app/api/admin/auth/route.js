@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { createSession } from '@/lib/auth';
 
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'AdPulseAdmin@2026';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Adpulse@123';
 
 export async function POST(request) {
   try {
