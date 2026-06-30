@@ -813,3 +813,48 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/* Seed Database Banner */
+.seed-banner {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 12px;
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 2rem;
+  color: #f59e0b;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.seed-banner svg {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.btn-seed-trigger {
+  margin-left: auto;
+  background: #f59e0b;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.25rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.btn-seed-trigger:hover {
+  background: #d97706;
+  transform: translateY(-1px);
+}
+
+.btn-seed-trigger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+

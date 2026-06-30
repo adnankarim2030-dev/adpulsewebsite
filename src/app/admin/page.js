@@ -357,6 +357,24 @@ export default function AdminDashboard() {
     });
   };
 
+  const handleSeedDatabase = async () => {
+    setActionLoading(true);
+    try {
+      const res = await fetch('/api/admin/seed', { method: 'POST' });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        showNotification('Database seeded successfully!');
+        fetchData();
+      } else {
+        showNotification(data.error || 'Failed to seed database', 'error');
+      }
+    } catch (e) {
+      showNotification('Failed to seed database due to connection error', 'error');
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
   return (
     <div className="dashboard-container">
       {/* Sidebar Navigation */}
@@ -433,6 +451,17 @@ export default function AdminDashboard() {
           <div className={`notification-toast ${message.type === 'error' ? 'toast-error' : 'toast-success'}`} id="dashboard-notification">
             {message.type === 'error' ? <FaExclamationTriangle /> : <FaCheckCircle />}
             <span>{message.text}</span>
+          </div>
+        )}
+
+        {/* Seed Database Banner */}
+        {!loading && services.length === 0 && projects.length === 0 && (
+          <div className="seed-banner" id="empty-db-seed-banner">
+            <FaExclamationTriangle />
+            <span>It looks like your database is empty. Click "Seed Database" to populate it with default services and projects.</span>
+            <button onClick={handleSeedDatabase} disabled={actionLoading} className="btn-seed-trigger">
+              {actionLoading ? 'Seeding...' : 'Seed Database'}
+            </button>
           </div>
         )}
 
