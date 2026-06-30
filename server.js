@@ -9,14 +9,18 @@ const dev = process.env.NODE_ENV !== 'production';
 const hostname = 'localhost';
 const port = process.env.PORT || 3000;
 
-// Run prisma generate on startup to ensure the server-side client is up-to-date
+// Run prisma generate and db push on startup to ensure the server-side client and database schema are up-to-date
 try {
   const { execSync } = require('child_process');
   console.log('Running prisma generate on startup...');
   execSync('npx prisma@5.22.0 generate', { stdio: 'inherit' });
   console.log('Prisma generate completed successfully.');
+
+  console.log('Running prisma db push on startup...');
+  execSync('npx prisma@5.22.0 db push --accept-data-loss', { stdio: 'inherit' });
+  console.log('Prisma db push completed successfully.');
 } catch (error) {
-  console.error('Failed to run prisma generate on startup:', error);
+  console.error('Failed to run prisma startup commands:', error);
 }
 
 const app = next({ dev, dir: __dirname, hostname, port });
