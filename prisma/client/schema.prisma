@@ -1,0 +1,54 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./client"
+}
+
+model Lead {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String?
+  service   String?
+  message   String
+  createdAt DateTime @default(now())
+}
+
+model Service {
+  id          Int     @id @default(autoincrement())
+  slug        String  @unique
+  number      String?
+  title       String
+  shortTitle  String?
+  tagline     String?
+  description String
+  image       String?
+  images      String? // JSON stringified array of images
+  features    String? // JSON stringified array of features
+  whyChoose   String? // JSON stringified array of whyChoose reasons
+  price       String?
+  icon        String?
+}
+
+model Project {
+  id         Int     @id @default(autoincrement())
+  name       String
+  sector     String?
+  logo       String? // brand logo image URL
+  youtubeId  String
+  desc       String
+  clientName String? // Keep old fields for backward compatibility
+  results    String? // Keep old fields for backward compatibility
+  imageUrl   String? // Keep old fields for backward compatibility
+}
+
+model Setting {
+  id    Int    @id @default(autoincrement())
+  key   String @unique
+  value String
+}

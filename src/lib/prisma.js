@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../../prisma/client';
 import { seedDatabase } from './db-seed';
 
 const globalForPrisma = global;

@@ -5,8 +5,8 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   return new Promise((resolve) => {
-    console.log('Setup trigger: running prisma generate & db push...');
-    exec('npx prisma generate && npx prisma db push --accept-data-loss', (error, stdout, stderr) => {
+    console.log('Setup trigger: running prisma db push...');
+    exec('npx prisma@5.22.0 db push --accept-data-loss', (error, stdout, stderr) => {
       if (error) {
         console.error('Setup failed:', error);
         resolve(NextResponse.json({ 
