@@ -85,9 +85,6 @@ Prisma.NullTypes = {
  * Enums
  */
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
-  ReadUncommitted: 'ReadUncommitted',
-  ReadCommitted: 'ReadCommitted',
-  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
@@ -140,11 +137,6 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.QueryMode = {
-  default: 'default',
-  insensitive: 'insensitive'
-};
-
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
@@ -195,18 +187,18 @@ const config = {
   "datasourceNames": [
     "db"
   ],
-  "activeProvider": "postgresql",
+  "activeProvider": "sqlite",
   "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
-        "fromEnvVar": "DATABASE_URL",
-        "value": null
+        "fromEnvVar": null,
+        "value": "file:./dev.db"
       }
     }
   },
-  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./client\"\n}\n\nmodel Lead {\n  id        Int      @id @default(autoincrement())\n  name      String\n  email     String\n  phone     String?\n  service   String?\n  message   String\n  createdAt DateTime @default(now())\n}\n\nmodel Service {\n  id          Int     @id @default(autoincrement())\n  slug        String  @unique\n  number      String?\n  title       String\n  shortTitle  String?\n  tagline     String?\n  description String\n  image       String?\n  images      String? // JSON stringified array of images\n  features    String? // JSON stringified array of features\n  whyChoose   String? // JSON stringified array of whyChoose reasons\n  price       String?\n  icon        String?\n}\n\nmodel Project {\n  id         Int     @id @default(autoincrement())\n  name       String\n  sector     String?\n  logo       String? // brand logo image URL\n  youtubeId  String\n  desc       String\n  clientName String? // Keep old fields for backward compatibility\n  results    String? // Keep old fields for backward compatibility\n  imageUrl   String? // Keep old fields for backward compatibility\n}\n\nmodel Setting {\n  id    Int    @id @default(autoincrement())\n  key   String @unique\n  value String\n}\n",
-  "inlineSchemaHash": "dee1c21474cf3f1c446482f679694211ca5ec95aaa21c05d17a01c2156b6f8f7",
+  "inlineSchema": "datasource db {\n  provider = \"sqlite\"\n  url      = \"file:./dev.db\"\n}\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./client\"\n}\n\nmodel Lead {\n  id        Int      @id @default(autoincrement())\n  name      String\n  email     String\n  phone     String?\n  service   String?\n  message   String\n  createdAt DateTime @default(now())\n}\n\nmodel Service {\n  id          Int     @id @default(autoincrement())\n  slug        String  @unique\n  number      String?\n  title       String\n  shortTitle  String?\n  tagline     String?\n  description String\n  image       String?\n  images      String? // JSON stringified array of images\n  features    String? // JSON stringified array of features\n  whyChoose   String? // JSON stringified array of whyChoose reasons\n  price       String?\n  icon        String?\n}\n\nmodel Project {\n  id         Int     @id @default(autoincrement())\n  name       String\n  sector     String?\n  logo       String? // brand logo image URL\n  youtubeId  String\n  desc       String\n  clientName String? // Keep old fields for backward compatibility\n  results    String? // Keep old fields for backward compatibility\n  imageUrl   String? // Keep old fields for backward compatibility\n}\n\nmodel Setting {\n  id    Int    @id @default(autoincrement())\n  key   String @unique\n  value String\n}\n",
+  "inlineSchemaHash": "ebe169143f2905ce36bd601d71dde46a3bcd1437bb3d6dc91a79609ee90f0423",
   "copyEngine": true
 }
 
