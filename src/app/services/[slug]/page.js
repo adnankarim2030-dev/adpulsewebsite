@@ -1,9 +1,61 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { services, getServiceBySlug, getAllServiceSlugs } from '@/data/services';
+import { getAllServiceSlugs } from '@/data/services';
 import ServiceImageSlider from '@/components/ServiceImageSlider';
 import './service-detail.css';
 
+async function fetchServiceDetail(slug) {
+  try {
+    const { prisma } = await import('@/lib/prisma');
+    const service = await prisma.service.findUnique({
+      where: { slug }
+    });
+
+    if (service) {
+      return {
+        ...service,
+        images: service.images ? JSON.parse(service.images) : [],
+        features: service.features ? JSON.parse(service.features) : [],
+        whyChoose: service.whyChoose ? JSON.parse(service.whyChoose) : []
+      };
+    }
+  } catch (error) {
+    console.error('Error fetching service details from DB:', error);
+  }
+
+  const { getServiceBySlug } = await import('@/data/services');
+  return getServiceBySlug(slug);
+}
+
+async function fetchAdjacentServices(slug) {
+  try {
+    const { prisma } = await import('@/lib/prisma');
+    const allServices = await prisma.service.findMany({
+      orderBy: { id: 'asc' }
+    });
+
+    if (allServices && allServices.length > 0) {
+      const parsed = allServices.map(s => ({
+        ...s,
+        images: s.images ? JSON.parse(s.images) : [],
+        features: s.features ? JSON.parse(s.features) : [],
+        whyChoose: s.whyChoose ? JSON.parse(s.whyChoose) : []
+      }));
+      const currentIndex = parsed.findIndex((s) => s.slug === slug);
+      const prevService = currentIndex > 0 ? parsed[currentIndex - 1] : null;
+      const nextService = currentIndex < parsed.length - 1 ? parsed[currentIndex + 1] : null;
+      return { prevService, nextService };
+    }
+  } catch (error) {
+    console.error('Error fetching adjacent services from DB:', error);
+  }
+
+  const { services: staticServices } = await import('@/data/services');
+  const currentIndex = staticServices.findIndex((s) => s.slug === slug);
+  const prevService = currentIndex > 0 ? staticServices[currentIndex - 1] : null;
+  const nextService = currentIndex < staticServices.length - 1 ? staticServices[currentIndex + 1] : null;
+  return { prevService, nextService };
+}
 
 export async function generateStaticParams() {
   return getAllServiceSlugs().map((slug) => ({ slug }));
@@ -11,23 +63,20 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const service = getServiceBySlug(slug);
+  const service = await fetchServiceDetail(slug);
   if (!service) return { title: 'Service Not Found' };
   return {
-    title: `${service.shortTitle} — AdPulse Media Agency`,
+    title: `${service.shortTitle || service.title} — AdPulse Media Agency`,
     description: service.tagline,
   };
 }
 
 export default async function ServiceDetailPage({ params }) {
   const { slug } = await params;
-  const service = getServiceBySlug(slug);
+  const service = await fetchServiceDetail(slug);
   if (!service) notFound();
 
-  // Find adjacent services for navigation
-  const currentIndex = services.findIndex((s) => s.slug === slug);
-  const prevService = currentIndex > 0 ? services[currentIndex - 1] : null;
-  const nextService = currentIndex < services.length - 1 ? services[currentIndex + 1] : null;
+  const { prevService, nextService } = await fetchAdjacentServices(slug);
 
   return (
     <div className="page-wrapper">

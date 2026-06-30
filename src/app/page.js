@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { FaFilm, FaBullhorn, FaRegCalendarAlt, FaUsers, FaCogs, FaMapSigns, FaLaptopCode, FaRobot } from 'react-icons/fa';
-import { services } from '@/data/services';
 import VideoPopup from '@/components/VideoPopup';
 import './home.css';
 
@@ -39,7 +38,60 @@ const serviceIcons = {
   'ai-video-ads': FaRobot
 };
 
-export default function Home() {
+export default async function Home() {
+  // Fetch from database with fallback
+  let activeServices = [];
+  let activeProjects = [];
+  try {
+    const { prisma } = await import('@/lib/prisma');
+    
+    // Services
+    const dbServices = await prisma.service.findMany({ orderBy: { id: 'asc' } });
+    if (dbServices && dbServices.length > 0) {
+      activeServices = dbServices.map(s => ({
+        ...s,
+        images: s.images ? JSON.parse(s.images) : [],
+        features: s.features ? JSON.parse(s.features) : [],
+        whyChoose: s.whyChoose ? JSON.parse(s.whyChoose) : []
+      }));
+    } else {
+      const { services: staticServices } = await import('@/data/services');
+      activeServices = staticServices;
+    }
+
+    // Projects
+    const dbProjects = await prisma.project.findMany({ orderBy: { id: 'asc' }, take: 5 });
+    if (dbProjects && dbProjects.length > 0) {
+      activeProjects = dbProjects.map(p => ({
+        name: p.name,
+        sector: p.sector,
+        logo: p.logo,
+        youtubeId: p.youtubeId,
+        title: p.name.split('(')[0].trim(),
+        subtitle: p.desc || p.sector
+      }));
+    } else {
+      activeProjects = [
+        { name: "Idemitsu Lube Pakistan", sector: "Lubricants & Events", logo: "idemitsu.com.pk", youtubeId: "3fMrYlwwfYI", title: "Idemitsu Lube Pakistan", subtitle: "Dealers Meet 2026 Sheikhupura" },
+        { name: "BMW Dewan Motors", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "g9eQ8jU-wJg", title: "BMW Dewan Motors", subtitle: "Grand Opening Showcase" },
+        { name: "Young's Food", sector: "FMCG Campaign", logo: "youngsfood.com", youtubeId: "ntIAakOpHr4", title: "Young's Food", subtitle: "Engaging Digital Series" },
+        { name: "Chase Up", sector: "Retail Marketing", logo: "chaseup.com.pk", youtubeId: "68bC80ZdzfY", title: "Chase Up", subtitle: "Seasonal Promotions" },
+        { name: "GFS Builders", sector: "Real Estate & TVC", logo: "gfsbuilders.com.pk", youtubeId: "WoAeLUmc3xo", title: "GFS Builders & Developers", subtitle: "Marketing & TVC Production" }
+      ];
+    }
+  } catch (error) {
+    console.error('Home page db fetch error:', error);
+    const { services: staticServices } = await import('@/data/services');
+    activeServices = staticServices;
+    activeProjects = [
+      { name: "Idemitsu Lube Pakistan", sector: "Lubricants & Events", logo: "idemitsu.com.pk", youtubeId: "3fMrYlwwfYI", title: "Idemitsu Lube Pakistan", subtitle: "Dealers Meet 2026 Sheikhupura" },
+      { name: "BMW Dewan Motors", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "g9eQ8jU-wJg", title: "BMW Dewan Motors", subtitle: "Grand Opening Showcase" },
+      { name: "Young's Food", sector: "FMCG Campaign", logo: "youngsfood.com", youtubeId: "ntIAakOpHr4", title: "Young's Food", subtitle: "Engaging Digital Series" },
+      { name: "Chase Up", sector: "Retail Marketing", logo: "chaseup.com.pk", youtubeId: "68bC80ZdzfY", title: "Chase Up", subtitle: "Seasonal Promotions" },
+      { name: "GFS Builders", sector: "Real Estate & TVC", logo: "gfsbuilders.com.pk", youtubeId: "WoAeLUmc3xo", title: "GFS Builders & Developers", subtitle: "Marketing & TVC Production" }
+    ];
+  }
+
   // ── All brands with logo URLs ──
   // logo: public URL or null (renders styled text fallback)
   const row1Brands = [
@@ -169,7 +221,7 @@ export default function Home() {
                               <div className="services-marquee">
             <div className="services-marquee-track">
               {/* Set 1 */}
-              {services.map((service, idx) => {
+              {activeServices.map((service, idx) => {
                 const Icon = serviceIcons[service.slug] || FaFilm;
                 return (
                   <div className="service-card tilt-card" key={`set1-${idx}`}>
@@ -184,7 +236,7 @@ export default function Home() {
               })}
 
               {/* Set 2 (Duplicated for seamless infinite scrolling) */}
-              {services.map((service, idx) => {
+              {activeServices.map((service, idx) => {
                 const Icon = serviceIcons[service.slug] || FaFilm;
                 return (
                   <div className="service-card tilt-card" key={`set2-${idx}`}>
@@ -242,13 +294,7 @@ export default function Home() {
             <h2>FEATURED PROJECTS</h2>
           </div>
           <div className="projects-grid" data-stagger>
-            {[
-              { name: "Idemitsu Lube Pakistan", sector: "Lubricants & Events", logo: "idemitsu.com.pk", youtubeId: "3fMrYlwwfYI", title: "Idemitsu Lube Pakistan", subtitle: "Dealers Meet 2026 Sheikhupura" },
-              { name: "BMW Dewan Motors", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "g9eQ8jU-wJg", title: "BMW Dewan Motors", subtitle: "Grand Opening Showcase" },
-              { name: "Young's Food", sector: "FMCG Campaign", logo: "youngsfood.com", youtubeId: "ntIAakOpHr4", title: "Young's Food", subtitle: "Engaging Digital Series" },
-              { name: "Chase Up", sector: "Retail Marketing", logo: "chaseup.com.pk", youtubeId: "68bC80ZdzfY", title: "Chase Up", subtitle: "Seasonal Promotions" },
-              { name: "GFS Builders", sector: "Real Estate & TVC", logo: "gfsbuilders.com.pk", youtubeId: "WoAeLUmc3xo", title: "GFS Builders & Developers", subtitle: "Marketing & TVC Production" }
-            ].map((project, idx) => (
+            {activeProjects.map((project, idx) => (
               <div className="project-card reveal-up tilt-card" key={idx}>
                 <div className="project-img">
                   <div className="portfolio-video-bg">

@@ -13,7 +13,24 @@ export const metadata = {
   }
 };
 
-export default function PortfolioPage() {
+export default async function PortfolioPage() {
+  let activeProjects = [];
+  try {
+    const { prisma } = await import('@/lib/prisma');
+    const dbProjects = await prisma.project.findMany({
+      orderBy: { id: 'asc' }
+    });
+
+    if (dbProjects && dbProjects.length > 0) {
+      activeProjects = dbProjects;
+    } else {
+      activeProjects = getStaticProjects();
+    }
+  } catch (error) {
+    console.error('Portfolio page db fetch error:', error);
+    activeProjects = getStaticProjects();
+  }
+
   return (
     <div className="page-wrapper">
       <div className="page-header">
@@ -25,22 +42,7 @@ export default function PortfolioPage() {
 
       <section className="container section-padding">
         <div className="portfolio-grid">
-          {[
-            { name: "Idemitsu Lube Pakistan Dealers Meet 2026", sector: "Lubricants & Events", logo: "idemitsu.com.pk", youtubeId: "3fMrYlwwfYI", desc: "Idemitsu Lube Pakistan Private Limited Dealers Meet 2026 in Sheikhupura, showcasing corporate excellence and dealer engagement events." },
-            { name: "BMW Dewan Motors (Grand Opening)", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "g9eQ8jU-wJg", desc: "Grand opening of BMW by Dewan Motors, showcasing premium brand positioning and elite customer engagement events." },
-            { name: "Dewan Motors MINI (Launching Ceremony)", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "kCUwvT6nokc", desc: "Official MINI launching ceremony by Dewan Motors, highlighting premium style and brand innovation." },
-            { name: "Young's Food", sector: "FMCG Campaign", logo: "youngsfood.com", youtubeId: "ntIAakOpHr4", desc: "Engaging digital content and recipe series designed to build community." },
-            { name: "Chase Up", sector: "Retail Marketing", logo: "chaseup.com.pk", youtubeId: "68bC80ZdzfY", desc: "Targeted seasonal promotional campaigns that resulted in record-breaking sales." },
-            { name: "GFS Builders", sector: "Real Estate & TVC", logo: "gfsbuilders.com.pk", youtubeId: "WoAeLUmc3xo", desc: "Extensive real estate marketing, including TVC production and 3D visualization." },
-            { name: "Diners", sector: "Apparel Marketing", logo: "diners.com.pk", youtubeId: "eWxt66xPk-U", desc: "Premium menswear catalog shoots and targeted performance marketing." },
-            { name: "Oxford", sector: "E-commerce", logo: "oxford.com.pk", youtubeId: "fV97GrCtuYc", desc: "E-commerce optimization and paid social scaling to increase transactions." },
-            { name: "Imtiaz Super Market", sector: "Retail Giant", logo: "imtiaz.com.pk", youtubeId: "4nAkivqPt1U", desc: "Mega-store launch event management and widespread OOH advertising." },
-            { name: "Sunridge", sector: "Food & Agriculture", logo: "sunridgefoods.com", youtubeId: "6_x2Gy7m0Zk", desc: "Nationwide health awareness campaigns and premium packaging rollout." },
-            { name: "Sumsum Group", sector: "Builders & Developers", logo: "sumsumgroup.com", youtubeId: "ZPCBua_tSz8", desc: "Comprehensive brand identity and property showcase campaigns." },
-            { name: "HMR Waterfront", sector: "Luxury Real Estate", logo: "hmrwaterfront.com", youtubeId: "R1Xg_HQ7hUc", desc: "Exclusive launch event and premium digital branding for waterfront living." },
-            { name: "Honda Motorcycles", sector: "Automotive", logo: "atlashonda.com.pk", youtubeId: "In2AcIr-jMY", desc: "Dynamic product launch campaigns and interactive digital ads for new models." },
-            { name: "Sindh Police", sector: "Public Service", logo: "sindhpolice.gov.pk", youtubeId: "d2T9vqyqngQ", desc: "Public awareness campaigns and official communication strategy design." }
-          ].map((project, idx) => (
+          {activeProjects.map((project, idx) => (
             <div className="portfolio-item" key={idx}>
               <div className="portfolio-img">
                 <div className="portfolio-video-bg">
@@ -77,3 +79,23 @@ export default function PortfolioPage() {
     </div>
   );
 }
+
+function getStaticProjects() {
+  return [
+    { name: "Idemitsu Lube Pakistan Dealers Meet 2026", sector: "Lubricants & Events", logo: "idemitsu.com.pk", youtubeId: "3fMrYlwwfYI", desc: "Idemitsu Lube Pakistan Private Limited Dealers Meet 2026 in Sheikhupura, showcasing corporate excellence and dealer engagement events." },
+    { name: "BMW Dewan Motors (Grand Opening)", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "g9eQ8jU-wJg", desc: "Grand opening of BMW by Dewan Motors, showcasing premium brand positioning and elite customer engagement events." },
+    { name: "Dewan Motors MINI (Launching Ceremony)", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "kCUwvT6nokc", desc: "Official MINI launching ceremony by Dewan Motors, highlighting premium style and brand innovation." },
+    { name: "Young's Food", sector: "FMCG Campaign", logo: "youngsfood.com", youtubeId: "ntIAakOpHr4", desc: "Engaging digital content and recipe series designed to build community." },
+    { name: "Chase Up", sector: "Retail Marketing", logo: "chaseup.com.pk", youtubeId: "68bC80ZdzfY", desc: "Targeted seasonal promotional campaigns that resulted in record-breaking sales." },
+    { name: "GFS Builders", sector: "Real Estate & TVC", logo: "gfsbuilders.com.pk", youtubeId: "WoAeLUmc3xo", desc: "Extensive real estate marketing, including TVC production and 3D visualization." },
+    { name: "Diners", sector: "Apparel Marketing", logo: "diners.com.pk", youtubeId: "eWxt66xPk-U", desc: "Premium menswear catalog shoots and targeted performance marketing." },
+    { name: "Oxford", sector: "E-commerce", logo: "oxford.com.pk", youtubeId: "fV97GrCtuYc", desc: "E-commerce optimization and paid social scaling to increase transactions." },
+    { name: "Imtiaz Super Market", sector: "Retail Giant", logo: "imtiaz.com.pk", youtubeId: "4nAkivqPt1U", desc: "Mega-store launch event management and widespread OOH advertising." },
+    { name: "Sunridge", sector: "Food & Agriculture", logo: "sunridgefoods.com", youtubeId: "6_x2Gy7m0Zk", desc: "Nationwide health awareness campaigns and premium packaging rollout." },
+    { name: "Sumsum Group", sector: "Builders & Developers", logo: "sumsumgroup.com", youtubeId: "ZPCBua_tSz8", desc: "Comprehensive brand identity and property showcase campaigns." },
+    { name: "HMR Waterfront", sector: "Luxury Real Estate", logo: "hmrwaterfront.com", youtubeId: "R1Xg_HQ7hUc", desc: "Exclusive launch event and premium digital branding for waterfront living." },
+    { name: "Honda Motorcycles", sector: "Automotive", logo: "atlashonda.com.pk", youtubeId: "In2AcIr-jMY", desc: "Dynamic product launch campaigns and interactive digital ads for new models." },
+    { name: "Sindh Police", sector: "Public Service", logo: "sindhpolice.gov.pk", youtubeId: "d2T9vqyqngQ", desc: "Public awareness campaigns and official communication strategy design." }
+  ];
+}
+

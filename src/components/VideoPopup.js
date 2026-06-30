@@ -7,17 +7,29 @@ import './VideoPopup.css';
 export default function VideoPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [videoSrc, setVideoSrc] = useState('/AdPulse 5 Years Celebration.mp4');
   const videoRef = useRef(null);
 
   useEffect(() => {
     // Check if popup has already been shown in this browser session
     const hasBeenShown = sessionStorage.getItem('adpulse_video_popup_shown');
     if (!hasBeenShown) {
-      setIsOpen(true);
-      // Disable scrolling when modal is open
-      document.body.style.overflow = 'hidden';
-      // Mark as shown for this session
-      sessionStorage.setItem('adpulse_video_popup_shown', 'true');
+      // Fetch active video setting
+      fetch('/api/admin/settings')
+        .then(res => res.json())
+        .then(data => {
+          if (data && data.active_popup_video) {
+            setVideoSrc(data.active_popup_video);
+          }
+        })
+        .catch(err => console.error('Failed to fetch popup video setting:', err))
+        .finally(() => {
+          setIsOpen(true);
+          // Disable scrolling when modal is open
+          document.body.style.overflow = 'hidden';
+          // Mark as shown for this session
+          sessionStorage.setItem('adpulse_video_popup_shown', 'true');
+        });
     }
   }, []);
 
@@ -50,7 +62,7 @@ export default function VideoPopup() {
         <div className="video-popup-player-wrapper">
           <video
             ref={videoRef}
-            src="/AdPulse 5 Years Celebration.mp4"
+            src={videoSrc}
             autoPlay
             muted={isMuted}
             controls
