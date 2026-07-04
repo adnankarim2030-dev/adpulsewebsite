@@ -54,6 +54,19 @@ export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const testRecipient = searchParams.get('to') || 'info@adpulse.pk';
 
+  // Debug info
+  const fs = require('fs');
+  const path = require('path');
+  const debugInfo = {
+    cwd: process.cwd(),
+    dirname: __dirname,
+    envFiles: fs.readdirSync(process.cwd()).filter(f => f.startsWith('.env')),
+    envExistsInCwd: fs.existsSync(path.join(process.cwd(), '.env')),
+    envExistsInDirname: fs.existsSync(path.join(__dirname, '.env')),
+    envExistsInAppRoot: fs.existsSync(path.join(process.cwd(), 'adpulse-website', '.env')),
+    rawEnvKeys: Object.keys(process.env).filter(k => k.includes('API') || k.includes('KEY') || k.includes('SMTP')),
+  };
+
   const user = process.env.SMTP_USER || 'info@adpulse.pk';
   const resendKey = process.env.RESEND_API_KEY;
   const brevoKey = process.env.BREVO_API_KEY;
@@ -81,6 +94,7 @@ export async function GET(request) {
         success: true,
         method: 'Resend HTTP API',
         send: data,
+        debugInfo,
         config: {
           user,
           hasResendKey: true,
@@ -148,6 +162,7 @@ export async function GET(request) {
     passwordLength: pass ? pass.length : 0,
     hasResendKey: false,
     hasBrevoKey: false,
+    debugInfo,
   };
 
   if (!pass) {
