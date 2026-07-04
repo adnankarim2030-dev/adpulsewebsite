@@ -1,3 +1,7 @@
+// Load environment variables explicitly for Passenger/production environments
+const { loadEnvConfig } = require('@next/env');
+loadEnvConfig(__dirname);
+
 const { createServer } = require('http');
 const { parse } = require('url');
 
