@@ -248,20 +248,23 @@ export default function Chatbot() {
       <div className={`chatbot-window ${isOpen ? 'open' : ''}`}>
         <div className="chatbot-header">
           <div className="chatbot-brand">
-            <span className="chatbot-avatar">
-              {!videoError ? (
-                <video 
-                  src="/images/aisha_live.mp4" 
-                  autoPlay 
-                  loop 
-                  muted 
-                  playsInline 
-                  className="avatar-live-video"
-                  onError={() => setVideoError(true)}
-                />
-              ) : (
-                <img src="/images/chatbot_avatar.jpg" alt="Aisha - AdPulse Assistant" className="avatar-image-breathing" />
-              )}
+            <span className="chatbot-avatar" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+              <img 
+                src="/images/chatbot_avatar.jpg" 
+                alt="Aisha - AdPulse Assistant" 
+                className="avatar-image-breathing"
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 1 }}
+              />
+              <video 
+                src="/images/aisha_live.mp4" 
+                autoPlay 
+                loop 
+                muted 
+                playsInline 
+                className="avatar-live-video"
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 2, opacity: videoError ? 0 : 1 }}
+                onError={() => setVideoError(true)}
+              />
             </span>
             <div className="chatbot-brand-text">
               <h4>Aisha - AdPulse</h4>
