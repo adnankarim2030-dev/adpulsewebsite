@@ -9,7 +9,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState([
     {
       sender: 'bot',
-      text: 'Hello! I am Aisha, your dedicated AdPulse Media Consultant. How can I help you grow your brand today?',
+      text: 'Hello! I am AdPulse Assistant. How can I help you grow your brand today?',
       time: '12:00 PM'
     }
   ]);
@@ -41,7 +41,7 @@ export default function Chatbot() {
     setMessages([
       {
         sender: 'bot',
-        text: 'Hello! I am Aisha, your dedicated AdPulse Media Consultant. How can I help you grow your brand today?',
+        text: 'Hello! I am AdPulse Assistant. How can I help you grow your brand today?',
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       }
     ]);
@@ -248,19 +248,14 @@ export default function Chatbot() {
         <div className="chatbot-header">
           <div className="chatbot-brand">
             <span className="chatbot-avatar" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-              <video 
-                src="/images/aisha_live.mp4" 
-                poster="/images/chatbot_avatar.jpg"
-                autoPlay 
-                loop 
-                muted 
-                playsInline 
-                className="avatar-image-breathing"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              <img 
+                src="/images/chatbot_logo.png" 
+                alt="AdPulse Logo" 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
               />
             </span>
             <div className="chatbot-brand-text">
-              <h4>Aisha - AdPulse</h4>
+              <h4>AdPulse Assistant</h4>
               <span className="online-status">
                 <span className="status-dot"></span> Online
               </span>

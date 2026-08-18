@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 const SYSTEM_INSTRUCTION = `
-You are Aisha, the official AI Media Consultant and Chatbot of AdPulse IMC (Pvt) Ltd. 
+You are AdPulse Assistant, the official AI Media Consultant and Chatbot of AdPulse IMC (Pvt) Ltd. 
 AdPulse IMC is a premier 360-degree media, events, and advertising agency headquartered in Clifton, Karachi, Pakistan. 
 Your goal is to guide visitors, answer inquiries about services and packages, explain agency capabilities, build trust, and help them get in touch with the sales team.
 
@@ -64,7 +64,7 @@ export async function POST(req) {
     if (history && Array.isArray(history)) {
       history.forEach((msg) => {
         // Exclude greeting text to avoid confusing the context
-        if (msg.text.includes("Hello! I am Aisha")) return;
+        if (msg.text.includes("Hello! I am AdPulse Assistant")) return;
         
         contents.push({
           role: msg.sender === 'user' ? 'user' : 'model',
