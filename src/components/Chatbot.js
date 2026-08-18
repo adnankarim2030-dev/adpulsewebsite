@@ -9,7 +9,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState([
     {
       sender: 'bot',
-      text: 'Hello! I am AdPulse Assistant. What can I help you?',
+      text: 'Hello! I am Aisha, your dedicated AdPulse Media Consultant. How can I help you grow your brand today?',
       time: '12:00 PM'
     }
   ]);
@@ -41,7 +41,7 @@ export default function Chatbot() {
     setMessages([
       {
         sender: 'bot',
-        text: 'Hello! I am AdPulse Assistant. What can I help you?',
+        text: 'Hello! I am Aisha, your dedicated AdPulse Media Consultant. How can I help you grow your brand today?',
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       }
     ]);
@@ -248,10 +248,10 @@ export default function Chatbot() {
         <div className="chatbot-header">
           <div className="chatbot-brand">
             <span className="chatbot-avatar">
-              <img src="/images/chatbot_logo.png" alt="AdPulse Logo" />
+              <img src="/images/chatbot_avatar.jpg" alt="Aisha - AdPulse Assistant" style={{ objectFit: 'cover' }} />
             </span>
             <div className="chatbot-brand-text">
-              <h4>AdPulse Assistant</h4>
+              <h4>Aisha - AdPulse</h4>
               <span className="online-status">
                 <span className="status-dot"></span> Online
               </span>
