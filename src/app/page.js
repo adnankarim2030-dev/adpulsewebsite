@@ -307,14 +307,14 @@ export default async function Home() {
               <div className="project-card reveal-up tilt-card" key={`showreel-${idx}`}>
                 <div className="project-img">
                   <div className="portfolio-video-bg">
-                    <iframe 
-                      src={`https://www.youtube.com/embed/${project.youtubeId}?autoplay=0&controls=1&showinfo=0&modestbranding=1&rel=0`}
-                      title={project.name}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="portfolio-iframe"
-                    ></iframe>
+                      <iframe 
+                        src={`https://www.youtube.com/embed/${project.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${project.youtubeId}&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1`}
+                        title={project.name}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="portfolio-iframe"
+                      ></iframe>
                   </div>
                   <div className="project-overlay" style={{ pointerEvents: 'none' }}>
                     <span className="project-tag">{project.sector}</span>
