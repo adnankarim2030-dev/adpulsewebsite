@@ -18,6 +18,7 @@ export default function Chatbot() {
   const [hasNewMessageAlert, setHasNewMessageAlert] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [videoError, setVideoError] = useState(false);
 
   const messagesEndRef = useRef(null);
   const recognitionRef = useRef(null);
@@ -248,7 +249,19 @@ export default function Chatbot() {
         <div className="chatbot-header">
           <div className="chatbot-brand">
             <span className="chatbot-avatar">
-              <img src="/images/chatbot_avatar.jpg" alt="Aisha - AdPulse Assistant" style={{ objectFit: 'cover' }} />
+              {!videoError ? (
+                <video 
+                  src="/images/aisha_live.mp4" 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
+                  className="avatar-live-video"
+                  onError={() => setVideoError(true)}
+                />
+              ) : (
+                <img src="/images/chatbot_avatar.jpg" alt="Aisha - AdPulse Assistant" className="avatar-image-breathing" />
+              )}
             </span>
             <div className="chatbot-brand-text">
               <h4>Aisha - AdPulse</h4>
