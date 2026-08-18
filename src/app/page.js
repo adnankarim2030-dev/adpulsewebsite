@@ -60,7 +60,7 @@ export default async function Home() {
     }
 
     // Projects
-    const dbProjects = await prisma.project.findMany({ orderBy: { id: 'asc' }, take: 5 });
+    const dbProjects = await prisma.project.findMany({ orderBy: { id: 'asc' }, take: 6 });
     if (dbProjects && dbProjects.length > 0) {
       activeProjects = dbProjects.map(p => ({
         name: p.name,
@@ -76,7 +76,8 @@ export default async function Home() {
         { name: "BMW Dewan Motors", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "g9eQ8jU-wJg", title: "BMW Dewan Motors", subtitle: "Grand Opening Showcase" },
         { name: "Young's Food", sector: "FMCG Campaign", logo: "youngsfood.com", youtubeId: "ntIAakOpHr4", title: "Young's Food", subtitle: "Engaging Digital Series" },
         { name: "Chase Up", sector: "Retail Marketing", logo: "chaseup.com.pk", youtubeId: "68bC80ZdzfY", title: "Chase Up", subtitle: "Seasonal Promotions" },
-        { name: "GFS Builders", sector: "Real Estate & TVC", logo: "gfsbuilders.com.pk", youtubeId: "WoAeLUmc3xo", title: "GFS Builders & Developers", subtitle: "Marketing & TVC Production" }
+        { name: "GFS Builders", sector: "Real Estate & TVC", logo: "gfsbuilders.com.pk", youtubeId: "WoAeLUmc3xo", title: "GFS Builders & Developers", subtitle: "Marketing & TVC Production" },
+        { name: "Kifayah Pharmacy", sector: "Retail Campaign", logo: "kifayah.com.pk", youtubeId: "iYNogLTMDWI", title: "Kifayah Pharmacy", subtitle: "Supermarket OOH Campaign" }
       ];
     }
   } catch (error) {
@@ -88,7 +89,8 @@ export default async function Home() {
       { name: "BMW Dewan Motors", sector: "Luxury Automotive", logo: "dewanmotors.com.pk", youtubeId: "g9eQ8jU-wJg", title: "BMW Dewan Motors", subtitle: "Grand Opening Showcase" },
       { name: "Young's Food", sector: "FMCG Campaign", logo: "youngsfood.com", youtubeId: "ntIAakOpHr4", title: "Young's Food", subtitle: "Engaging Digital Series" },
       { name: "Chase Up", sector: "Retail Marketing", logo: "chaseup.com.pk", youtubeId: "68bC80ZdzfY", title: "Chase Up", subtitle: "Seasonal Promotions" },
-      { name: "GFS Builders", sector: "Real Estate & TVC", logo: "gfsbuilders.com.pk", youtubeId: "WoAeLUmc3xo", title: "GFS Builders & Developers", subtitle: "Marketing & TVC Production" }
+      { name: "GFS Builders", sector: "Real Estate & TVC", logo: "gfsbuilders.com.pk", youtubeId: "WoAeLUmc3xo", title: "GFS Builders & Developers", subtitle: "Marketing & TVC Production" },
+      { name: "Kifayah Pharmacy", sector: "Retail Campaign", logo: "kifayah.com.pk", youtubeId: "iYNogLTMDWI", title: "Kifayah Pharmacy", subtitle: "Supermarket OOH Campaign" }
     ];
   }
 
@@ -282,6 +284,48 @@ export default async function Home() {
           <div className="stat-info">
             <h3 data-count="15+">0</h3>
             <p>YEARS OF EXPERIENCE</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Latest Campaigns & Showreels */}
+      <section className="projects-section bg-gradient-gray">
+        <div className="container">
+          <div className="section-header reveal-up">
+            <span className="subtitle">OUR SHOWREELS</span>
+            <h2>LATEST CAMPAIGNS</h2>
+          </div>
+          <div className="projects-grid" data-stagger>
+            {[
+              { name: "Imtiaz's Azaadi Ka Ticket", sector: "OOH Campaign", youtubeId: "Yo1tiT8VLcg" },
+              { name: "Falaknaz Elite Towers", sector: "Corporate Events", youtubeId: "2mHdjxY3OsI" },
+              { name: "The H&H Home Biggest Sale", sector: "Digital Campaign", youtubeId: "UY3o5F6VXGo" },
+              { name: "Chase Up Back to School", sector: "BTL Marketing", youtubeId: "GcQWNLM2YfI" },
+              { name: "Medicam Builder-Icon One", sector: "Unveiling Event", youtubeId: "JI0RwAQBoW8" },
+              { name: "Idemitsu Dealers Meet", sector: "Corporate Events", youtubeId: "3fMrYlwwfYI" }
+            ].map((project, idx) => (
+              <div className="project-card reveal-up tilt-card" key={`showreel-${idx}`}>
+                <div className="project-img">
+                  <div className="portfolio-video-bg">
+                    <iframe 
+                      src={`https://www.youtube.com/embed/${project.youtubeId}?autoplay=0&controls=1&showinfo=0&modestbranding=1&rel=0`}
+                      title={project.name}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="portfolio-iframe"
+                    ></iframe>
+                  </div>
+                  <div className="project-overlay" style={{ pointerEvents: 'none' }}>
+                    <span className="project-tag">{project.sector}</span>
+                  </div>
+                </div>
+                <div className="project-info">
+                  <h4>{project.name}</h4>
+                  <p>{project.sector}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

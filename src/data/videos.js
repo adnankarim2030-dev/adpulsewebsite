@@ -1,5 +1,10 @@
-// Shared list of all 121 videos from the AdPulse YouTube channel
+// Shared list of all videos from the AdPulse YouTube channel
 export const ALL_VIDEOS = [
+  { id: 'Yo1tiT8VLcg', title: 'Imtiaz’s "Azaadi Ka Ticket" OOH Campaign', category: 'ooh' },
+  { id: '2mHdjxY3OsI', title: 'Falaknaz Elite Towers Pre-Launch', category: 'events' },
+  { id: 'UY3o5F6VXGo', title: 'The H&H Home Biggest Sale', category: 'tvc' },
+  { id: 'GcQWNLM2YfI', title: 'Chase Up Back to School Campaign', category: 'ooh' },
+  { id: 'JI0RwAQBoW8', title: 'Medicam Builder-Icon One Unveiling', category: 'events' },
   { id: '3fMrYlwwfYI', title: 'Idemitsu Lube Pakistan Private Limited Dealers Meet 2026 | Sheikhupura', category: 'events' },
   { id: 'g9eQ8jU-wJg', title: 'Grand opening of BMW by Dewan Motors | by AdPulse', category: 'events' },
   { id: 'kCUwvT6nokc', title: 'Dewan Motors Mini Launching Ceremony | by AdPulse', category: 'events' },
