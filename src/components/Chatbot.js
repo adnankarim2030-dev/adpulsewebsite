@@ -18,7 +18,6 @@ export default function Chatbot() {
   const [hasNewMessageAlert, setHasNewMessageAlert] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
-  const [videoError, setVideoError] = useState(false);
 
   const messagesEndRef = useRef(null);
   const recognitionRef = useRef(null);
@@ -249,21 +248,15 @@ export default function Chatbot() {
         <div className="chatbot-header">
           <div className="chatbot-brand">
             <span className="chatbot-avatar" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-              <img 
-                src="/images/chatbot_avatar.jpg" 
-                alt="Aisha - AdPulse Assistant" 
-                className="avatar-image-breathing"
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 1 }}
-              />
               <video 
                 src="/images/aisha_live.mp4" 
+                poster="/images/chatbot_avatar.jpg"
                 autoPlay 
                 loop 
                 muted 
                 playsInline 
-                className="avatar-live-video"
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 2, opacity: videoError ? 0 : 1 }}
-                onError={() => setVideoError(true)}
+                className="avatar-image-breathing"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </span>
             <div className="chatbot-brand-text">
