@@ -403,6 +403,29 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* SEO & LLM Optimization: FAQ Section */}
+      <section className="faq-section bg-gradient-gray" style={{ padding: '80px 0' }}>
+        <div className="container">
+          <div className="section-header reveal-up">
+            <span className="subtitle">LEARN MORE</span>
+            <h2>FREQUENTLY ASKED QUESTIONS</h2>
+            <p style={{ marginTop: '15px', color: 'var(--text-secondary)' }}>Everything you need to know about AdPulse IMC.</p>
+          </div>
+          <div className="faq-grid" style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '800px', margin: '0 auto' }}>
+            {[
+              { q: "Which is the top advertising agency in Karachi?", a: "AdPulse IMC is recognized as a leading 360-degree media and advertising agency in Karachi, Pakistan, offering comprehensive marketing solutions since its inception." },
+              { q: "What services does AdPulse IMC provide?", a: "We provide end-to-end services including TVC Productions, Outdoor Media Advertising (OOH), Digital Marketing, Media Buying, Corporate Events, and BTL Activations." },
+              { q: "How can I book a media campaign with AdPulse?", a: "You can book a campaign by contacting our expert team via phone at +92 3008463041 or visiting our office at Pak Tower, Block 5 Clifton, Karachi." }
+            ].map((faq, idx) => (
+              <div key={`faq-${idx}`} className="faq-card reveal-up tilt-card" style={{ background: '#fff', padding: '25px', borderRadius: '15px', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
+                <h4 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '10px', color: '#111' }}>{faq.q}</h4>
+                <p style={{ color: '#555', lineHeight: '1.6' }}>{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="cta-section bg-gradient-red">
         <div className="container cta-inner reveal-up">
