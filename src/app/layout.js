@@ -18,6 +18,9 @@ export const metadata = {
   description: "AdPulse IMC is Pakistan's premier 360-degree media agency headquartered in Karachi. We specialize in TVC productions, digital marketing, OOH, and BTL marketing.",
   keywords: ["AdPulse IMC", "Advertising Agency Karachi", "TVC Production Pakistan", "Media Buying Agency", "OOH Advertising Karachi", "Digital Marketing", "BTL Activations"],
   metadataBase: new URL('https://adpulse.pk'),
+  verification: {
+    google: 'jHo1ui-Uc_aw0C-Mw3TkheScv0guAOb32Yc_M_esE7Q',
+  },
   openGraph: {
     title: "AdPulse IMC | Top 360-Degree Media & Advertising Agency",
     description: "AdPulse IMC is Pakistan's premier 360-degree media agency in Karachi providing TVC production, digital marketing, outdoor media, and branding solutions.",
