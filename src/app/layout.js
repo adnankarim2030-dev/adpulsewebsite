@@ -1,3 +1,4 @@
+import Script from "next/script";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -113,12 +114,24 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <meta name="google-site-verification" content="jHo1ui-Uc_aw0C-Mw3TkheScv0guAOb32Yc_M_esE7Q" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
         />
       </head>
       <body className={inter.variable}>
+        {/* Google Analytics Tag */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-ZWT2X0WJB4" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-ZWT2X0WJB4');
+          `}
+        </Script>
         <Navbar />
         <main>{children}</main>
         <Footer />
