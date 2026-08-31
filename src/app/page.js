@@ -4,12 +4,20 @@ import VideoPopup from '@/components/VideoPopup';
 import './home.css';
 
 export const metadata = {
-  title: "AdPulse Media Agency",
-  description: "Elevate your brand with AdPulse IMC, Karachi's leading full-service advertising agency. Specializing in TVC production, outdoor media, media buying, digital marketing, and corporate events.",
+  title: "AdPulse IMC | Top 360-Degree Media & Advertising Agency",
+  description: "Elevate your brand with AdPulse IMC, Karachi's leading 360-degree advertising agency. We specialize in TVC, digital marketing, OOH, and corporate events.",
   keywords: "media agency karachi, advertising agency pakistan, tvc production karachi, digital marketing agency, outdoor advertising, OOH karachi, media planning and buying, BTL marketing pakistan",
+  alternates: {
+    canonical: "https://adpulse.pk",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  publisher: "AdPulse IMC",
   openGraph: {
-    title: "AdPulse Media Agency",
-    description: "Elevate your brand with AdPulse IMC, Karachi's leading full-service advertising agency. Specializing in TVC production, outdoor media, and digital marketing.",
+    title: "AdPulse IMC | Top 360-Degree Media & Advertising Agency",
+    description: "Elevate your brand with AdPulse IMC, Karachi's leading 360-degree advertising agency. We specialize in TVC, digital marketing, OOH, and corporate events.",
     url: "https://adpulse.pk",
     siteName: "AdPulse IMC",
     type: "website",
