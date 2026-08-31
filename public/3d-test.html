@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AdPulse IMC - 3D Showcase (Green, Blue, Red)</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background-color: #050505; font-family: 'Helvetica Neue', Arial, sans-serif; overflow-x: hidden; color: #fff; }
+    
+    /* 3D WebGL Canvas Fixed Container */
+    #canvas-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; pointer-events: none; }
+    
+    /* Scroll Content Layer */
+    .scroll-wrapper { position: relative; z-index: 2; }
+    
+    /* Individual Section Settings for Kinematic Text Split */
+    section { height: 100vh; display: flex; align-items: center; padding: 0 8%; position: relative; }
+    
+    .text-container { max-width: 50%; opacity: 0; transform: translateY(50px); }
+    .text-container h1 { font-size: 5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -2px; line-height: 0.9; margin-bottom: 20px; background: linear-gradient(45deg, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .text-container p { font-size: 1.2rem; color: #aaa; max-width: 400px; line-height: 1.5; }
+    
+    /* Visual marker line for clean premium look */
+    .indicator { position: absolute; left: 5%; height: 60px; width: 2px; background: #fff; }
+    #sec-tvc .indicator { background: #00cc66; } /* Green */
+    #sec-ooh .indicator { background: #0066ff; } /* Blue */
+    #sec-events .indicator { background: #ff0033; } /* Red */
+  </style>
+</head>
+<body>
+
+  <!-- 3D Scene Layer -->
+  <div id="canvas-container"></div>
+
+  <!-- HTML Content Split Layer -->
+  <div class="scroll-wrapper">
+    
+    <!-- SECTION 1: TVC -->
+    <section id="sec-tvc">
+      <div class="indicator"></div>
+      <div class="text-container">
+        <h1>TVC<br>Campaigns</h1>
+        <p>High-impact cinematic television commercials and video showreels crafted for premium brand recall.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 2: OOH / OUTDOOR -->
+    <section id="sec-ooh">
+      <div class="indicator"></div>
+      <div class="text-container">
+        <h1>OOH &<br>Outdoor</h1>
+        <p>Immersive out-of-home advertising, digital billboards, and creative ambient placements across Pakistan.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 3: EVENTS -->
+    <section id="sec-events">
+      <div class="indicator"></div>
+      <div class="text-container">
+        <h1>Experiential<br>Events</h1>
+        <p>Bespoke corporate event management, brand activations, and large-scale consumer launch experiences.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Core Scripts Open Source CDN (FIXED) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ==========================================
+    // 1. THREE.JS HYBRID TUNNEL & CARD SETUP
+    // ==========================================
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    
+    // Smooth cinematic camera depth
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    // Initial Camera positioning (Looking down the tunnel)
+    camera.position.set(0, 0, 8);
+
+    // Clean neutral studio lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    scene.add(ambientLight);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
+    dirLight.position.set(5, 10, 7);
+    scene.add(dirLight);
+
+    // ==========================================
+    // 2. CREATING 3D FLOATING MEDIA CARDS (Green, Blue, Red)
+    // ==========================================
+    const cardGeometry = new THREE.PlaneGeometry(4.5, 2.8);
+    
+    const materials = [
+      new THREE.MeshStandardMaterial({ color: 0x00cc66, roughness: 0.2, metalness: 0.5, side: THREE.DoubleSide }), // Card 1 (Green)
+      new THREE.MeshStandardMaterial({ color: 0x0066ff, roughness: 0.2, metalness: 0.5, side: THREE.DoubleSide }), // Card 2 (Blue)
+      new THREE.MeshStandardMaterial({ color: 0xff0033, roughness: 0.2, metalness: 0.5, side: THREE.DoubleSide })  // Card 3 (Red)
+    ];
+
+    const cards = [];
+    const totalCards = materials.length;
+
+    // Cylinder/Tunnel shape mapping configuration
+    materials.forEach((material, index) => {
+      const mesh = new THREE.Mesh(cardGeometry, material);
+      
+      // Cards ko right side offset dena taake split content architecture maintain ho
+      mesh.position.x = 2.5; 
+      mesh.position.y = 0;
+      
+      // Z-Depth configuration taake scroll par tunnel push effect aaye
+      mesh.position.z = -index * 6; 
+      
+      scene.add(mesh);
+      cards.push(mesh);
+    });
+
+    // Background 3D particles abstract environment ke liye
+    const particlesGeo = new THREE.BufferGeometry();
+    const particlesCount = 300;
+    const posArray = new Float32Array(particlesCount * 3);
+
+    for(let i=0; i<particlesCount*3; i++) {
+      posArray[i] = (Math.random() - 0.5) * 25;
+    }
+    particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    const particlesMat = new THREE.PointsMaterial({ size: 0.03, color: 0xffffff });
+    const particlesMesh = new THREE.Points(particlesGeo, particlesMat);
+    scene.add(particlesMesh);
+
+    // ==========================================
+    // 3. GSAP INTERACTION TIMELINE & SCROLL TRIGGER
+    // ==========================================
+    const masterTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".scroll-wrapper",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.2, // Ultra-smooth scrolling interaction catch-up
+      }
+    });
+
+    // Phase 1: Camera Tunnel Movement through cards
+    masterTimeline.to(camera.position, {
+      z: -7, // Camera moves straight through the Z plane
+      ease: "none"
+    }, 0);
+
+    // Phase 2: Micro rotation adjustment of cards for cinematic flow
+    cards.forEach((card, i) => {
+      masterTimeline.to(card.rotation, {
+        y: -0.4,
+        x: 0.2,
+        ease: "none"
+      }, 0);
+    });
+
+    // ==========================================
+    // 4. KINEMATIC TEXT ANIMATION FOR EACH SECTION
+    // ==========================================
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section) => {
+      const txt = section.querySelector('.text-container');
+      
+      gsap.to(txt, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 60%",
+          end: "top 20%",
+          toggleActions: "play reverse play reverse",
+          scrub: false // UI responsiveness ke liye toggle snappy rakha hai
+        }
+      });
+    });
+
+    // Render Animation Loop
+    const clock = new THREE.Clock();
+    function tick() {
+      const elapsedTime = clock.getElapsedTime();
+      
+      // Ambient animation framework: subtle float effect when idle
+      particlesMesh.rotation.y = elapsedTime * 0.02;
+      cards.forEach((card, index) => {
+        card.position.y = Math.sin(elapsedTime + index) * 0.15;
+      });
+
+      renderer.render(scene, camera);
+      requestAnimationFrame(tick);
+    }
+    tick();
+
+    // Responsive Canvas Resizing Window layout
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>
