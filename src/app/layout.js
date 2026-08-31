@@ -17,7 +17,13 @@ const inter = Inter({
 export const metadata = {
   title: "AdPulse IMC | Top 360-Degree Media & Advertising Agency in Karachi",
   description: "AdPulse IMC is Pakistan's premier 360-degree media agency headquartered in Karachi. We specialize in TVC productions, digital marketing, OOH, and BTL marketing.",
-  keywords: ["AdPulse IMC", "Advertising Agency Karachi", "TVC Production Pakistan", "Media Buying Agency", "OOH Advertising Karachi", "Digital Marketing", "BTL Activations"],
+  keywords: [
+    "AdPulse IMC", "AI Digital Marketing Agency", "Top Digital Marketing Agency Pakistan", 
+    "Custom Web Development Agency", "AI-powered Advertising Karachi", "Social Media Marketing Karachi", 
+    "E-commerce Shopify Setup", "Performance Marketing", "SEO Services Pakistan", 
+    "360-Degree Media Buying", "React Next.js Developers", "Corporate Website Development", 
+    "Generative Engine Optimization (GEO)", "AI Video Ads", "TVC Production Pakistan", "BTL Activations"
+  ],
   metadataBase: new URL('https://adpulse.pk'),
   verification: {
     google: 'jHo1ui-Uc_aw0C-Mw3TkheScv0guAOb32Yc_M_esE7Q',

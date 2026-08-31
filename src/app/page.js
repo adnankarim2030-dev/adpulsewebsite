@@ -6,7 +6,7 @@ import './home.css';
 export const metadata = {
   title: "AdPulse IMC | Top 360-Degree Media & Advertising Agency",
   description: "Elevate your brand with AdPulse IMC, Karachi's leading 360-degree advertising agency. We specialize in TVC, digital marketing, OOH, and corporate events.",
-  keywords: "media agency karachi, advertising agency pakistan, tvc production karachi, digital marketing agency, outdoor advertising, OOH karachi, media planning and buying, BTL marketing pakistan",
+  keywords: "AI Digital Marketing Agency, Top Digital Marketing Agency Pakistan, Custom Web Development Agency, AI-powered Advertising Karachi, Social Media Marketing Karachi, E-commerce Shopify Setup, Performance Marketing, SEO Services Pakistan, 360-Degree Media Buying, React Next.js Developers, Corporate Website Development, Generative Engine Optimization, AI Video Ads, TVC Production",
   alternates: {
     canonical: "https://adpulse.pk",
   },
