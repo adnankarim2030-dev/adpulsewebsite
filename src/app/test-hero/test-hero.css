@@ -1,0 +1,152 @@
+﻿.test-hero-wrapper {
+  background: #050505;
+  min-height: 350vh; 
+  color: white;
+  font-family: var(--font-inter), 'Helvetica Neue', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.test-hero-header {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  padding-bottom: 5vh;
+}
+
+.test-hero-header h1 {
+  font-size: 5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  background: linear-gradient(180deg, #ffffff, #666666);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.test-hero-header p {
+  color: #888;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+.sticky-3d-container {
+  position: sticky;
+  top: 10vh;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 2000px;
+}
+
+.campaign-3d-card {
+  position: absolute;
+  width: 85vw;
+  max-width: 1300px;
+  height: 75vh;
+  background: rgba(10, 10, 10, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+.card-text {
+  flex: 1;
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 100%);
+}
+
+.card-text h2 {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  line-height: 1;
+}
+
+.card-text p {
+  font-size: 1.2rem;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.card-video {
+  flex: 1.5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: #000;
+}
+
+.card-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  opacity: 0.7;
+  transform: scale(1.05); /* hide edges */
+}
+
+/* Color glowing effects */
+.glow-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.spacer-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  z-index: 10;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .test-hero-header h1 {
+    font-size: 3rem;
+  }
+  .card-text {
+    padding: 2rem;
+    background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 100%);
+    justify-content: flex-end;
+  }
+  .card-text h2 {
+    font-size: 2.5rem;
+  }
+}
