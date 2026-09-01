@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment, Float, Preload } from '@react-three/drei';
@@ -15,7 +15,7 @@ export default function Hero3DScene({ children }) {
           <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
             {children}
           </Float>
-          <Environment preset="city" />
+          <directionalLight position={[0, 10, 5]} intensity={1.5} color="#ffffff" />
           <Preload all />
         </Suspense>
       </Canvas>
