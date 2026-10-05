@@ -197,7 +197,7 @@ export async function sendLeadEmails(lead) {
   try {
     const info = await transporter.sendMail({
       from: `"AdPulse Website" <${user}>`,
-      to: 'info@adpulse.pk',
+      to: 'info@adpulse.pk, syedamusfira@adpulse.pk',
       subject: adminSubject,
       html: adminHtml,
     });

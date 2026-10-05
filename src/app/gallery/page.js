@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ALL_VIDEOS } from '@/data/videos';
 import './gallery.css';
 
@@ -18,10 +18,40 @@ export default function MediaGalleryPage() {
   const [activeFilter, setActiveFilter]   = useState('all');
   const [visibleCount, setVisibleCount]   = useState(PAGE_SIZE);
   const [playingId, setPlayingId]         = useState(null);
+  const [allVideosList, setAllVideosList] = useState(ALL_VIDEOS);
+
+  // Auto-fetch latest videos from YouTube using RSS-to-JSON
+  useEffect(() => {
+    const channelId = 'UCJfBhcCIDi1nuhFsdvqQLcg';
+    const rssUrl = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
+    fetch(`https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.items) {
+          const fetchedVideos = data.items.map(item => {
+            // Extract video ID from link: https://www.youtube.com/watch?v=ID
+            const urlParams = new URLSearchParams(new URL(item.link).search);
+            const vId = urlParams.get('v');
+            return {
+              id: vId,
+              title: item.title,
+              category: 'OTHER', // Default category for new videos
+            };
+          });
+
+          // Merge with existing, filtering out duplicates
+          setAllVideosList(prev => {
+            const newVids = fetchedVideos.filter(fv => !prev.some(pv => pv.id === fv.id));
+            return [...newVids, ...prev];
+          });
+        }
+      })
+      .catch(err => console.error('Error fetching latest YouTube videos:', err));
+  }, []);
 
   const filtered = activeFilter === 'all'
-    ? ALL_VIDEOS
-    : ALL_VIDEOS.filter(v => v.category === activeFilter);
+    ? allVideosList
+    : allVideosList.filter(v => v.category === activeFilter);
 
   const visible = filtered.slice(0, visibleCount);
   const hasMore = visibleCount < filtered.length;
