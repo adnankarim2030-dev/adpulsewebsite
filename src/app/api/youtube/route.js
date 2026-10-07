@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { XMLParser } from 'fast-xml-parser';
 
 export const revalidate = 0; // Disable cache so it's always fresh
 
@@ -22,24 +21,26 @@ export async function GET() {
     }
 
     const xmlData = await response.text();
-    const parser = new XMLParser({
-      ignoreAttributes: false,
-      attributeNamePrefix: "@_"
-    });
     
-    const result = parser.parse(xmlData);
-    const entries = result?.feed?.entry || [];
+    // Parse using Regex to avoid requiring external packages on cPanel
+    const videos = [];
+    const entryRegex = /<entry>([\s\S]*?)<\/entry>/g;
+    let match;
     
-    // Ensure it's always an array even if 1 video
-    const videosArray = Array.isArray(entries) ? entries : [entries];
-    
-    const videos = videosArray.map(entry => {
-      return {
-        id: entry['yt:videoId'],
-        title: entry.title,
-        category: 'OTHER' // Default
-      };
-    });
+    while ((match = entryRegex.exec(xmlData)) !== null) {
+      const entryContent = match[1];
+      
+      const idMatch = entryContent.match(/<yt:videoId>([^<]+)<\/yt:videoId>/);
+      const titleMatch = entryContent.match(/<title>([^<]+)<\/title>/);
+      
+      if (idMatch && titleMatch) {
+        videos.push({
+          id: idMatch[1],
+          title: titleMatch[1],
+          category: 'OTHER'
+        });
+      }
+    }
 
     return NextResponse.json({ videos });
   } catch (error) {
