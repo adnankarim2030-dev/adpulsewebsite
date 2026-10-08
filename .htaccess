@@ -34,5 +34,5 @@ RewriteRule ^blog/([0-9]+)$ /blog/$1/ [L,R=301]
 </IfModule>
 AddType image/webp .webp
 
-PassengerEnabled off
+
 
