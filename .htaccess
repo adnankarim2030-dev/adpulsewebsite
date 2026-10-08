@@ -33,3 +33,6 @@ RewriteRule ^blog/([0-9]+)$ /blog/$1/ [L,R=301]
   AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
 </IfModule>
 AddType image/webp .webp
+
+PassengerEnabled off
+
