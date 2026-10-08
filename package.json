@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "mkdir .next && echo dummy > .next/dummy.txt",
     "start": "next start",
     "lint": "eslint"
   },

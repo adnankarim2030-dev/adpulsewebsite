@@ -1,0 +1,35 @@
+# AdPulse IMC — Hostinger (Apache/LiteSpeed)
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+RewriteEngine On
+# Force HTTPS (works on any domain, incl. Hostinger temporary domain)
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# www.adpulse.pk -> adpulse.pk (only for the real domain)
+RewriteCond %{HTTP_HOST} ^www\.adpulse\.pk$ [NC]
+RewriteRule ^ https://adpulse.pk%{REQUEST_URI} [L,R=301]
+
+# /services/tvc-production  ->  /services/tvc-production/
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.*[^/])$ /$1/ [L,R=301]
+
+# Old Next.js style blog URLs keep working
+RewriteRule ^blog/([0-9]+)$ /blog/$1/ [L,R=301]
+
+# Caching
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 30 days"
+  ExpiresByType application/javascript "access plus 30 days"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
+</IfModule>
+AddType image/webp .webp
