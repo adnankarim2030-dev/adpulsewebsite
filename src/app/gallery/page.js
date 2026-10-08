@@ -20,16 +20,28 @@ export default function MediaGalleryPage() {
   const [playingId, setPlayingId]         = useState(null);
   const [allVideosList, setAllVideosList] = useState(ALL_VIDEOS);
 
-  // Auto-fetch latest videos from YouTube using our custom API
+  // Auto-fetch latest videos from YouTube using RSS-to-JSON
   useEffect(() => {
-    // Append a timestamp to completely bust any client-side/CDN caches
-    fetch(`/api/youtube?t=${Date.now()}`, { cache: 'no-store' })
+    const channelId = 'UCJfBhcCIDi1nuhFsdvqQLcg';
+    const rssUrl = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
+    fetch(`https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`)
       .then(res => res.json())
       .then(data => {
-        if (data && data.videos) {
+        if (data && data.items) {
+          const fetchedVideos = data.items.map(item => {
+            // Extract video ID from link: https://www.youtube.com/watch?v=ID
+            const urlParams = new URLSearchParams(new URL(item.link).search);
+            const vId = urlParams.get('v');
+            return {
+              id: vId,
+              title: item.title,
+              category: 'OTHER', // Default category for new videos
+            };
+          });
+
           // Merge with existing, filtering out duplicates
           setAllVideosList(prev => {
-            const newVids = data.videos.filter(fv => !prev.some(pv => pv.id === fv.id));
+            const newVids = fetchedVideos.filter(fv => !prev.some(pv => pv.id === fv.id));
             return [...newVids, ...prev];
           });
         }
