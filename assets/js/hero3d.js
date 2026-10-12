@@ -490,17 +490,16 @@
     catch (e) { return false; }
   }
 
-  /* real photo revealed once the dots have formed (scene index → image). Hotlinked from Unsplash. */
-  var U = function (id) { return "https://images.unsplash.com/photo-" + id + "?auto=format&fit=crop&w=1100&q=78"; };
+  /* Custom service badge icon revealed once the 3D particles have formed (scene index → image) */
   var IMAGES = {
-    0: U("1548607634-e47cdc7a6b31"),   // TVC — cinema camera on set
-    1: U("1521794414102-37606728dd9c"), // OOH — digital billboards
-    2: U("1504711434969-e33886168f5c"), // media buying — print & press
-    3: U("1496208612508-eb52fba7d94e"), // events — stage lights & crowd
-    4: U("1555201441-7b166836415d"),    // PR — press microphones
-    5: U("1785310106283-80d0e95f0bbc"), // BTL — in-store product activation
-    6: U("1724862936518-ae7fcfc052c1"), // digital — social on mobile
-    7: U("1716436329475-4c55d05383bb")  // AI — chip / neural core
+    0: "/assets/img/services/tvc-production.png",     // TVC Production
+    1: "/assets/img/services/outdoor-media.png",      // Outdoor Media (OOH)
+    2: "/assets/img/services/media-buying.png",       // Media Buying & Planning
+    3: "/assets/img/services/corporate-events.png",   // Corporate Events
+    4: "/assets/img/services/pr-promotion.png",       // PR & Promotion
+    5: "/assets/img/services/btl-marketing.png",       // BTL Marketing
+    6: "/assets/img/services/digital-marketing.png",  // Digital Marketing
+    7: "/assets/img/services/ai-video-ads.png"        // AI Video Ads Creative
   };
 
   /**

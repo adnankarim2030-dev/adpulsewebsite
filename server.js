@@ -1,11 +1,75 @@
 const http = require('http');
+const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
 const port = process.env.PORT || 3000;
+const YOUTUBE_CHANNEL_ID = 'UCJfBhcCIDi1nuhFsdvqQLcg';
+
+// Cache YouTube videos in memory for 10 minutes to be fast and gentle on quota
+let ytCache = { data: null, timestamp: 0 };
+
+function fetchYouTubeFeed(callback) {
+    const now = Date.now();
+    if (ytCache.data && (now - ytCache.timestamp < 10 * 60 * 1000)) {
+        return callback(null, ytCache.data);
+    }
+    const url = `https://www.youtube.com/feeds/videos.xml?channel_id=${YOUTUBE_CHANNEL_ID}`;
+    https.get(url, (res) => {
+        let xml = '';
+        res.on('data', chunk => xml += chunk);
+        res.on('end', () => {
+            try {
+                const entries = [];
+                const entryRegex = /<entry>([\s\S]*?)<\/entry>/g;
+                let match;
+                while ((match = entryRegex.exec(xml)) !== null) {
+                    const entryXml = match[1];
+                    const idMatch = entryXml.match(/<yt:videoId>([^<]+)<\/yt:videoId>/);
+                    const titleMatch = entryXml.match(/<title>([^<]+)<\/title>/);
+                    if (idMatch && titleMatch) {
+                        entries.push({
+                            id: idMatch[1].trim(),
+                            title: titleMatch[1].trim()
+                        });
+                    }
+                }
+                ytCache = { data: entries, timestamp: now };
+                callback(null, entries);
+            } catch (err) {
+                callback(err);
+            }
+        });
+    }).on('error', (err) => {
+        if (ytCache.data) {
+            callback(null, ytCache.data); // Return stale cache on network failure
+        } else {
+            callback(err);
+        }
+    });
+}
 
 http.createServer((req, res) => {
     let url = req.url.split('?')[0]; // Remove query params
+
+    // Dynamic endpoint to auto-fetch latest YouTube videos
+    if (url === '/api/youtube') {
+        fetchYouTubeFeed((err, videos) => {
+            if (err) {
+                res.writeHead(500, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+                res.end(JSON.stringify({ error: 'Failed to fetch YouTube videos', details: err.message }));
+                return;
+            }
+            res.writeHead(200, {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Cache-Control': 'public, max-age=300'
+            });
+            res.end(JSON.stringify({ videos: videos || [] }));
+        });
+        return;
+    }
+
     let filePath = '.' + url;
     
     if (filePath === './') {

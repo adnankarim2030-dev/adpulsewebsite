@@ -340,7 +340,7 @@
   /* ---------- Home hero: service-wise 3D ---------- */
   var hero = q("#hero");
   if (hero) {
-    var slides = qa(".hero__index button", hero), nameEl = q(".now__name", hero), subEl = q(".now__sub", hero), linkEl = q(".now__link", hero), chEl = q(".onair b", hero), bar = q(".now__progress i", hero);
+    var slides = qa(".hero__index button", hero), nameEl = q(".now__name", hero), subEl = q(".now__sub", hero), linkEl = q(".now__link", hero), chEl = q(".onair b", hero), bar = q(".now__progress i", hero), iconEl = q(".now__icon", hero);
     var ctrl = w.AdPulse3D ? w.AdPulse3D.mount(q(".hero__canvas", hero), { from: 0, offsetX: 2.6, mobileOffsetY: 1.7, rightPad: 190, cycle: false }) : null;
     var idx = 0, DUR = 8000, t0 = performance.now(), paused = false, pausedAt = 0;
     function show(i, user) {
@@ -350,10 +350,14 @@
       var swap = function () {
         nameEl.textContent = b.dataset.name; subEl.textContent = b.dataset.sub; linkEl.href = b.dataset.href;
         linkEl.setAttribute("aria-label", "Learn more about " + b.dataset.name);
+        if (iconEl) {
+          var btnImg = b.querySelector("img");
+          if (btnImg) iconEl.src = btnImg.src;
+        }
         if (chEl) chEl.textContent = "CH " + ("0" + (idx + 1)).slice(-2);
       };
       if (hasGsap && !reduced) {
-        w.gsap.to([nameEl, subEl], { y: -14, opacity: 0, duration: 0.25, ease: "power2.in", onComplete: function () { swap(); w.gsap.fromTo([nameEl, subEl], { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "expo.out", stagger: 0.06 }); } });
+        w.gsap.to([nameEl, subEl, iconEl].filter(Boolean), { y: -14, opacity: 0, duration: 0.25, ease: "power2.in", onComplete: function () { swap(); w.gsap.fromTo([nameEl, subEl, iconEl].filter(Boolean), { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "expo.out", stagger: 0.05 }); } });
       } else swap();
       if (ctrl) ctrl.goTo(b.dataset.scene !== undefined ? +b.dataset.scene : idx);
       t0 = performance.now();
@@ -534,6 +538,45 @@
     if (!reduced) auto = setInterval(function () { if (inView && !hover && !d.hidden && !(lb && lb.classList.contains("is-open"))) go(active + 1); }, 5200);
     go(0);
     w.addEventListener("resize", function () { go(active); });
+
+    /* Auto-sync latest uploads directly from YouTube channel */
+    (function syncYouTube() {
+      function applyVideos(videos) {
+        if (!videos || !videos.length) return;
+        videos.slice(0, cards.length).forEach(function (v, k) {
+          if (!v || !v.id || !cards[k]) return;
+          cards[k].dataset.video = v.id;
+          cards[k].dataset.title = v.title;
+          var img = cards[k].querySelector("img");
+          if (img) img.src = "https://i.ytimg.com/vi/" + v.id + "/hqdefault.jpg";
+          var h3 = cards[k].querySelector("figcaption h3");
+          if (h3) h3.textContent = v.title;
+          var dot = dots[k];
+          if (dot) dot.setAttribute("aria-label", "Show " + v.title);
+        });
+      }
+
+      fetch("/api/youtube")
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (data && data.videos && data.videos.length) applyVideos(data.videos);
+        })
+        .catch(function () {
+          // Fallback if accessed as purely static page without backend server
+          fetch("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3DUCJfBhcCIDi1nuhFsdvqQLcg")
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+              if (data && data.items && data.items.length) {
+                var list = data.items.map(function (it) {
+                  var vidId = (it.guid || it.link || "").split("/").pop().replace("watch?v=", "");
+                  return { id: vidId, title: it.title };
+                });
+                applyVideos(list);
+              }
+            })
+            .catch(function () {});
+        });
+    })();
   }
 
   /* ---------- Process pulse line ---------- */
