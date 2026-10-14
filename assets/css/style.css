@@ -298,7 +298,8 @@ html.has-cursor, html.has-cursor a, html.has-cursor button { cursor: none; }
 .hero h1 { font-size: clamp(54px, min(7.2vw, 11.5vh), 124px); font-weight: 800; line-height: .9; text-transform: uppercase; letter-spacing: .012em; word-spacing: .04em; }
 .hero h1 .l { display: block; }
 .hero h1 .outline { color: transparent; -webkit-text-stroke: 2px var(--white); }
-.hero h1 .red { color: var(--red); text-shadow: 0 0 40px rgba(225, 6, 0, .45); }
+.hero h1 .red { color: var(--red); text-shadow: 0 0 40px rgba(225, 6, 0, .45); transition: text-shadow .4s ease; }
+.hero h1:hover .red { text-shadow: 0 0 50px rgba(225, 6, 0, .8), 0 0 24px rgba(225, 6, 0, .6); }
 .hero h1 .dot { color: var(--green-glow); text-shadow: 0 0 24px rgba(47, 203, 124, .6); }
 .hero__text { display: grid; gap: 10px; max-width: 56ch; color: #C9D1CC; font-size: clamp(16px, 1.3vw, 18px); }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; }

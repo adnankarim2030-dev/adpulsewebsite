@@ -294,19 +294,10 @@
     el.addEventListener("mouseenter", function () { scramble(el, 420); });
   });
 
-  /* hero headline: light chase on "Campaigns," + glitch pulses on "Impact." */
+  /* hero headline: light chase on outline words ("Energy") */
   qa(".hero h1, .page-hero h1").forEach(function (h) {
     var start = function () {
       qa(".outline", h).forEach(chase);
-      var red = q(".red", h);
-      if (red && !reduced) {
-        var glitch = function () { red.classList.add("glitch"); setTimeout(function () { red.classList.remove("glitch"); }, 520); };
-        setTimeout(glitch, 400); setInterval(function () { if (!d.hidden) glitch(); }, 5200);
-        h.addEventListener("mouseenter", function () {
-          var cs = qa(".ch", red), orig = cs.map(function (c) { return c.textContent; }), t0 = performance.now();
-          (function f(now) { var k = Math.min(1, (now - t0) / 700); cs.forEach(function (c, i) { c.textContent = i / cs.length < k ? orig[i] : GLYPHS[(Math.random() * 26) | 0]; }); if (k < 1) requestAnimationFrame(f); })(t0);
-        });
-      }
     };
     if (hasGsap && !reduced && h.hasAttribute("data-split-now")) h.addEventListener("split:done", start, { once: true }); else start();
   });
