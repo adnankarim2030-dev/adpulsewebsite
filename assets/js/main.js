@@ -892,83 +892,601 @@
     });
   }
 
-  /* ---------- Chatbot ---------- */
+  /* ---------- Chatbot (Conversational Brand Strategist) ---------- */
   var fab = q(".chat-fab"), chat = q(".chat");
   if (fab && chat) {
-    var log = q(".chat__log", chat), quick = q(".chat__quick", chat), input = q(".chat__form input", chat), lang = "en";
-    var SVC = [
-      ["TVC Production", "/services/tvc-production/"], ["Outdoor Media", "/services/outdoor-media/"], ["Media Buying", "/services/media-buying/"], ["Corporate Events", "/services/corporate-events/"],
-      ["PR & Promotion", "/services/pr-promotion/"], ["BTL Marketing", "/services/btl-marketing/"], ["Digital Marketing", "/services/digital-marketing/"], ["AI Video Ads", "/services/ai-video-ads/"]
-    ];
-    var svcList = SVC.map(function (s) { return '<a href="' + s[1] + '">' + s[0] + "</a>"; }).join(" · ");
-    var T = {
-      en: { dir: "ltr", hi: "Hello! I am AdPulse Assistant. How can I help you grow your brand today?", q: ["📺 Our Services", "💰 Pricing Packages", "📍 Office Location", "✉️ Contact Details"],
-        svc: "We are a 360° agency. Our services: " + svcList, price: 'Every campaign is priced to your brief: media mix, cities, duration and production. Share your requirement and our team will send you a custom quote. <a href="/contact/">Request a quote</a> or WhatsApp <a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">+92 300 8463041</a>.',
-        loc: 'Office #213, 2nd Floor, Pak Tower, Block 5 Clifton, Karachi. Open Monday–Saturday, 10:00 AM – 6:30 PM. <a href="https://maps.google.com/?q=Pak+Tower+Block+5+Clifton+Karachi" target="_blank" rel="noopener">Get directions</a>',
-        con: 'Phone / WhatsApp: <a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">+92 300 8463041</a><br>Email: info@adpulse.pk',
-        fb: 'Thanks for your message! For a detailed answer, our team is on WhatsApp: <a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">+92 300 8463041</a>. You can also ask me about services, pricing, location or contact.' },
-      ur: { dir: "rtl", hi: "السلام علیکم! میں ایڈپلس اسسٹنٹ ہوں۔ آج میں آپ کے برانڈ کی ترقی میں کیسے مدد کر سکتا ہوں؟", q: ["📺 ہماری سروسز", "💰 پرائسنگ پیکجز", "📍 دفتر کا پتہ", "✉️ رابطہ"],
-        svc: "ہم 360° ایجنسی ہیں۔ ہماری سروسز: " + svcList, price: 'ہر کیمپین کی قیمت آپ کی ضرورت کے مطابق طے ہوتی ہے: میڈیا مکس، شہر، مدت اور پروڈکشن۔ اپنی تفصیل بھیجیں، ہماری ٹیم آپ کو کسٹم کوٹ بھیجے گی۔ <a href="/contact/">کوٹ حاصل کریں</a> یا واٹس ایپ <a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">+92 300 8463041</a>',
-        loc: 'آفس نمبر 213، دوسری منزل، پاک ٹاور، بلاک 5 کلفٹن، کراچی۔ <a href="https://maps.google.com/?q=Pak+Tower+Block+5+Clifton+Karachi" target="_blank" rel="noopener">گوگل میپس پر دیکھیں</a>',
-        con: 'فون / واٹس ایپ: <a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">+92 300 8463041</a><br>ای میل: info@adpulse.pk',
-        fb: 'آپ کے پیغام کا شکریہ! تفصیلی جواب کے لیے ہماری ٹیم سے واٹس ایپ پر رابطہ کریں: <a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">+92 300 8463041</a>' },
-      ar: { dir: "rtl", hi: "مرحباً! أنا مساعد AdPulse. كيف يمكنني مساعدتك في تنمية علامتك التجارية اليوم؟", q: ["📺 خدماتنا", "💰 باقات الأسعار", "📍 موقع المكتب", "✉️ معلومات الاتصال"],
-        svc: "نحن وكالة متكاملة 360°. خدماتنا: " + svcList, price: 'يتم تسعير كل حملة حسب احتياجك: مزيج الوسائط والمدن والمدة والإنتاج. شاركنا متطلباتك وسيرسل لك فريقنا عرض سعر مخصص. <a href="/contact/">اطلب عرض سعر</a> أو واتساب <a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">+92 300 8463041</a>',
-        loc: 'مكتب رقم 213، الطابق الثاني، برج باك، بلوك 5 كليفتون، كراتشي. <a href="https://maps.google.com/?q=Pak+Tower+Block+5+Clifton+Karachi" target="_blank" rel="noopener">افتح في خرائط Google</a>',
-        con: 'الهاتف / واتساب: <a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">+92 300 8463041</a><br>البريد الإلكتروني: info@adpulse.pk',
-        fb: 'شكراً لرسالتك! للحصول على إجابة مفصلة تواصل مع فريقنا عبر واتساب: <a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">+92 300 8463041</a>' },
-      es: { dir: "ltr", hi: "¡Hola! Soy el asistente de AdPulse. ¿Cómo puedo ayudarte a hacer crecer tu marca hoy?", q: ["📺 Servicios", "💰 Paquetes y precios", "📍 Ubicación", "✉️ Contacto"],
-        svc: "Somos una agencia 360°. Nuestros servicios: " + svcList, price: 'Cada campaña se cotiza según tu brief: mezcla de medios, ciudades, duración y producción. Comparte tu requerimiento y nuestro equipo te enviará una cotización personalizada. <a href="/contact/">Solicitar cotización</a> o WhatsApp <a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">+92 300 8463041</a>',
-        loc: 'Oficina #213, 2º piso, Pak Tower, Block 5 Clifton, Karachi. <a href="https://maps.google.com/?q=Pak+Tower+Block+5+Clifton+Karachi" target="_blank" rel="noopener">Abrir en Google Maps</a>',
-        con: 'Teléfono / WhatsApp: <a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">+92 300 8463041</a><br>Email: info@adpulse.pk',
-        fb: '¡Gracias por tu mensaje! Para una respuesta detallada escríbenos por WhatsApp: <a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">+92 300 8463041</a>' }
-    };
-    var LANGS = [["ur", "🇵🇰 اردو"], ["ar", "🇸🇦 العربية"], ["es", "🇪🇸 Español"], ["en", "🇬🇧 English"]];
-    function say(html, who) {
-      var m = d.createElement("div"); m.className = "msg msg--" + (who || "bot");
-      if (who === "me") m.textContent = html; else { m.innerHTML = html; m.setAttribute("dir", T[lang].dir); }
-      log.appendChild(m); log.scrollTop = log.scrollHeight;
-    }
-    function renderQuick() {
-      quick.innerHTML = "";
-      var keys = ["svc", "price", "loc", "con"];
-      T[lang].q.forEach(function (label, i) {
-        var b = d.createElement("button"); b.type = "button"; b.textContent = label;
-        b.addEventListener("click", function () { say(label, "me"); setTimeout(function () { say(T[lang][keys[i]]); }, 350); });
-        quick.appendChild(b);
-      });
-      LANGS.filter(function (l) { return l[0] !== lang; }).forEach(function (l) {
-        var b = d.createElement("button"); b.type = "button"; b.textContent = l[1];
-        b.addEventListener("click", function () { lang = l[0]; say(l[1], "me"); setTimeout(function () { say(T[lang].hi); renderQuick(); }, 300); });
-        quick.appendChild(b);
-      });
-    }
-    function answer(txt) {
-      var t = txt.toLowerCase();
-      var hit = function (arr) { return arr.some(function (k) { return t.indexOf(k) > -1; }); };
-      if (hit(["price", "pricing", "rate", "cost", "package", "budget", "qeemat", "kitna", "قیمت", "سعر", "precio"])) return T[lang].price;
-      if (hit(["where", "location", "address", "office", "kahan", "map", "پتہ", "موقع", "ubicación", "direccion", "dirección"])) return T[lang].loc;
-      if (hit(["contact", "phone", "number", "email", "whatsapp", "call", "رابطہ", "اتصال", "contacto"])) return T[lang].con;
-      for (var i = 0; i < SVC.length; i++) {
-        var keys = [["tvc", "commercial", "documentar", "film"], ["outdoor", "ooh", "billboard", "hoarding", "screen"], ["media buying", "print", "newspaper", "radio", "tv slot"], ["event", "launch", "stage", "dealer"], ["pr", "press", "public relation", "influencer"], ["btl", "activation", "sampling", "in-store"], ["digital", "social", "seo", "meta", "google ads", "website"], ["ai", "generative", "ai video"]][i];
-        if (hit(keys)) return '<b>' + SVC[i][0] + '</b> — <a href="' + SVC[i][1] + '">see what’s included</a>. ' + (lang === "en" ? "Want a quote? " : "") + '<a href="/contact/">Request a quote</a>';
-      }
-      if (hit(["service", "what do you do", "سروس", "خدمات", "servicio"])) return T[lang].svc;
-      if (hit(["hi", "hello", "salam", "aoa", "hey", "سلام", "مرحب", "hola"])) return T[lang].hi;
-      return T[lang].fb;
-    }
+    var log = q(".chat__log", chat), quick = q(".chat__quick", chat), input = q(".chat__form input", chat);
+    var lang = "ur_ro"; // Default to natural Roman Urdu (Pakistani conversational standard), auto-adapts
+    var topic = null;
+    var userName = null;
+    var turn = 0;
     var greeted = false;
+
+    var SVC = [
+      ["TVC Production", "/services/tvc-production/", "🎬"],
+      ["Outdoor Media", "/services/outdoor-media/", "🏢"],
+      ["Media Buying", "/services/media-buying/", "📺"],
+      ["Corporate Events", "/services/corporate-events/", "🎪"],
+      ["PR & Promotion", "/services/pr-promotion/", "📰"],
+      ["BTL Marketing", "/services/btl-marketing/", "⚡"],
+      ["Digital Marketing", "/services/digital-marketing/", "📱"],
+      ["AI Video Ads", "/services/ai-video-ads/", "🤖"]
+    ];
+
+    var ROMAN_URDU_WORDS = [
+      "salam", "assalam", "walaikum", "aoa", "kia", "kya", "bhai", "hal", "kaise", "kese",
+      "karna", "krna", "chahiye", "chahta", "hoga", "hain", "hun", "ho", "kahan", "kitna",
+      "kitni", "kharcha", "qeemat", "bataen", "batao", "shukriya", "acha", "theek", "boht",
+      "meherbani", "mujhe", "hum", "humein", "aap", "apka", "apke", "kaam", "kam", "lagana",
+      "lagwana", "karen", "chahie", "kab", "konsa", "shehar", "pesa", "paise", "bhej", "rahe",
+      "kuch", "shuru", "karo", "pe", "par", "mein", "me", "ko", "se"
+    ];
+
+    function detectLanguage(text) {
+      if (/[\u0600-\u06FF]/.test(text)) {
+        if (/مرحب|شكرا|خدمات|أسعار|أين|كيف|باقة/.test(text)) return "ar";
+        return "ur";
+      }
+      var lower = text.toLowerCase();
+      if (/(hola|gracias|servicios|precio|cuanto|dónde|donde|ubicación|oficina)/.test(lower)) return "es";
+
+      var words = lower.split(/[^a-z0-9]+/);
+      var roScore = 0;
+      words.forEach(function (w) {
+        if (ROMAN_URDU_WORDS.indexOf(w) > -1) roScore++;
+      });
+
+      if (roScore >= 1) return "ur_ro";
+      if (/(urdu me|urdu mein|roman urdu)/.test(lower)) return "ur_ro";
+      if (/(what|how|where|who|can|could|please|package|packages|price|pricing|service|services|tell me|marketing|commercial|billboard|need|want|hello|hi)/.test(lower)) return "en";
+      return lang || "ur_ro";
+    }
+
+    function extractUserName(text) {
+      var patterns = [
+        /(?:mera\s+naam|my\s+name\s+is|i\s+am|iam|name\s+is)\s+([a-zA-Z\u0600-\u06FF]+)/i,
+        /(?:main|mein)\s+([a-zA-Z\u0600-\u06FF]+)\s+(?:baat\s+kar\s+raha|bol\s+raha|hoon)/i
+      ];
+      for (var i = 0; i < patterns.length; i++) {
+        var m = text.match(patterns[i]);
+        if (m && m[1] && m[1].length > 2 && ["adpulse", "assistant", "bhai", "sir", "madam"].indexOf(m[1].toLowerCase()) === -1) {
+          return m[1].charAt(0).toUpperCase() + m[1].slice(1);
+        }
+      }
+      return null;
+    }
+
+    function hasWord(text, list) {
+      return list.some(function (item) {
+        if (item.indexOf(" ") > -1 || /[\u0600-\u06FF]/.test(item)) return text.indexOf(item) > -1;
+        var re = new RegExp("(?:^|[^a-z0-9])" + item.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "(?:$|[^a-z0-9])", "i");
+        return re.test(text);
+      });
+    }
+
+    function say(html, who, dir) {
+      var m = d.createElement("div");
+      m.className = "msg msg--" + (who || "bot");
+      if (who === "me") {
+        m.textContent = html;
+      } else {
+        m.innerHTML = html;
+        if (dir) m.setAttribute("dir", dir);
+      }
+      log.appendChild(m);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    function showTyping() {
+      var m = d.createElement("div");
+      m.className = "msg msg--bot msg--typing";
+      m.innerHTML = "<span></span><span></span><span></span>";
+      log.appendChild(m);
+      log.scrollTop = log.scrollHeight;
+      return m;
+    }
+
+    function getInitialGreeting() {
+      if (lang === "ur_ro") {
+        return {
+          text: "Walaikum Assalam! AdPulse Pakistan me khush-amdeed 😊<br><br>Main AdPulse ka Senior Brand Strategist Assistant hoon. Hum 15+ saal se Pakistan ke leading brands (Toyota, Diners, Imtiaz, Abbott) ki 360° marketing, TV commercials, outdoor billboards aur digital campaigns lead kar rahe hain.<br><br>Aap batayein, aaj kis hawalay se guide karoon?",
+          pills: ["📺 Hamari Services", "🎬 TV Commercials", "🏢 Billboards / OOH", "💰 Pricing Packages", "💼 Top Clients", "📱 WhatsApp Chat"]
+        };
+      } else if (lang === "ur") {
+        return {
+          text: "وعلیکم السلام! ایڈپلس پاکستان میں خوش آمدید 😊<br><br>ہم گزشتہ 15 سال سے پاکستان کے نامور برانڈز کی 360 ڈگری ایڈورٹائزنگ، ٹی وی سی، بل بورڈز اور ڈیجیٹل مہمات سنبھال رہے ہیں۔ آج ہم آپ کے برانڈ کی ترقی میں کس طرح رہنمائی کر سکتے ہیں؟",
+          pills: ["📺 ہماری سروسز", "🎬 ٹی وی سی اشتہارات", "🏢 بل بورڈز", "💰 پرائسنگ", "💼 کلائنٹس", "📱 واٹس ایپ"]
+        };
+      } else if (lang === "ar") {
+        return {
+          text: "مرحباً بك في AdPulse باكستان 😊<br><br>نحن وكالة إعلانية متكاملة 360° بخبرة أكثر من 15 عاماً في خدمة كبرى العلامات التجارية في مجالات الإنتاج التلفزيوني واللوحات الإعلانية والتسويق الرقمي.<br><br>كيف يمكننا مساعدة علامتك التجارية اليوم؟",
+          pills: ["📺 خدماتنا", "🎬 إنتاج الإعلانات", "🏢 اللوحات الإعلانية", "💰 باقات الأسعار", "📱 محادثة واتساب"]
+        };
+      } else if (lang === "es") {
+        return {
+          text: "¡Hola! Bienvenido a AdPulse Pakistán 😊<br><br>Somos una agencia integral de publicidad y medios 360° con más de 15 años liderando campañas para marcas de primer nivel.<br><br>¿En qué podemos ayudarte hoy?",
+          pills: ["📺 Nuestros Servicios", "🎬 Comerciales TV", "🏢 Vallas Publicitarias", "💰 Precios y Cotizaciones", "📱 WhatsApp Directo"]
+        };
+      } else {
+        return {
+          text: "Hello! Welcome to AdPulse Pakistan 😊<br><br>I'm your AdPulse Brand Strategist. For over 15 years, we've helped leading national and multinational brands (like Toyota, Diners, Imtiaz Super Market, and Abbott) dominate their markets with 360° advertising.<br><br>How can we help propel your brand today?",
+          pills: ["📺 All Services", "🎬 TV Commercials", "🏢 Outdoor Billboards", "💰 Pricing & Quotes", "💼 Client Work", "📱 Chat on WhatsApp"]
+        };
+      }
+    }
+
+    function answer(inputTxt) {
+      turn++;
+      var t = inputTxt.trim();
+      var low = t.toLowerCase();
+      lang = detectLanguage(t);
+
+      var foundName = extractUserName(t);
+      var isNameIntro = foundName && (hasWord(low, ["mera naam", "my name", "i am", "iam", "this is", "main", "mein"]) && !hasWord(low, ["tvc", "billboard", "price", "office", "rate"]));
+      if (foundName) userName = foundName;
+
+      var uName = userName ? (" " + userName) : "";
+      var hit = function (arr) { return hasWord(low, arr); };
+
+      var hasGreet = hit(["salam", "assalam", "aoa", "walaikum", "hello", "hi", "hey", "hola", "kese ho", "kaise ho", "kia hal", "kya haal", "subha bakhair", "good morning", "good evening", "سلام", "السلام علیکم", "آداب", "مرحبا", "مرحب"]);
+
+      var greetAck = hasGreet
+        ? (lang === "ur_ro"
+            ? ("Walaikum Assalam" + uName + "! 😊 ")
+            : (lang === "ur"
+                ? ("وعلیکم السلام" + uName + "! 😊 ")
+                : (lang === "ar"
+                    ? ("أهلاً وسهلاً" + uName + "! 😊 ")
+                    : (lang === "es"
+                        ? ("¡Hola" + uName + "! 😊 ")
+                        : ("Hello" + uName + "! 😊 ")))))
+        : "";
+
+      if (isNameIntro) {
+        if (lang === "ur_ro") {
+          return {
+            text: "Aap se mil kar boht khushi hui" + uName + " bhai! 😊<br><br>Main AdPulse ka Senior Brand & Media Consultant hoon. Hum Pakistan ke premier brands ki 360° marketing, TV commercials, outdoor billboards aur digital campaigns lead karte hain.<br><br>Aap batayein, aaj kis project ya campaign ke hawalay se baat karna chahenge?",
+            pills: ["📺 Hamari Services", "🎬 TV Commercials", "🏢 Billboards / OOH", "💰 Pricing Packages", "💼 Client Work", "📱 Direct WhatsApp"]
+          };
+        } else if (lang === "ur") {
+          return {
+            text: "آپ سے مل کر بہت خوشی ہوئی" + uName + "! 😊<br><br>میں ایڈپلس کا سینئر برانڈ سٹریٹجسٹ ہوں۔ ہم پاکستان کے نمایاں برانڈز کی 360 ڈگری مارکیٹنگ اور ایڈورٹائزنگ لیڈ کرتے ہیں۔<br><br>آپ بتائیں، آج آپ کس پراجیکٹ کے حوالے سے رہنمائی چاہتے ہیں؟",
+            pills: ["📺 ہماری سروسز", "🎬 ٹی وی کمرشلز", "🏢 بل بورڈز", "💰 پرائسنگ", "💼 کلائنٹس", "📱 واٹس ایپ"]
+          };
+        } else {
+          return {
+            text: "A pleasure to meet you" + uName + "! 😊<br><br>I'm your AdPulse Brand Strategist. We partner with forward-thinking businesses across Pakistan to deliver standout TV commercials, high-impact billboards, and high-ROI digital campaigns.<br><br>What kind of project or campaign are you planning right now?",
+            pills: ["📺 Explore Services", "🎬 TV Commercials", "🏢 Outdoor Billboards", "💰 Pricing & Quotes", "💼 Portfolio", "📱 WhatsApp Chat"]
+          };
+        }
+      }
+
+      var hasTopic = hit([
+        "tvc", "commercial", "commercials", "ad film", "video shoot", "shoot", "film", "dvc", "cinematography", "کمرشل", "اشتہار", "ویڈیو",
+        "outdoor", "ooh", "billboard", "billboards", "hoarding", "smd", "screen", "gantry", "shahrah-e-faisal", "mm alam", "بل بورڈ", "لوحات",
+        "digital", "social media", "meta", "facebook", "instagram", "google ads", "seo", "tiktok", "ecommerce", "website", "ڈیجیٹل", "سوشل",
+        "media buying", "radio", "newspaper", "tv slot", "channel", "ary", "geo", "hum", "میڈیا",
+        "event", "conference", "exhibition", "stall", "gala", "ایونٹ",
+        "pr", "public relations", "influencer", "press release", "press conference", "پی آر",
+        "btl", "activation", "sampling", "promoter", "float", "roadshow",
+        "ai video", "avatar", "generative ai",
+        "client", "clients", "portfolio", "case study", "samples", "showreel", "past work", "کلائنٹ", "پورٹ فولیو",
+        "price", "pricing", "rate", "rates", "cost", "budget", "package", "packages", "kharcha", "qeemat", "قیمت", "ریٹ", "اسعار", "precio",
+        "where", "location", "address", "office", "kahan", "map", "timings", "timing", "clifton", "karachi", "lahore", "islamabad", "پتہ", "دفتر", "موقع", "oficina",
+        "contact", "phone", "number", "email", "whatsapp", "call", "rabta", "رابطہ", "اتصال", "contacto",
+        "real estate", "clothing", "fashion", "service", "services", "sarvis", "tamam", "kaam", "خدمات"
+      ]);
+
+      // 1. Pure Greeting
+      if (hasGreet && !hasTopic) {
+        return getInitialGreeting();
+      }
+
+      // 2. Gratitude / Closing
+      if (hit(["shukriya", "thanks", "thank you", "boht shukriya", "jazakallah", "great thanks", "ok bye", "allah hafiz", "شکریہ", "شكرا", "gracias"])) {
+        if (lang === "ur_ro") {
+          return {
+            text: "Boht shukriya" + uName + "! Aap se baat kar ke boht acha laga. Agar koi bhi sawal ho ya campaign plan karni ho to hum 24/7 WhatsApp per bhi available hain:<br><br>📲 <a href=\"https://wa.me/" + WA + "?text=Hi%20AdPulse,%20I%20would%20like%20to%20discuss%20my%20marketing%20campaign\" target=\"_blank\" rel=\"noopener\">+92 300 8463041</a><br><br>AdPulse team aapke brand ko grow karne ke liye hamesha tayyar hai!",
+            pills: ["💬 WhatsApp Rabta", "📋 Quote Request", "📍 Office Map"]
+          };
+        } else if (lang === "ur") {
+          return {
+            text: "بہت شکریہ" + uName + "! آپ سے بات کر کے بہت خوشی ہوئی۔ کسی بھی وقت کیمپین کی منصوبہ بندی یا سوال کے لیے ہم واٹس ایپ پر دستیاب ہیں:<br><br>📲 <a href=\"https://wa.me/" + WA + "?text=السلام%20علیکم%20ایڈپلس\" target=\"_blank\" rel=\"noopener\">+92 300 8463041</a>",
+            pills: ["💬 واٹس ایپ", "📋 کوٹیشن", "📍 دفتر کا پتہ"]
+          };
+        } else {
+          return {
+            text: "You're very welcome" + uName + "! It was a pleasure chatting with you. Whenever you're ready to launch or scale your campaign, our strategy team is just a message away:<br><br>📲 <a href=\"https://wa.me/" + WA + "?text=Hi%20AdPulse,%20let's%20discuss%20our%20campaign\" target=\"_blank\" rel=\"noopener\">+92 300 8463041</a><br><br>Have a fantastic day ahead!",
+            pills: ["💬 WhatsApp Us", "📋 Request Quote", "📍 Visit Office"]
+          };
+        }
+      }
+
+      // 3. TVC Production
+      if (hit(["tvc", "commercial", "commercials", "ad film", "video shoot", "shoot", "film", "documentary", "dvc", "video production", "arri", "cinematography", "کمرشل", "اشتہار", "ویڈیو"])) {
+        topic = "tvc";
+        if (lang === "ur_ro") {
+          return {
+            text: greetAck + "<b>🎬 TVC & DVC Production:</b><br>AdPulse Pakistan me high-end TV commercials aur digital video ads produce karta hai:<br><ul><li><b>Script & Creative Concept:</b> Storyboarding aur compelling storytelling.</li><li><b>Cinema-Grade Production:</b> Arri Alexa / Red cameras, expert lighting, top directors aur celebrity talent casting.</li><li><b>Post-Production:</b> Advanced VFX, color grading (DaVinci Resolve), custom jingles, aur voiceovers.</li></ul>Pura process dekhne ke liye: <a href=\"/services/tvc-production/\">TVC Production Details</a>.<br><br>Kya aapka koi specific concept ya campaign idea tayyar hai, ya hum scratch se brainstorm karein?",
+            pills: ["💰 TVC Ka Kharcha?", "⏱️ Production Time Kitna?", "💬 WhatsApp Creative Team", "📋 Custom Quote"]
+          };
+        } else if (lang === "ur") {
+          return {
+            text: greetAck + "<b>🎬 ٹی وی کمرشلز اور ویڈیو پروڈکشن:</b><br>ایڈپلس جدید سینما ٹیکنالوجی (Arri Alexa / Red)، نامور ڈائریکٹرز اور ٹاپ ٹیلنٹ کے ساتھ براڈکاسٹ کوالٹی کمرشلز اور ڈی وی سی تیار کرتا ہے:<br><ul><li><b>سکرپٹ اور تخلیقی تصور:</b> دلکش سٹوری بورڈنگ اور برانڈ میسج۔</li><li><b>اعلیٰ درجے کی پروڈکشن:</b> سینما کیمرے، لائٹنگ اور مشہور شخصیات کی کاسٹنگ۔</li><li><b>پوسٹ پروڈکشن:</b> جدید وی ایف ایکس، کلر گریڈنگ اور اوریجنل میوزک ٹریک۔</li></ul>تفصیلات: <a href=\"/services/tvc-production/\">ٹی وی سی سروس تفصیلات</a>۔ کیا آپ کا کوئی سکرپٹ تیار ہے؟",
+            pills: ["💰 ٹی وی سی قیمت؟", "⏱️ کتنا وقت درکار ہے؟", "💬 واٹس ایپ پر ڈائریکٹر سے بات کریں", "📋 کوٹیشن فارم"]
+          };
+        } else {
+          return {
+            text: greetAck + "<b>🎬 TVC & Video Production:</b><br>We deliver cinematic TV commercials and digital video ads that move audiences and build brand equity:<br><ul><li><b>Concept & Scriptwriting:</b> Strategic messaging and visual storytelling.</li><li><b>Production:</b> Arri Alexa / Red cinema camera rigs, world-class art direction, and premier talent casting.</li><li><b>Post-Production:</b> High-end VFX, 3D CGI, DaVinci color grading, and broadcast audio mastering.</li></ul>View full service scope: <a href=\"/services/tvc-production/\">TVC Production Overview</a>. Would you like to schedule a creative briefing call?",
+            pills: ["💰 TVC Cost Breakdown", "⏱️ Production Timelines", "💬 Chat with Director", "📋 Request Proposal"]
+          };
+        }
+      }
+
+      // 4. Outdoor Media / Billboards
+      if (hit(["outdoor", "ooh", "billboard", "billboards", "hoarding", "hoardings", "smd", "screen", "screens", "gantry", "gantries", "shahrah-e-faisal", "mm alam", "highway", "pole sign", "streamer", "streamers", "بل بورڈ", "لوحات"])) {
+        topic = "outdoor";
+        if (lang === "ur_ro") {
+          return {
+            text: greetAck + "<b>🏢 Outdoor Media & Billboards (OOH):</b><br>AdPulse ke paas Pakistan bhar ke prime highways aur commercial hubs me premium outdoor inventory available hai:<br><ul><li><b>Karachi:</b> Shahrah-e-Faisal, Clifton, Defense, Karsaz, Airport Route aur University Road.</li><li><b>Lahore:</b> MM Alam Road, Gulberg Main Boulevard, DHA, Jail Road, Ring Road.</li><li><b>Islamabad & Pindi:</b> Blue Area, Kashmir Highway, Expressway, Saddar.</li><li><b>High-Impact Formats:</b> Mega Billboards, High-brightness SMD Digital Screens, Gantries, Pole Signs, aur Airport Screens.</li></ul>Mazeed maloomat: <a href=\"/services/outdoor-media/\">Outdoor Media Locations</a>.<br><br>Aap kis shehar aur kis specific ilaqay me billboard lagwana chahte hain?",
+            pills: ["📍 Karachi Locations", "📍 Lahore Locations", "💰 Billboard Rates", "💬 WhatsApp Site Availability"]
+          };
+        } else if (lang === "ur") {
+          return {
+            text: greetAck + "<b>🏢 آؤٹ ڈور میڈیا اور پرائم بل بورڈز:</b><br>ایڈپلس کے پاس کراچی (شاہراہ فیصل، کلفٹن، ڈیفنس)، لاہور (ایم ایم عالم، گلبرگ، رنگ روڈ) اور اسلام آباد (بلیو ایریا، ایکسپریس وے) میں بہترین لوکیشنز دستیاب ہیں جن میں بڑی ایس ایم ڈی اسکرینز، میگا بل بورڈز اور برج پینلز شامل ہیں۔<br><br>تفصیلات: <a href=\"/services/outdoor-media/\">آؤٹ ڈور میڈیا سروسز</a>۔ آپ کس شہر میں سائٹ بک کرنا چاہتے ہیں؟",
+            pills: ["📍 کراچی لوکیشنز", "📍 لاہور لوکیشنز", "💰 بل بورڈ ریٹس", "💬 واٹس ایپ دستیابی"]
+          };
+        } else {
+          return {
+            text: greetAck + "<b>🏢 Outdoor Media (OOH & Digital OOH):</b><br>We hold exclusive and network access to Pakistan's highest-visibility billboard inventory:<br><ul><li><b>Karachi:</b> Shahrah-e-Faisal arterial corridor, Clifton, DHA, Airport Expressway.</li><li><b>Lahore:</b> MM Alam Road, Main Boulevard Gulberg, DHA, Ring Road gantries.</li><li><b>Islamabad / Rawalpindi:</b> Blue Area, Srinagar Highway, Murree Road.</li><li><b>Formats:</b> High-resolution curved SMD screens, mega hoardings, pedestrian bridges, and transit media.</li></ul>Explore details: <a href=\"/services/outdoor-media/\">Outdoor Media Services</a>. Which city and corridor are you targeting?",
+            pills: ["📍 Karachi Inventory", "📍 Lahore Inventory", "💰 Pricing & Availability", "💬 Reserve a Site"]
+          };
+        }
+      }
+
+      // 5. Timelines
+      if (hit(["time", "kitna time", "kitne din", "kab tak", "duration", "timeline", "kitna waqt", "وقت", "کتنے دن"])) {
+        if (topic === "tvc") {
+          return {
+            text: greetAck + (lang === "ur_ro"
+              ? "<b>⏱️ TVC Production Timelines:</b><br>Ek high-end broadcast TV commercial typically <b>2 se 4 hafton (weeks)</b> me complete hota hai:<br><ul><li><b>Script & Storyboard:</b> 3 se 5 din</li><li><b>Pre-production & Casting:</b> 5 se 7 din</li><li><b>Cinema Shoot:</b> 1 se 2 din</li><li><b>Post-production (Editing, Color Grading, VFX, Jingles):</b> 7 se 10 din</li></ul>Urgent launches ke liye hum <b>Fast-Track / Express Production</b> bhi provide karte hain!"
+              : "<b>⏱️ TVC Production Timeline:</b><br>A broadcast-ready commercial typically takes <b>2 to 4 weeks</b> from concept approval to delivery. Fast-track production is also available for urgent market launches."),
+            pills: ["💰 TVC Ka Kharcha?", "💬 Talk to Director on WhatsApp", "📋 Share Script Brief", "🎬 TVC Showreel"]
+          };
+        } else {
+          return {
+            text: greetAck + (lang === "ur_ro"
+              ? "<b>⏱️ Campaign Timelines:</b><br><ul><li><b>Digital & Social Ads:</b> 2 se 4 din me live.</li><li><b>Outdoor Billboards:</b> Printing & mounting 3 se 5 din me complete.</li><li><b>TVC & Video Shoot:</b> 2 se 4 hafte.</li><li><b>Corporate Events & Expo:</b> 1 se 3 hafte preparation.</li></ul>Aapki deadline kab ki hai? Hum express turnaround me execute kar sakte hain."
+              : "<b>⏱️ Execution Timelines:</b><br><ul><li><b>Digital Campaigns:</b> 2 to 4 days setup & launch.</li><li><b>Outdoor Billboards:</b> 3 to 5 days printing and site mounting.</li><li><b>TV Commercials:</b> 2 to 4 weeks for full cinema production.</li></ul>What is your target launch date?"),
+            pills: ["📋 Request Quote", "💬 Discuss Deadline on WhatsApp", "📺 Services Overview"]
+          };
+        }
+      }
+
+      // 6. Clients & Portfolio
+      if (hit(["client", "clients", "portfolio", "past work", "kaam dikhao", "case study", "case studies", "toyota", "honda", "diners", "imtiaz", "abbott", "sample", "samples", "showreel", "previous work", "کلائنٹ", "پورٹ فولیو", "اعمال"])) {
+        topic = "portfolio";
+        if (lang === "ur_ro") {
+          return {
+            text: greetAck + "Humne Pakistan ke top national aur multinational brands ke sath iconic campaigns execute ki hain, jin me shamil hain:<br><ul><li>🚗 <b>Automotive:</b> Toyota, Honda, Haval</li><li>🛒 <b>Retail & FMCG:</b> Imtiaz Super Market, Diners, Service Shoes, Diamond Foam</li><li>💊 <b>Healthcare & Corporate:</b> Abbott Healthcare, Jubilee Insurance, PSO</li></ul>Aap hamare real TV commercials, billboards aur digital campaigns ka showreel yahan dekh sakte hain:<br>👉 <a href=\"/portfolio/\"><b>Hamara Portfolio & Case Studies Dekhein</b></a><br><br>Agar aapko kisi specific industry (e.g. Fashion, Real Estate ya FMCG) ke samples dekhne hain to batayein!",
+            pills: ["🎬 TVC Samples", "🏢 Outdoor Sites", "📱 Digital Case Studies", "💬 WhatsApp for Deck"]
+          };
+        } else if (lang === "ur") {
+          return {
+            text: greetAck + "ہم نے پاکستان کے ٹاپ برانڈز (ٹویوٹا، ہونڈا، امتیاز سپر مارکیٹ، ڈائنرز، سروس شوز، ایبٹ) کے ساتھ شاندار مہمات مکمل کی ہیں۔<br><br>👉 <a href=\"/portfolio/\"><b>ہمارا پورٹ فولیو اور کیس اسٹڈیز ملاحظہ کریں</b></a>",
+            pills: ["🎬 کمرشلز پورٹ فولیو", "🏢 بل بورڈ تصاویر", "📱 ڈیجیٹل نتائج", "💬 واٹس ایپ ڈیک"]
+          };
+        } else {
+          return {
+            text: greetAck + "Over 15 years, we've partnered with Pakistan's most respected conglomerates and challenger brands, including:<br><ul><li>🚗 <b>Automotive:</b> Toyota, Honda, Haval</li><li>🛒 <b>Retail & FMCG:</b> Imtiaz Super Market, Diners, Service, Diamond Foam</li><li>💊 <b>Corporate & Pharma:</b> Abbott Healthcare, Jubilee Life, PSO</li></ul>You can inspect our live case studies and broadcast showreels here:<br>👉 <a href=\"/portfolio/\"><b>Explore AdPulse Portfolio & Work</b></a>",
+            pills: ["🎬 TVC Reels", "🏢 Billboard Photos", "📱 Digital Results", "💬 Get PDF Credentials"]
+          };
+        }
+      }
+
+      // 7. Media Buying
+      if (hit(["media buying", "media planning", "tv slot", "channel", "ary", "geo", "hum", "radio", "fm", "newspaper", "akhbar", "jang", "dawn", "print ad", "psl", "میڈیا"])) {
+        topic = "media_buying";
+        if (lang === "ur_ro") {
+          return {
+            text: greetAck + "<b>📺 Media Buying & Planning (TV, Radio, Print):</b><br>AdPulse Pakistan Broadcasters Association (PBA) aur All Pakistan Newspapers Society (APNS) se accredited agency hai. Hamari bulk buying power se clients ko market ke sab se behtareen discounts miltay hain:<br><ul><li><b>Television:</b> ARY News/Digital, Geo, Hum TV, Ten Sports, Geo Super samait tamam channels per prime time slots aur live sports (PSL/ICC).</li><li><b>Print Media:</b> Daily Jang, Dawn, The News, Daily Express, Nawa-i-Waqt me front/back page aur classified display ads.</li><li><b>Radio Networks:</b> FM 106.2, FM 89, FM 107 across 40+ cities.</li></ul>Tafseelat: <a href=\"/services/media-buying/\">Media Buying Solutions</a>.",
+            pills: ["💰 TV Channel Rates", "📰 Newspaper Rates", "🎯 Media Plan Banwayen", "💬 WhatsApp Media Desk"]
+          };
+        } else {
+          return {
+            text: greetAck + "<b>📺 Media Buying & Planning:</b><br>As a PBA and APNS accredited agency, AdPulse commands institutional bargaining power across Pakistan's media spectrum:<br><ul><li><b>Broadcast TV:</b> Prime slots, sponsorships, and ticker integrations on ARY, Geo, Hum TV, Dawn News, and live sports properties.</li><li><b>Print Newspapers:</b> Guaranteed positioning in Daily Jang, Dawn, Express, and The News.</li><li><b>Radio Broadcasting:</b> Nationwide FM coverage across Tier-1, Tier-2, and motorway listeners.</li></ul>See our approach: <a href=\"/services/media-buying/\">Media Buying & Planning</a>.",
+            pills: ["💰 Media Rate Card", "🎯 Custom Media Plan", "💬 Direct WhatsApp Enquiry"]
+          };
+        }
+      }
+
+      // 8. Digital Marketing
+      if (hit(["digital", "social media", "meta", "facebook", "fb ad", "instagram", "insta", "google ads", "seo", "tiktok", "lead generation", "ecommerce", "website", "web design", "ڈیجیٹل", "سوشل"])) {
+        topic = "digital";
+        if (lang === "ur_ro") {
+          return {
+            text: greetAck + "<b>📱 Digital & Performance Marketing:</b><br>Hum data-driven digital strategies banate hain jo sirf 'likes' nahi balkay real sales aur business growth deliver karti hain:<br><ul><li><b>Paid Social:</b> High-converting Meta (Facebook & Instagram) ads aur viral TikTok campaigns.</li><li><b>Search & Intent:</b> Google Search, Display Network, aur YouTube TrueView video campaigns.</li><li><b>Lead Gen & E-Commerce:</b> Real estate leads, B2B inquiries, aur direct Shopify/WooCommerce sales scaling.</li><li><b>Web & Tech:</b> Fast, mobile-first websites aur high-converting landing pages.</li></ul>Tafseelat: <a href=\"/services/digital-marketing/\">Digital Marketing Services</a>.<br><br>Aapka primary goal kya hai — brand awareness ya qualified leads / sales?",
+            pills: ["🎯 Lead Generation", "🛍️ E-Commerce Sales", "💰 Monthly Retainers", "💬 Free Strategy Session"]
+          };
+        } else if (lang === "ur") {
+          return {
+            text: greetAck + "<b>📱 ڈیجیٹل مارکیٹنگ اور پرفارمنس ایڈز:</b><br>ہم فیس بک، انسٹاگرام، گوگل سرچ اور ٹک ٹاک کے ذریعے ٹارگٹڈ کسٹمرز، آن لائن سیلز اور کوالیفائیڈ لیڈز فراہم کرتے ہیں۔ ویب سائٹ ڈیزائن اور سرچ انجن آپٹیمائزیشن (SEO) بھی دستیاب ہے۔<br><br>تفصیلات: <a href=\"/services/digital-marketing/\">ڈیجیٹل مارکیٹنگ سروسز</a>",
+            pills: ["🎯 لیڈ جنریشن", "🛍️ ای کامرس سیلز", "💰 پیکیجز اور ریٹس", "💬 واٹس ایپ کنسلٹیشن"]
+          };
+        } else {
+          return {
+            text: greetAck + "<b>📱 Digital & Performance Marketing:</b><br>We engineer full-funnel digital campaigns that convert impressions into paying customers:<br><ul><li><b>Performance Media:</b> Precision-targeted Meta (Instagram/Facebook) & TikTok ad funnels.</li><li><b>Search & Intent:</b> High-intent Google Search, Performance Max, and YouTube video ads.</li><li><b>E-commerce & Lead Gen:</b> Optimized ROAS for retail brands and verified B2B/real-estate pipeline.</li><li><b>Modern Web:</b> Fast, 3D interactive web experiences that maximize conversion rates.</li></ul>Read more: <a href=\"/services/digital-marketing/\">Digital Marketing Overview</a>. What is your immediate objective?",
+            pills: ["🎯 Lead Gen Campaign", "🛍️ Scale E-Commerce", "💰 Packages & Retainers", "💬 WhatsApp Digital Lead"]
+          };
+        }
+      }
+
+      // 9. BTL Activations
+      if (hit(["btl", "activation", "mall", "sampling", "promoter", "float", "roadshow", "canopy", "stunt", "ground activation"])) {
+        topic = "btl";
+        if (lang === "ur_ro") {
+          return {
+            text: greetAck + "<b>⚡ BTL Marketing & On-Ground Activations:</b><br>Jab brand ko directly consumer se connect karna ho, AdPulse nationwide ground activations execute karta hai:<br><ul><li><b>Mall & High-Street Kiosks:</b> LuckyOne, Dolmen Mall, Packages Mall, Emporium me interactive brand zones.</li><li><b>Mobile Floats & Roadshows:</b> Customized branded trucks aur floats jo shehar-ba-shehar tour karte hain.</li><li><b>Trained Brand Ambassadors:</b> Professional male & female promoters jo customer experience aur sampling lead karte hain.</li></ul>Check details: <a href=\"/services/btl-marketing/\">BTL Marketing</a>.",
+            pills: ["📍 Mall Kiosk Setup", "🚚 Branded Float Tour", "💰 Activation Budget", "💬 WhatsApp BTL Team"]
+          };
+        } else {
+          return {
+            text: greetAck + "<b>⚡ BTL Marketing & Brand Activations:</b><br>Direct consumer engagement that drives brand trial and memorable physical interactions:<br><ul><li><b>Mall Activations:</b> Interactive experience booths in Dolmen, LuckyOne, Packages, and Centaurus.</li><li><b>Promotional Floats:</b> Mobile highway and city roadshow floats outfitted with sound and branding.</li><li><b>Product Sampling:</b> Controlled sampling campaigns in universities, corporate towers, and markets.</li></ul>Explore: <a href=\"/services/btl-marketing/\">BTL Marketing & Activations</a>.",
+            pills: ["📍 Top Malls Setup", "🚚 Roadshow Fleet", "💰 Pricing Breakdown", "💬 Talk to Activation Manager"]
+          };
+        }
+      }
+
+      // 10. Corporate Events
+      if (hit(["event", "conference", "gala", "annual dinner", "exhibition", "stall", "fabrication", "launch event", "stage", "ایونٹ"])) {
+        topic = "events";
+        if (lang === "ur_ro") {
+          return {
+            text: greetAck + "<b>🎪 Corporate Events & Exhibitions:</b><br>AdPulse corporate events ko turnkey fashion me seamlessly manage karta hai:<br><ul><li><b>Stall Design & Fabrication:</b> Expo Centre Karachi & Lahore me custom 3D stalls.</li><li><b>Annual Conferences & Gala Dinners:</b> Audio-visual setups, LED backdrop walls, bespoke stage lighting.</li><li><b>Product Launches & Dealer Meets:</b> Complete choreography, emcee/host selection, aur guest management.</li></ul>Tafseelat: <a href=\"/services/corporate-events/\">Corporate Events</a>.",
+            pills: ["🏗️ Expo Stall Design", "🎤 Gala / Conference", "💰 Event Budgeting", "💬 WhatsApp Event Team"]
+          };
+        } else {
+          return {
+            text: greetAck + "<b>🎪 Corporate Events & Expo Stalls:</b><br>From high-profile brand launches to international trade show booths:<br><ul><li><b>Custom Booth Fabrication:</b> High-finish expo stands at Karachi Expo Centre and Lahore Expo.</li><li><b>Conferences & Galas:</b> End-to-end audiovisual, massive LED stage backdrops, and atmospheric lighting.</li><li><b>Turnkey Execution:</b> Venue booking, guest coordination, and media coverage.</li></ul>Learn more: <a href=\"/services/corporate-events/\">Corporate Events Scope</a>.",
+            pills: ["🏗️ Expo Booth Quote", "🎤 Corporate Dinner Setup", "💰 Pricing Estimate", "💬 Chat with Event Lead"]
+          };
+        }
+      }
+
+      // 11. PR & Influencers
+      if (hit(["pr", "public relations", "influencer", "blogger", "press release", "press conference", "celebrity", "media coverage", "crisis", "پی آر"])) {
+        topic = "pr";
+        if (lang === "ur_ro") {
+          return {
+            text: greetAck + "<b>📰 PR & Influencer Marketing:</b><br>Hum aapki brand story ko Pakistan ke sab se baray media outlets aur top digital creators tak pohnchate hain:<br><ul><li><b>Print & Digital Press Releases:</b> Dawn, Jang, Tribune, Profit, ProPakistani me guaranteed placement.</li><li><b>Influencer Management:</b> Tech, lifestyle, beauty aur corporate niche creators ke sath authentic campaigns.</li><li><b>Press Conferences:</b> Turnkey press briefings, journalist invitations, aur television crew coordination.</li></ul>Tafseelat: <a href=\"/services/pr-promotion/\">PR & Promotion Services</a>.",
+            pills: ["🎙️ Press Release Distribution", "🌟 Influencer Roster", "💰 PR Packages", "💬 WhatsApp PR Desk"]
+          };
+        } else {
+          return {
+            text: greetAck + "<b>📰 PR & Influencer Marketing:</b><br>Build authentic social proof and editorial media credibility:<br><ul><li><b>Top-Tier Press Coverage:</b> Guaranteed editorial reach across Dawn, Tribune, Jang, and ProPakistani.</li><li><b>Celebrity & Creator Collaborations:</b> Curated influencer rosters matching your brand persona.</li><li><b>Press Conferences & Media Days:</b> On-ground media management and wire distribution.</li></ul>Check details: <a href=\"/services/pr-promotion/\">PR & Promotion</a>.",
+            pills: ["🎙️ Press Distribution", "🌟 Influencer Campaigns", "💰 Retainer Details", "💬 Speak to PR Strategist"]
+          };
+        }
+      }
+
+      // 12. AI Video Ads
+      if (hit(["ai video", "generative ai", "ai ads", "midjourney", "runway", "virtual presenter", "avatar", "synthetic"])) {
+        topic = "ai";
+        if (lang === "ur_ro") {
+          return {
+            text: greetAck + "<b>🤖 AI Video Ads & Generative Creative:</b><br>AdPulse Pakistan ki pehli agencies me shamil hai jo AI video production offer karti hai:<br><ul><li><b>Rapid Production:</b> Traditional shoots ke muqablay me 10x fast delivery.</li><li><b>Cost-Effective:</b> Baghair baray set aur crew ke high-end visuals aur animations.</li><li><b>Multilingual Avatars:</b> English, Urdu, Arabic me lifelike virtual presenters aur voice dubbing.</li></ul>Dekhein: <a href=\"/services/ai-video-ads/\">AI Video Ads Showcase</a>.",
+            pills: ["🎬 AI Ad Demo", "💰 AI vs Shoot Cost", "💬 WhatsApp AI Lab"]
+          };
+        } else {
+          return {
+            text: greetAck + "<b>🤖 AI Video Ads & Synthetic Media:</b><br>Harness generative AI to build photorealistic commercials at fraction of typical shoot expense:<br><ul><li><b>Hyper-Fast Iterations:</b> Test dozens of creative angles in days rather than months.</li><li><b>AI Presenters & Dubbing:</b> Ultra-realistic virtual spokespersons in English, Urdu, and regional languages.</li><li><b>Social-First Reels:</b> High-velocity creative generation for Meta & TikTok algorithms.</li></ul>Discover more: <a href=\"/services/ai-video-ads/\">AI Video Ads</a>.",
+            pills: ["🎬 Watch Demos", "💰 Cost Comparison", "💬 Request AI Concept"]
+          };
+        }
+      }
+
+      // 13. All Services
+      if (hit(["service", "services", "sarvis", "tamam", "all service", "what do you do", "kia karte ho", "kya karte ho", "kaam kya hai", "خدمات"])) {
+        topic = "services";
+        var svcLinks = SVC.map(function (s) { return "• <a href=\"" + s[1] + "\"><b>" + s[2] + " " + s[0] + "</b></a>"; }).join("<br>");
+        if (lang === "ur_ro") {
+          return {
+            text: greetAck + "AdPulse Pakistan ek complete 360° Agency hai. Hamari 8 Core Services ye hain:<br><br>" + svcLinks + "<br><br>Aap batayein in me se kis service ki details ya quotation aapko chahiye?",
+            pills: ["🎬 TV Commercials", "🏢 Billboards (OOH)", "📺 Media Buying", "📱 Digital Marketing", "💰 Pricing Details"]
+          };
+        } else if (lang === "ur") {
+          return {
+            text: greetAck + "ایڈپلس ایک مکمل 360 ڈگری ایجنسی ہے۔ ہماری 8 بنیادی سروسز یہ ہیں:<br><br>" + svcLinks + "<br><br>آپ کس سروس کے بارے میں مزید تفصیلات جاننا چاہتے ہیں؟",
+            pills: ["🎬 ٹی وی کمرشلز", "🏢 بل بورڈز", "📺 میڈیا بائینگ", "📱 ڈیجیٹل مارکیٹنگ", "💰 پرائسنگ"]
+          };
+        } else {
+          return {
+            text: greetAck + "AdPulse operates as a complete 360° integrated marketing partner. Our 8 core disciplines are:<br><br>" + svcLinks + "<br><br>Which area would you like to explore first?",
+            pills: ["🎬 TVC Production", "🏢 Outdoor Media", "📺 Media Buying", "📱 Digital Marketing", "💰 Pricing Packages"]
+          };
+        }
+      }
+
+      // 14. Pricing
+      if (hit(["price", "pricing", "rate", "rates", "cost", "costs", "package", "packages", "budget", "kharcha", "qeemat", "kitna kharcha", "kitna lagega", "kitne paise", "pesa", "expensive", "discount", "quotation", "quote", "charges", "قیمت", "ریٹ", "اسعار", "precio"])) {
+        topic = "pricing";
+        if (lang === "ur_ro") {
+          return {
+            text: greetAck + "<b>💰 AdPulse Pricing & Investment Structure:</b><br>Advertising me har campaign custom hoti hai, kyunke cost aapke specific requirements per depend karti hai:<br><ul><li><b>🎬 TV Commercials:</b> Concept, camera package (Arri/Red), days of shoot, aur cast per depend karta hai.</li><li><b>🏢 Billboards & OOH:</b> Specific location (e.g. Shahrah-e-Faisal vs Highway) aur monthly rental duration per depend karta hai.</li><li><b>📱 Digital & Performance:</b> Monthly management retainer + media ad spend.</li><li><b>📺 Media Buying:</b> Channel mix, time-bands, aur GRP volume ke mutabiq direct bulk discounts.</li></ul>👉 <b>Hum har scale ke budget ke mutabiq best ROI solution design karte hain.</b><br><br>Aap direct hamari management team se WhatsApp per budget discuss kar sakte hain:<br>📲 <a href=\"https://wa.me/" + WA + "?text=Assalam-o-Alaikum%20AdPulse,%20mujhe%20campaign%20pricing%20ke%20hawalay%20se%20maloomat%20chahiye\" target=\"_blank\" rel=\"noopener\"><b>WhatsApp (+92 300 8463041)</b></a> ya hamara <a href=\"/contact/\">Quote Form</a> fill karein!",
+            pills: ["📋 Request Custom Quote", "💬 WhatsApp Discussion", "📞 Call Office", "🎬 TVC Production Scope"]
+          };
+        } else if (lang === "ur") {
+          return {
+            text: greetAck + "<b>💰 پرائسنگ اور بجٹ:</b><br>ہر پروجیکٹ کا تخمینہ آپ کے میڈیا مکس، دورانیے اور پروڈکشن اسکوپ کے مطابق تیار کیا جاتا ہے تاکہ زیادہ سے زیادہ منافع (ROI) حاصل ہو۔<br><br>فوری کسٹم کوٹیشن کے لیے ہماری ٹیم سے رابطہ کریں:<br>📲 <a href=\"https://wa.me/" + WA + "?text=السلام%20علیکم%20ایڈپلس،%20مجھے%20پرائسنگ%20کی%20معلومات%20چاہئیں\" target=\"_blank\" rel=\"noopener\"><b>واٹس ایپ (+92 300 8463041)</b></a> یا <a href=\"/contact/\">کوٹیشن فارم</a> پر تفصیلات بھیجیں۔",
+            pills: ["📋 کوٹیشن فارم", "💬 واٹس ایپ ڈائریکٹر", "📍 دفتر کا پتہ"]
+          };
+        } else {
+          return {
+            text: greetAck + "<b>💰 AdPulse Pricing Philosophy & Estimates:</b><br>Because we serve both emerging challenger brands and large conglomerates, our campaigns are tailored specifically to your brief and ROI expectations:<br><ul><li><b>🎬 TVC / DVC:</b> Structured around creative scope, shoot duration, equipment tier, and talent tier.</li><li><b>🏢 OOH Billboards:</b> Dependent on prime corridor location (e.g. Shahrah-e-Faisal vs Ring Road) and duration.</li><li><b>📱 Digital Marketing:</b> Tailored monthly retainers with transparent performance targets.</li><li><b>📺 Media Buying:</b> Bulk agency rates through our PBA/APNS credentials for maximum airtime efficiency.</li></ul>Let our account directors send you an exact line-item proposal:<br>👉 <a href=\"/contact/\"><b>Submit Your Campaign Brief</b></a> or ping us directly on <a href=\"https://wa.me/" + WA + "?text=Hello%20AdPulse,%20I%20would%20like%20a%20pricing%20quotation\" target=\"_blank\" rel=\"noopener\"><b>WhatsApp (+92 300 8463041)</b></a>.",
+            pills: ["📋 Submit Campaign Brief", "💬 Instant WhatsApp Quote", "📞 Call +92 300 8463041", "🏢 Visit Our Office"]
+          };
+        }
+      }
+
+      // 15. Office Location
+      if (hit(["where", "location", "address", "office", "kahan", "karachi", "lahore", "islamabad", "clifton", "map", "timings", "timing", "open", "visit", "پتہ", "دفتر", "موقع", "oficina"])) {
+        topic = "location";
+        if (lang === "ur_ro") {
+          return {
+            text: greetAck + "<b>📍 AdPulse Head Office & Timings:</b><br><b>Address:</b> Office #213, 2nd Floor, Pak Tower, Block 5 Clifton, Karachi, Pakistan.<br><b>Timings:</b> Monday to Saturday, 10:00 AM – 6:30 PM (Sunday Closed).<br><b>Nationwide Execution:</b> Karachi head office ke ilawa hum Lahore, Islamabad, Rawalpindi, Faisalabad aur poore Pakistan me projects aur outdoor media manage karte hain.<br><br>🗺️ <a href=\"https://maps.google.com/?q=Pak+Tower+Block+5+Clifton+Karachi\" target=\"_blank\" rel=\"noopener\"><b>Google Maps per Directions Dekhein</b></a><br>Aap office visit karna chahte hain to ek call ya WhatsApp message kar dein taake meeting schedule ho sake!",
+            pills: ["🗺️ Open Google Maps", "💬 Schedule Meeting on WhatsApp", "📞 Call +92 300 8463041", "📺 View Services"]
+          };
+        } else if (lang === "ur") {
+          return {
+            text: greetAck + "<b>📍 ایڈپلس ہیڈ آفس اور اوقات:</b><br><b>پتہ:</b> آفس نمبر 213، دوسری منزل، پاک ٹاور، بلاک 5 کلفٹن، کراچی، پاکستان۔<br><b>اوقات:</b> پیر تا ہفتہ، صبح 10:00 تا شام 6:30 بجے۔<br><br>🗺️ <a href=\"https://maps.google.com/?q=Pak+Tower+Block+5+Clifton+Karachi\" target=\"_blank\" rel=\"noopener\"><b>گوگل میپس پر دیکھیں</b></a>",
+            pills: ["🗺️ گوگل میپس", "💬 واٹس ایپ میٹنگ", "📞 کال کریں", "📺 سروسز"]
+          };
+        } else {
+          return {
+            text: greetAck + "<b>📍 AdPulse Office & Operating Hours:</b><br><b>Headquarters:</b> Office #213, 2nd Floor, Pak Tower, Block 5 Clifton, Karachi, Pakistan.<br><b>Office Hours:</b> Monday – Saturday, 10:00 AM – 6:30 PM.<br><b>Regional Reach:</b> Full-scale production and media activation across Lahore, Islamabad, Multan, and nationwide.<br><br>🗺️ <a href=\"https://maps.google.com/?q=Pak+Tower+Block+5+Clifton+Karachi\" target=\"_blank\" rel=\"noopener\"><b>Open in Google Maps</b></a><br>Would you like to drop by for a cup of coffee and a campaign brainstorm?",
+            pills: ["🗺️ Get Directions", "💬 Book In-Person Meeting", "📞 Call +92 300 8463041", "📺 Explore Services"]
+          };
+        }
+      }
+
+      // 16. Contact
+      if (hit(["contact", "phone", "number", "email", "whatsapp", "call", "rabta", "mobile", "director", "meeting", "appointment", "talk", "رابطہ", "اتصال", "contacto"])) {
+        topic = "contact";
+        if (lang === "ur_ro") {
+          return {
+            text: greetAck + "<b>📞 AdPulse Direct Contact Channels:</b><br>Hamari team hamesha ready hai aapki call ya message lene ke liye:<br><ul><li>📱 <b>WhatsApp / Mobile:</b> <a href=\"https://wa.me/" + WA + "?text=Assalam-o-Alaikum%20AdPulse,%20mujhe%20rabta%20karna%20hai\" target=\"_blank\" rel=\"noopener\"><b>+92 300 8463041</b></a></li><li>✉️ <b>Email:</b> <a href=\"mailto:info@adpulse.pk\">info@adpulse.pk</a></li><li>🏢 <b>Office:</b> Office #213, 2nd Floor, Pak Tower, Block 5 Clifton, Karachi</li><li>🌐 <b>Online Form:</b> <a href=\"/contact/\">Contact Form Fill Karein</a></li></ul>Aap direct WhatsApp button click kar ke abhi chat shuru kar sakte hain!",
+            pills: ["💬 Chat on WhatsApp (+92 300 8463041)", "📋 Fill Contact Form", "📍 Office Location", "📺 View Services"]
+          };
+        } else if (lang === "ur") {
+          return {
+            text: greetAck + "<b>📞 رابطہ کی تفصیلات:</b><br>فون / واٹس ایپ: <a href=\"https://wa.me/" + WA + "\" target=\"_blank\" rel=\"noopener\">+92 300 8463041</a><br>ای میل: info@adpulse.pk<br>دفتر: پاک ٹاور، بلاک 5 کلفٹن، کراچی۔",
+            pills: ["💬 واٹس ایپ", "📋 رابطہ فارم", "📍 گوگل میپس"]
+          };
+        } else {
+          return {
+            text: greetAck + "<b>📞 Connect with AdPulse Leadership:</b><br>Reach out through any of our direct communications desks:<br><ul><li>📱 <b>Direct WhatsApp / Phone:</b> <a href=\"https://wa.me/" + WA + "?text=Hello%20AdPulse,%20I'd%20like%20to%20discuss%20a%20project\" target=\"_blank\" rel=\"noopener\"><b>+92 300 8463041</b></a></li><li>✉️ <b>Email:</b> <a href=\"mailto:info@adpulse.pk\">info@adpulse.pk</a></li><li>🏢 <b>Physical Address:</b> Office #213, 2nd Floor, Pak Tower, Block 5 Clifton, Karachi</li><li>🌐 <b>Brief Submission:</b> <a href=\"/contact/\">Online Project Inquiry</a></li></ul>Click WhatsApp to immediately connect with our account director.",
+            pills: ["💬 Open WhatsApp Chat", "📋 Submit Brief Online", "📍 Directions to Office", "📺 Our Services"]
+          };
+        }
+      }
+
+      // 17. Industry Specific
+      if (hit(["real estate", "property", "housing", "builder"])) {
+        return {
+          text: greetAck + (lang === "ur_ro"
+            ? "<b>🏡 Real Estate Marketing Solutions:</b><br>Hum housing societies aur commercial projects ke liye specialized 360° launches execute karte hain: 3D architectural walkthroughs, site billboard dominance (highways aur entrance gantries), digital lead generation (overseas Pakistani buyers ke liye Meta/Google ads), aur launch events.<br><br>Aapke project ka naam kya hai? Hamari team custom proposal share karegi."
+            : "<b>🏡 Real Estate Marketing Expertise:</b><br>We specialize in full-scale property launches: 3D architectural visualizations, strategic highway billboard domination, international overseas buyer lead funnels, and VIP launch galas.<br><br>Let us build a customized investor acquisition strategy for your project."),
+          pills: ["🏢 Outdoor Highway Sites", "🎯 Overseas Buyer Leads", "💬 WhatsApp Proposal", "📋 Request Quote"]
+        };
+      }
+
+      if (hit(["clothing", "fashion", "apparel", "brand launch", "lawn", "retail"])) {
+        return {
+          text: greetAck + (lang === "ur_ro"
+            ? "<b>👗 Fashion & Retail Marketing:</b><br>Diners, Service Shoes aur kai fashion brands ke sath humne seasonal launches aur fashion films execute ki hain: high-fashion model shoots, influencer gifting campaigns, mall activations, aur high-ROI Shopify meta ads.<br><br>Aap batayein aapka brand women's wear, men's wear ya footwear me hai?"
+            : "<b>👗 Fashion & Apparel Growth:</b><br>Having partnered with heavyweights like Diners and Service, we specialize in seasonal collection campaigns, high-fashion TV commercials, lifestyle influencer buzz, and profitable e-commerce sales funnels."),
+          pills: ["🎬 Fashion Video Shoots", "🌟 Influencer Buzz", "🛍️ E-Commerce Meta Ads", "💬 Discuss with Strategist"]
+        };
+      }
+
+      // 18. Smart Warm Fallback
+      if (lang === "ur_ro") {
+        return {
+          text: "Boht acha sawal hai" + uName + "! Is baray me mazeed specific maloomat share karne ke liye hamari creative & strategy team foran available hai.<br><br>Aapka requirement thora explain karein, ya direct hamare Senior Account Manager se WhatsApp per rabta karein:<br>📲 <a href=\"https://wa.me/" + WA + "?text=" + encodeURIComponent("Hi AdPulse, I have an inquiry: " + t) + "\" target=\"_blank\" rel=\"noopener\"><b>WhatsApp (+92 300 8463041)</b></a><br><br>Aap mujhse hamari <a href=\"/services/\">Services</a>, <a href=\"/portfolio/\">Portfolio</a>, <a href=\"/contact/\">Pricing</a> ya <a href=\"/about/\">Agency Background</a> ke baray me bhi pooch sakte hain.",
+          pills: ["📺 Services List", "🎬 TV Commercials", "🏢 Billboards / OOH", "💰 Pricing Packages", "💬 WhatsApp Chat"]
+        };
+      } else if (lang === "ur") {
+        return {
+          text: "بہت شکریہ" + uName + "! آپ کی رہنمائی کے لیے ہماری ٹیم فوری حاضر ہے۔ آپ مزید تفصیلات کے لیے ہمارے سینئر اکاؤنٹ ڈائریکٹر سے براہ راست واٹس ایپ پر رابطہ کر سکتے ہیں:<br>📲 <a href=\"https://wa.me/" + WA + "?text=" + encodeURIComponent("السلام علیکم ایڈپلس، مجھے مزید معلومات درکار ہیں") + "\" target=\"_blank\" rel=\"noopener\"><b>واٹس ایپ رابطہ (+92 300 8463041)</b></a>",
+          pills: ["📺 ہماری سروسز", "🎬 کمرشلز", "🏢 بل بورڈز", "💰 پرائسنگ", "💬 واٹس ایپ"]
+        };
+      } else {
+        return {
+          text: "Thank you for asking" + uName + "! To give you the most accurate and thoughtful answer tailored to your specific campaign goals, our senior strategy team is on standby.<br><br>Would you like to connect directly with our Account Director via WhatsApp?<br>📲 <a href=\"https://wa.me/" + WA + "?text=" + encodeURIComponent("Hi AdPulse, I would like to discuss: " + t) + "\" target=\"_blank\" rel=\"noopener\"><b>Chat on WhatsApp (+92 300 8463041)</b></a><br><br>Or feel free to ask me anything about our services, client portfolio, pricing, or office locations!",
+          pills: ["📺 Our Services", "🎬 TVC Production", "🏢 Outdoor Billboards", "💰 Pricing & Quotes", "💬 WhatsApp Director"]
+        };
+      }
+    }
+
+    var LANG_SWITCH = [
+      ["ur_ro", "🇵🇰 Roman Urdu"],
+      ["ur", "🇵🇰 اردو"],
+      ["en", "🇬🇧 English"],
+      ["ar", "🇸🇦 العربية"],
+      ["es", "🇪🇸 Español"]
+    ];
+
+    function handlePillClick(label) {
+      say(label, "me");
+      triggerBotReply(label);
+    }
+
+    function renderQuick(customPills) {
+      quick.innerHTML = "";
+      var pillsToShow = (customPills && customPills.length) ? customPills : getInitialGreeting().pills;
+      pillsToShow.forEach(function (label) {
+        var b = d.createElement("button");
+        b.type = "button";
+        b.textContent = label;
+        b.addEventListener("click", function () {
+          handlePillClick(label);
+        });
+        quick.appendChild(b);
+      });
+
+      LANG_SWITCH.filter(function (l) { return l[0] !== lang; }).forEach(function (l) {
+        var b = d.createElement("button");
+        b.type = "button";
+        b.textContent = l[1];
+        b.style.opacity = "0.75";
+        b.addEventListener("click", function () {
+          lang = l[0];
+          say(l[1], "me");
+          triggerBotReply(l[1]);
+        });
+        quick.appendChild(b);
+      });
+    }
+
+    function triggerBotReply(userText) {
+      var typing = showTyping();
+      var delay = 450 + Math.floor(Math.random() * 250);
+      setTimeout(function () {
+        if (typing && typing.parentNode) typing.parentNode.removeChild(typing);
+        var res = answer(userText);
+        var dir = (lang === "ur" || lang === "ar") ? "rtl" : "ltr";
+        say(res.text, "bot", dir);
+        renderQuick(res.pills);
+      }, delay);
+    }
+
     function toggle(v) {
-      chat.classList.toggle("is-open", v); fab.setAttribute("aria-expanded", v ? "true" : "false"); chat.setAttribute("aria-hidden", v ? "false" : "true");
-      if (v && !greeted) { greeted = true; say(T.en.hi); renderQuick(); }
+      chat.classList.toggle("is-open", v);
+      fab.setAttribute("aria-expanded", v ? "true" : "false");
+      chat.setAttribute("aria-hidden", v ? "false" : "true");
+      if (v && !greeted) {
+        greeted = true;
+        var typing = showTyping();
+        setTimeout(function () {
+          if (typing && typing.parentNode) typing.parentNode.removeChild(typing);
+          var initRes = getInitialGreeting();
+          say(initRes.text, "bot", (lang === "ur" || lang === "ar") ? "rtl" : "ltr");
+          renderQuick(initRes.pills);
+        }, 400);
+      }
       if (v) setTimeout(function () { input.focus(); }, 300);
     }
+
     fab.addEventListener("click", function () { toggle(!chat.classList.contains("is-open")); });
     q(".chat__close", chat).addEventListener("click", function () { toggle(false); fab.focus(); });
+
     q(".chat__form", chat).addEventListener("submit", function (e) {
-      e.preventDefault(); var v = input.value.trim(); if (!v) return;
-      say(v, "me"); input.value = "";
-      setTimeout(function () { say(answer(v)); }, 450);
+      e.preventDefault();
+      var v = input.value.trim();
+      if (!v) return;
+      say(v, "me");
+      input.value = "";
+      triggerBotReply(v);
     });
   }
 
