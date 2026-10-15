@@ -50,7 +50,12 @@ function fetchYouTubeFeed(callback) {
 }
 
 http.createServer((req, res) => {
-    let url = req.url.split('?')[0]; // Remove query params
+    let url;
+    try {
+        url = decodeURIComponent(req.url.split('?')[0]);
+    } catch (e) {
+        url = req.url.split('?')[0];
+    }
 
     // Dynamic endpoint to auto-fetch latest YouTube videos
     if (url === '/api/youtube') {
@@ -105,6 +110,26 @@ http.createServer((req, res) => {
     fs.readFile(filePath, function(error, content) {
         if (error) {
             if (error.code === 'ENOENT') {
+                try {
+                    const dir = path.dirname(filePath);
+                    const base = path.basename(filePath).toLowerCase();
+                    if (fs.existsSync(dir)) {
+                        const files = fs.readdirSync(dir);
+                        const match = files.find(f => f.toLowerCase() === base);
+                        if (match) {
+                            return fs.readFile(path.join(dir, match), function(err2, content2) {
+                                if (!err2) {
+                                    res.writeHead(200, { 'Content-Type': contentType });
+                                    res.end(content2);
+                                    return;
+                                }
+                                res.writeHead(404, { 'Content-Type': 'text/html' });
+                                res.end('404 Not Found', 'utf-8');
+                            });
+                        }
+                    }
+                } catch (e) {}
+
                 fs.readFile('./404.html', function(err, content404) {
                     res.writeHead(404, { 'Content-Type': 'text/html' });
                     res.end(content404 || '404 Not Found', 'utf-8');

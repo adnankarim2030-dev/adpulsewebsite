@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="Media buying: TV, print and radio">
+<title>Media buying: TV, print and radio</title>
+<defs>
+<linearGradient id="red" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF3B30"/><stop offset=".55" stop-color="#E10600"/><stop offset="1" stop-color="#8E0400"/></linearGradient>
+<linearGradient id="redH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9E0500"/><stop offset=".5" stop-color="#FF2A1F"/><stop offset="1" stop-color="#9E0500"/></linearGradient>
+<linearGradient id="green" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3BE38F"/><stop offset=".5" stop-color="#0B9A50"/><stop offset="1" stop-color="#04502A"/></linearGradient>
+<linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A524E"/><stop offset=".45" stop-color="#232826"/><stop offset="1" stop-color="#0E1110"/></linearGradient>
+<linearGradient id="metalH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0E1110"/><stop offset=".35" stop-color="#3C4440"/><stop offset=".5" stop-color="#5B6560"/><stop offset=".65" stop-color="#2A302D"/><stop offset="1" stop-color="#0E1110"/></linearGradient>
+<linearGradient id="chrome" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F4F6F5"/><stop offset=".5" stop-color="#9AA39F"/><stop offset="1" stop-color="#E6EAE8"/></linearGradient>
+<linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0F2A1D"/><stop offset=".6" stop-color="#07140E"/><stop offset="1" stop-color="#160505"/></linearGradient>
+<linearGradient id="white" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9DEDB"/></linearGradient>
+<radialGradient id="glowR"><stop offset="0" stop-color="#FF2A1F" stop-opacity=".9"/><stop offset="1" stop-color="#FF2A1F" stop-opacity="0"/></radialGradient>
+<radialGradient id="glowG"><stop offset="0" stop-color="#2FCB7C" stop-opacity=".85"/><stop offset="1" stop-color="#2FCB7C" stop-opacity="0"/></radialGradient>
+<radialGradient id="glowW"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+<radialGradient id="shadow"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".75"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+<linearGradient id="beamR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF3B30" stop-opacity=".8"/><stop offset="1" stop-color="#FF3B30" stop-opacity="0"/></linearGradient>
+<linearGradient id="beamG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2FCB7C" stop-opacity=".8"/><stop offset="1" stop-color="#2FCB7C" stop-opacity="0"/></linearGradient>
+<linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<filter id="blur6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="blur14" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+<filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs>
+<style>
+[class]{transform-box:fill-box}
+.orb{transform-box:view-box}
+.bars rect,.conf rect{transform-box:fill-box}
+.float{animation:float 5s ease-in-out infinite}
+.float2{animation:float 6.5s ease-in-out -2s infinite}
+.float3{animation:float 4.2s ease-in-out -1s infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.blink{animation:blink 1.2s steps(1) infinite}
+@keyframes blink{0%,55%{opacity:1}56%,100%{opacity:.15}}
+.pulse{transform-origin:center;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.45;transform:scale(.92)}50%{opacity:1;transform:scale(1.06)}}
+.spin{transform-origin:center;animation:spin 14s linear infinite}
+.spinR{transform-origin:center;animation:spin 22s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sweep{animation:sweep 4.5s ease-in-out infinite}
+@keyframes sweep{0%{transform:translateX(-120%)}55%,100%{transform:translateX(220%)}}
+
+.bar{transform-origin:bottom;animation:grow 2.8s ease-in-out infinite}
+.b2{animation-delay:-.5s}.b3{animation-delay:-1s}.b4{animation-delay:-1.5s}.b5{animation-delay:-2s}
+@keyframes grow{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+.wave{transform-origin:0% 50%;animation:wave 2.2s ease-out infinite;opacity:0}
+.w2{animation-delay:.7s}.w3{animation-delay:1.4s}
+@keyframes wave{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(1.5)}}
+.tag{animation:float 3.8s ease-in-out infinite}
+.line{animation:line 2.6s ease-in-out infinite}
+@keyframes line{0%{stroke-dashoffset:420}60%,100%{stroke-dashoffset:0}}
+</style>
+
+<ellipse cx="300" cy="555" rx="230" ry="22" fill="url(#shadow)"/>
+<!-- TV -->
+<g class="float2">
+  <rect x="120" y="96" width="360" height="232" rx="16" fill="#0E1110" stroke="#4A524E" stroke-width="3"/>
+  <rect x="134" y="110" width="332" height="204" rx="8" fill="url(#screen)"/>
+  <g fill="url(#green)">
+    <rect class="bar" x="160" y="200" width="30" height="90" rx="4"/>
+    <rect class="bar b2" x="206" y="170" width="30" height="120" rx="4"/>
+    <rect class="bar b3" x="252" y="150" width="30" height="140" rx="4" fill="url(#red)"/>
+    <rect class="bar b4" x="298" y="182" width="30" height="108" rx="4"/>
+    <rect class="bar b5" x="344" y="140" width="30" height="150" rx="4" fill="url(#red)"/>
+  </g>
+  <polyline class="line" points="175,230 221,200 267,170 313,196 359,150 440,128" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="420"/>
+  <circle cx="440" cy="128" r="8" fill="#fff"/>
+  <text x="392" y="300" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="800" fill="#2FCB7C">ROI ▲</text>
+  <rect x="134" y="110" width="80" height="204" fill="url(#sheen)" class="sweep"/>
+  <rect x="270" y="328" width="60" height="22" fill="url(#metal)"/>
+  <rect x="220" y="348" width="160" height="12" rx="6" fill="url(#metal)"/>
+</g>
+<!-- newspaper -->
+<g transform="rotate(-8 170 450)"><g class="float">
+  <rect x="70" y="372" width="200" height="150" rx="6" fill="url(#white)"/>
+  <rect x="70" y="372" width="200" height="34" rx="6" fill="url(#red)"/>
+  <text x="84" y="397" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#fff">THE DAILY AD</text>
+  <rect x="84" y="418" width="80" height="58" rx="3" fill="url(#green)"/>
+  <g stroke="#9AA39F" stroke-width="5" stroke-linecap="round"><line x1="176" y1="424" x2="254" y2="424"/><line x1="176" y1="440" x2="254" y2="440"/><line x1="176" y1="456" x2="240" y2="456"/><line x1="176" y1="472" x2="254" y2="472"/><line x1="84" y1="492" x2="254" y2="492"/><line x1="84" y1="508" x2="210" y2="508"/></g>
+</g></g>
+<!-- radio -->
+<g class="float3">
+  <rect x="352" y="398" width="182" height="116" rx="18" fill="url(#metal)" stroke="#4A524E"/>
+  <line x1="372" y1="398" x2="430" y2="340" stroke="#9AA39F" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="400" cy="458" r="36" fill="#121614" stroke="#E10600" stroke-width="4"/>
+  <circle cx="400" cy="458" r="22" fill="none" stroke="#4A524E" stroke-width="3" stroke-dasharray="2 4"/>
+  <circle cx="400" cy="458" r="8" fill="#E10600"/>
+  <rect x="452" y="424" width="64" height="22" rx="4" fill="url(#screen)"/>
+  <text x="459" y="441" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#2FCB7C">FM 98.6</text>
+  <circle cx="466" cy="482" r="9" fill="#2A302D" stroke="#5B6560"/><circle cx="500" cy="482" r="9" fill="#0B9A50"/>
+  <g fill="none" stroke="#2FCB7C" stroke-width="4" stroke-linecap="round">
+    <path class="wave" d="M540 430 a36 36 0 0 1 0 56"/>
+    <path class="wave w2" d="M540 430 a36 36 0 0 1 0 56"/>
+    <path class="wave w3" d="M540 430 a36 36 0 0 1 0 56"/>
+  </g>
+</g>
+<!-- floating tags -->
+<g class="tag"><rect x="470" y="70" width="86" height="40" rx="20" fill="url(#red)"/><text x="490" y="96" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800" fill="#fff">PRINT</text></g>
+<g class="tag" style="animation-delay:-1.6s"><rect x="40" y="150" width="70" height="40" rx="20" fill="url(#green)"/><text x="60" y="176" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800" fill="#fff">TV</text></g>
+
+</svg>

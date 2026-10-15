@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="Corporate event stage">
+<title>Corporate event stage</title>
+<defs>
+<linearGradient id="red" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF3B30"/><stop offset=".55" stop-color="#E10600"/><stop offset="1" stop-color="#8E0400"/></linearGradient>
+<linearGradient id="redH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9E0500"/><stop offset=".5" stop-color="#FF2A1F"/><stop offset="1" stop-color="#9E0500"/></linearGradient>
+<linearGradient id="green" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3BE38F"/><stop offset=".5" stop-color="#0B9A50"/><stop offset="1" stop-color="#04502A"/></linearGradient>
+<linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A524E"/><stop offset=".45" stop-color="#232826"/><stop offset="1" stop-color="#0E1110"/></linearGradient>
+<linearGradient id="metalH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0E1110"/><stop offset=".35" stop-color="#3C4440"/><stop offset=".5" stop-color="#5B6560"/><stop offset=".65" stop-color="#2A302D"/><stop offset="1" stop-color="#0E1110"/></linearGradient>
+<linearGradient id="chrome" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F4F6F5"/><stop offset=".5" stop-color="#9AA39F"/><stop offset="1" stop-color="#E6EAE8"/></linearGradient>
+<linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0F2A1D"/><stop offset=".6" stop-color="#07140E"/><stop offset="1" stop-color="#160505"/></linearGradient>
+<linearGradient id="white" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9DEDB"/></linearGradient>
+<radialGradient id="glowR"><stop offset="0" stop-color="#FF2A1F" stop-opacity=".9"/><stop offset="1" stop-color="#FF2A1F" stop-opacity="0"/></radialGradient>
+<radialGradient id="glowG"><stop offset="0" stop-color="#2FCB7C" stop-opacity=".85"/><stop offset="1" stop-color="#2FCB7C" stop-opacity="0"/></radialGradient>
+<radialGradient id="glowW"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+<radialGradient id="shadow"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".75"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+<linearGradient id="beamR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF3B30" stop-opacity=".8"/><stop offset="1" stop-color="#FF3B30" stop-opacity="0"/></linearGradient>
+<linearGradient id="beamG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2FCB7C" stop-opacity=".8"/><stop offset="1" stop-color="#2FCB7C" stop-opacity="0"/></linearGradient>
+<linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<filter id="blur6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="blur14" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+<filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs>
+<style>
+[class]{transform-box:fill-box}
+.orb{transform-box:view-box}
+.bars rect,.conf rect{transform-box:fill-box}
+.float{animation:float 5s ease-in-out infinite}
+.float2{animation:float 6.5s ease-in-out -2s infinite}
+.float3{animation:float 4.2s ease-in-out -1s infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.blink{animation:blink 1.2s steps(1) infinite}
+@keyframes blink{0%,55%{opacity:1}56%,100%{opacity:.15}}
+.pulse{transform-origin:center;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.45;transform:scale(.92)}50%{opacity:1;transform:scale(1.06)}}
+.spin{transform-origin:center;animation:spin 14s linear infinite}
+.spinR{transform-origin:center;animation:spin 22s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sweep{animation:sweep 4.5s ease-in-out infinite}
+@keyframes sweep{0%{transform:translateX(-120%)}55%,100%{transform:translateX(220%)}}
+
+.mh1{transform-origin:50% 0%;animation:mh 5s ease-in-out infinite}
+.mh2{transform-origin:50% 0%;animation:mh 5s ease-in-out -2.5s infinite}
+.mh3{transform-origin:50% 0%;animation:mh2 6s ease-in-out -1s infinite}
+@keyframes mh{0%,100%{transform:rotate(-18deg)}50%{transform:rotate(18deg)}}
+@keyframes mh2{0%,100%{transform:rotate(14deg)}50%{transform:rotate(-14deg)}}
+.led1{animation:ad1 6s ease-in-out infinite}.led2{animation:ad2 6s ease-in-out infinite}
+@keyframes ad1{0%,42%{opacity:1}50%,92%{opacity:0}100%{opacity:1}}
+@keyframes ad2{0%,42%{opacity:0}50%,92%{opacity:1}100%{opacity:0}}
+.conf rect{animation:fall 4.5s linear infinite}
+.conf rect:nth-child(2){animation-delay:-1s}.conf rect:nth-child(3){animation-delay:-2s}.conf rect:nth-child(4){animation-delay:-3s}.conf rect:nth-child(5){animation-delay:-.5s}.conf rect:nth-child(6){animation-delay:-2.6s}.conf rect:nth-child(7){animation-delay:-3.6s}.conf rect:nth-child(8){animation-delay:-1.7s}
+@keyframes fall{0%{transform:translateY(-40px) rotate(0);opacity:0}10%{opacity:1}100%{transform:translateY(420px) rotate(540deg);opacity:0}}
+.head{animation:bob 2.2s ease-in-out infinite}
+.head:nth-child(2n){animation-delay:-.7s}.head:nth-child(3n){animation-delay:-1.4s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+</style>
+
+<!-- beams -->
+<polygon class="mh1" points="150,70 132,70 60,480 230,480" fill="url(#beamR)" opacity=".55"/>
+<polygon class="mh2" points="459,70 441,70 370,480 540,480" fill="url(#beamG)" opacity=".55"/>
+<polygon class="mh3" points="309,70 291,70 230,470 370,470" fill="url(#beam)" opacity=".35"/>
+<!-- truss -->
+<g fill="none" stroke="#5B6560" stroke-width="4">
+  <rect x="70" y="56" width="460" height="22"/><path d="M70 56 l22 22 l22 -22 l22 22 l22 -22 l22 22 l22 -22 l22 22 l22 -22 l22 22 l22 -22 l22 22 l22 -22 l22 22 l22 -22 l22 22 l22 -22 l22 22 l22 -22 l22 22 l22 -22 l18 22"/>
+  <rect x="70" y="78" width="22" height="330"/><rect x="508" y="78" width="22" height="330"/>
+  <path d="M70 78 l22 22 l-22 22 l22 22 l-22 22 l22 22 l-22 22 l22 22 l-22 22 l22 22 l-22 22 l22 22 l-22 22 l22 22 l-22 22 M508 78 l22 22 l-22 22 l22 22 l-22 22 l22 22 l-22 22 l22 22 l-22 22 l22 22 l-22 22 l22 22 l-22 22 l22 22 l-22 22"/>
+</g>
+<!-- moving heads -->
+<rect x="128" y="78" width="26" height="18" rx="4" fill="#2A302D"/><rect x="437" y="78" width="26" height="18" rx="4" fill="#2A302D"/><rect x="287" y="78" width="26" height="18" rx="4" fill="#2A302D"/>
+<!-- LED wall -->
+<rect x="118" y="112" width="364" height="190" rx="6" fill="#0E1110" stroke="#4A524E" stroke-width="3"/>
+<svg x="124" y="118" width="352" height="178" viewBox="0 0 352 178">
+  <g class="led1"><rect width="352" height="178" fill="url(#red)"/><circle cx="300" cy="40" r="90" fill="#FF3B30" opacity=".35"/>
+    <text x="176" y="86" text-anchor="middle" font-family="Impact, 'Arial Black', Arial, sans-serif" font-size="44" fill="#fff">GRAND LAUNCH</text>
+    <text x="176" y="128" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="800" fill="#fff" letter-spacing="6">2026</text></g>
+  <g class="led2"><rect width="352" height="178" fill="url(#green)"/><circle cx="60" cy="150" r="90" fill="#3BE38F" opacity=".3"/>
+    <text x="176" y="86" text-anchor="middle" font-family="Impact, 'Arial Black', Arial, sans-serif" font-size="44" fill="#fff">WELCOME</text>
+    <text x="176" y="128" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="800" fill="#fff" letter-spacing="6">DEALERS MEET</text></g>
+  <rect width="352" height="178" fill="none" stroke="#000" stroke-opacity=".25" stroke-width="2" stroke-dasharray="1 7"/>
+</svg>
+<!-- stage -->
+<path d="M70 400 h460 l40 50 H30z" fill="#1B201E"/>
+<path d="M30 450 h540 v26 H30z" fill="url(#metal)"/>
+<rect x="30" y="450" width="540" height="5" fill="#E10600"/>
+<g fill="#2FCB7C" opacity=".9"><circle cx="80" cy="466" r="4"/><circle cx="160" cy="466" r="4"/><circle cx="240" cy="466" r="4"/><circle cx="360" cy="466" r="4"/><circle cx="440" cy="466" r="4"/><circle cx="520" cy="466" r="4"/></g>
+<!-- podium -->
+<path d="M266 330 h68 l8 92 h-84z" fill="url(#metal)" stroke="#4A524E"/>
+<circle cx="300" cy="370" r="16" fill="url(#red)"/>
+<path d="M292 370 l6 6 l12 -12" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
+<line x1="300" y1="330" x2="314" y2="300" stroke="#9AA39F" stroke-width="3"/><ellipse cx="316" cy="296" rx="6" ry="9" fill="#121614"/>
+<!-- confetti -->
+<g class="conf">
+  <rect x="120" y="40" width="10" height="16" fill="#E10600"/><rect x="200" y="20" width="8" height="14" fill="#2FCB7C"/><rect x="270" y="50" width="10" height="16" fill="#fff"/><rect x="340" y="30" width="8" height="14" fill="#E10600"/>
+  <rect x="410" y="45" width="10" height="16" fill="#2FCB7C"/><rect x="480" y="25" width="8" height="14" fill="#fff"/><rect x="160" y="10" width="8" height="14" fill="#fff"/><rect x="450" y="5" width="10" height="16" fill="#E10600"/>
+</g>
+<!-- audience -->
+<g fill="#0A0C0B">
+  <g class="head"><circle cx="70" cy="520" r="24"/><rect x="40" y="540" width="60" height="60" rx="26"/></g>
+  <g class="head"><circle cx="150" cy="512" r="26"/><rect x="118" y="534" width="64" height="66" rx="28"/></g>
+  <g class="head"><circle cx="236" cy="522" r="24"/><rect x="206" y="542" width="60" height="58" rx="26"/></g>
+  <g class="head"><circle cx="366" cy="518" r="25"/><rect x="335" y="538" width="62" height="62" rx="27"/></g>
+  <g class="head"><circle cx="452" cy="512" r="26"/><rect x="420" y="534" width="64" height="66" rx="28"/></g>
+  <g class="head"><circle cx="534" cy="522" r="24"/><rect x="504" y="542" width="60" height="58" rx="26"/></g>
+</g>
+
+
+</svg>

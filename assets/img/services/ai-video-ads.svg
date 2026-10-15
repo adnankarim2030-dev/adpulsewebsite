@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="AI video ads core">
+<title>AI video ads core</title>
+<defs>
+<linearGradient id="red" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF3B30"/><stop offset=".55" stop-color="#E10600"/><stop offset="1" stop-color="#8E0400"/></linearGradient>
+<linearGradient id="redH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9E0500"/><stop offset=".5" stop-color="#FF2A1F"/><stop offset="1" stop-color="#9E0500"/></linearGradient>
+<linearGradient id="green" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3BE38F"/><stop offset=".5" stop-color="#0B9A50"/><stop offset="1" stop-color="#04502A"/></linearGradient>
+<linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A524E"/><stop offset=".45" stop-color="#232826"/><stop offset="1" stop-color="#0E1110"/></linearGradient>
+<linearGradient id="metalH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0E1110"/><stop offset=".35" stop-color="#3C4440"/><stop offset=".5" stop-color="#5B6560"/><stop offset=".65" stop-color="#2A302D"/><stop offset="1" stop-color="#0E1110"/></linearGradient>
+<linearGradient id="chrome" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F4F6F5"/><stop offset=".5" stop-color="#9AA39F"/><stop offset="1" stop-color="#E6EAE8"/></linearGradient>
+<linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0F2A1D"/><stop offset=".6" stop-color="#07140E"/><stop offset="1" stop-color="#160505"/></linearGradient>
+<linearGradient id="white" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9DEDB"/></linearGradient>
+<radialGradient id="glowR"><stop offset="0" stop-color="#FF2A1F" stop-opacity=".9"/><stop offset="1" stop-color="#FF2A1F" stop-opacity="0"/></radialGradient>
+<radialGradient id="glowG"><stop offset="0" stop-color="#2FCB7C" stop-opacity=".85"/><stop offset="1" stop-color="#2FCB7C" stop-opacity="0"/></radialGradient>
+<radialGradient id="glowW"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+<radialGradient id="shadow"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".75"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+<linearGradient id="beamR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF3B30" stop-opacity=".8"/><stop offset="1" stop-color="#FF3B30" stop-opacity="0"/></linearGradient>
+<linearGradient id="beamG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2FCB7C" stop-opacity=".8"/><stop offset="1" stop-color="#2FCB7C" stop-opacity="0"/></linearGradient>
+<linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<filter id="blur6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="blur14" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+<filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs>
+<style>
+[class]{transform-box:fill-box}
+.orb{transform-box:view-box}
+.bars rect,.conf rect{transform-box:fill-box}
+.float{animation:float 5s ease-in-out infinite}
+.float2{animation:float 6.5s ease-in-out -2s infinite}
+.float3{animation:float 4.2s ease-in-out -1s infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.blink{animation:blink 1.2s steps(1) infinite}
+@keyframes blink{0%,55%{opacity:1}56%,100%{opacity:.15}}
+.pulse{transform-origin:center;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.45;transform:scale(.92)}50%{opacity:1;transform:scale(1.06)}}
+.spin{transform-origin:center;animation:spin 14s linear infinite}
+.spinR{transform-origin:center;animation:spin 22s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sweep{animation:sweep 4.5s ease-in-out infinite}
+@keyframes sweep{0%{transform:translateX(-120%)}55%,100%{transform:translateX(220%)}}
+
+.trace{stroke-dasharray:14 220;animation:trace 2.8s linear infinite}
+.t2{animation-delay:-.7s}.t3{animation-delay:-1.4s}.t4{animation-delay:-2.1s}
+@keyframes trace{to{stroke-dashoffset:-234}}
+.core{transform-origin:center;animation:pulse 2.6s ease-in-out infinite}
+.holo{animation:holo 4s ease-in-out infinite}
+@keyframes holo{0%,100%{transform:translateY(0);opacity:.85}50%{transform:translateY(-12px);opacity:1}}
+.frame{animation:frames 6s ease-in-out infinite;opacity:0}
+.fr2{animation-delay:-2s}.fr3{animation-delay:-4s}
+@keyframes frames{0%,8%{opacity:0;transform:translateY(16px)}18%,30%{opacity:1;transform:translateY(0)}40%,100%{opacity:0;transform:translateY(-16px)}}
+.star{transform-origin:center;animation:pulse 1.6s ease-in-out infinite}
+.star:nth-child(2){animation-delay:-.5s}.star:nth-child(3){animation-delay:-1s}
+</style>
+
+<ellipse cx="300" cy="560" rx="200" ry="20" fill="url(#shadow)"/>
+<!-- circuit traces -->
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <g stroke="#2A302D" stroke-width="5">
+    <path d="M220 330 H120 V230 H50"/><path d="M220 380 H90 V470"/><path d="M380 330 H480 V240 H560"/><path d="M380 380 H520 V480"/>
+    <path d="M260 460 V540"/><path d="M340 460 V520 H420"/><path d="M260 250 V180"/><path d="M340 250 V200"/>
+  </g>
+  <g stroke-width="5">
+    <path class="trace" d="M220 330 H120 V230 H50" stroke="#2FCB7C"/>
+    <path class="trace t2" d="M220 380 H90 V470" stroke="#FF3B30"/>
+    <path class="trace t3" d="M380 330 H480 V240 H560" stroke="#FF3B30"/>
+    <path class="trace t4" d="M380 380 H520 V480" stroke="#2FCB7C"/>
+    <path class="trace t2" d="M260 460 V540" stroke="#2FCB7C"/>
+    <path class="trace" d="M340 460 V520 H420" stroke="#FF3B30"/>
+  </g>
+  <g fill="#5B6560"><circle cx="50" cy="230" r="7"/><circle cx="90" cy="470" r="7"/><circle cx="560" cy="240" r="7"/><circle cx="520" cy="480" r="7"/><circle cx="260" cy="540" r="7"/><circle cx="420" cy="520" r="7"/></g>
+</g>
+<!-- chip -->
+<circle class="core" cx="300" cy="355" r="150" fill="url(#glowR)" opacity=".55"/>
+<g>
+  <g fill="#9AA39F">
+    <rect x="236" y="234" width="10" height="20" rx="2"/><rect x="262" y="234" width="10" height="20" rx="2"/><rect x="288" y="234" width="10" height="20" rx="2"/><rect x="314" y="234" width="10" height="20" rx="2"/><rect x="340" y="234" width="10" height="20" rx="2"/>
+    <rect x="236" y="456" width="10" height="20" rx="2"/><rect x="262" y="456" width="10" height="20" rx="2"/><rect x="288" y="456" width="10" height="20" rx="2"/><rect x="314" y="456" width="10" height="20" rx="2"/><rect x="340" y="456" width="10" height="20" rx="2"/>
+    <rect x="200" y="270" width="20" height="10" rx="2"/><rect x="200" y="296" width="20" height="10" rx="2"/><rect x="200" y="322" width="20" height="10" rx="2"/><rect x="200" y="348" width="20" height="10" rx="2"/><rect x="200" y="374" width="20" height="10" rx="2"/><rect x="200" y="400" width="20" height="10" rx="2"/><rect x="200" y="426" width="20" height="10" rx="2"/>
+    <rect x="380" y="270" width="20" height="10" rx="2"/><rect x="380" y="296" width="20" height="10" rx="2"/><rect x="380" y="322" width="20" height="10" rx="2"/><rect x="380" y="348" width="20" height="10" rx="2"/><rect x="380" y="374" width="20" height="10" rx="2"/><rect x="380" y="400" width="20" height="10" rx="2"/><rect x="380" y="426" width="20" height="10" rx="2"/>
+  </g>
+  <rect x="218" y="252" width="164" height="206" rx="18" fill="url(#metal)" stroke="#5B6560" stroke-width="3"/>
+  <rect x="236" y="272" width="128" height="166" rx="12" fill="url(#red)"/>
+  <rect x="236" y="272" width="128" height="166" rx="12" fill="none" stroke="#FF8A80" stroke-opacity=".6"/>
+  <text x="300" y="376" text-anchor="middle" font-family="Impact, 'Arial Black', Arial, sans-serif" font-size="72" fill="#fff">AI</text>
+  <rect x="236" y="272" width="40" height="166" fill="url(#sheen)" class="sweep"/>
+  <circle cx="300" cy="410" r="6" fill="#2FCB7C" class="blink"/>
+</g>
+<!-- holographic video frames -->
+<g class="holo">
+  <path d="M232 228 L180 120 H420 L368 228z" fill="url(#beamG)" opacity=".35"/>
+  <g class="frame"><rect x="196" y="40" width="208" height="118" rx="12" fill="#0E1110" stroke="#2FCB7C" stroke-width="3"/><rect x="206" y="50" width="188" height="98" rx="8" fill="url(#green)"/><polygon points="286,76 286,122 324,99" fill="#fff"/><text x="214" y="142" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="800" fill="#fff">VARIATION A</text></g>
+  <g class="frame fr2"><rect x="196" y="40" width="208" height="118" rx="12" fill="#0E1110" stroke="#FF3B30" stroke-width="3"/><rect x="206" y="50" width="188" height="98" rx="8" fill="url(#red)"/><polygon points="286,76 286,122 324,99" fill="#fff"/><text x="214" y="142" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="800" fill="#fff">VARIATION B</text></g>
+  <g class="frame fr3"><rect x="196" y="40" width="208" height="118" rx="12" fill="#0E1110" stroke="#fff" stroke-width="3"/><rect x="206" y="50" width="188" height="98" rx="8" fill="url(#metal)"/><polygon points="286,76 286,122 324,99" fill="#fff"/><text x="214" y="142" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="800" fill="#2FCB7C">VARIATION C</text></g>
+</g>
+<!-- sparkles -->
+<g fill="#fff">
+  <path class="star" d="M480 120 l6 16 l16 6 l-16 6 l-6 16 l-6 -16 l-16 -6 l16 -6z"/>
+  <path class="star" d="M110 140 l5 12 l12 5 l-12 5 l-5 12 l-5 -12 l-12 -5 l12 -5z" fill="#2FCB7C"/>
+  <path class="star" d="M520 380 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4 l10 -4z" fill="#FF3B30"/>
+</g>
+
+</svg>

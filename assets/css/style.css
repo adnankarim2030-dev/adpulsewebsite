@@ -673,11 +673,11 @@ html.has-cursor, html.has-cursor a, html.has-cursor button { cursor: none; }
 }
 .logo-pill {
   flex: 0 0 auto;
-  min-width: 175px;
-  height: 72px;
+  min-width: 180px;
+  height: 74px;
   border-radius: 999px;
   background: #ffffff;
-  padding: 10px 26px;
+  padding: 10px 22px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -695,8 +695,8 @@ html.has-cursor, html.has-cursor a, html.has-cursor button { cursor: none; }
   z-index: 10;
 }
 .logo-pill img {
-  max-height: 44px;
-  max-width: 135px;
+  max-height: 48px;
+  max-width: 148px;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -737,13 +737,13 @@ html.has-cursor, html.has-cursor a, html.has-cursor button { cursor: none; }
     margin-bottom: 14px;
   }
   .logo-pill {
-    min-width: 140px;
-    height: 58px;
-    padding: 8px 18px;
+    min-width: 145px;
+    height: 60px;
+    padding: 8px 16px;
   }
   .logo-pill img {
-    max-height: 34px;
-    max-width: 105px;
+    max-height: 38px;
+    max-width: 118px;
   }
   .brands__meta-badge {
     width: 100%;
@@ -1569,22 +1569,36 @@ html.lenis, html.lenis body { height: auto; }
 
 /* ---------- 3D particles → real photo reveal ---------- */
 .p3d-real { position: absolute; pointer-events: none; perspective: 1100px; --rx: 0deg; --ry: 0deg; }
-.p3d-real__card { position: absolute; inset: 0; overflow: visible; background: transparent !important;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: none !important; border: none !important;
-  opacity: 0; transform: rotateX(var(--rx)) rotateY(var(--ry)) scale(1.1); filter: blur(18px) brightness(1.6);
-  transition: opacity .7s ease, filter 1.3s var(--ease), transform 1.8s var(--ease); }
-.p3d-real__card img { width: 92%; height: 92%; object-fit: contain; display: block; transform: scale(1.04); filter: drop-shadow(0 20px 40px rgba(0, 0, 0, .85)) drop-shadow(0 0 35px rgba(225, 6, 0, .28)); transition: transform 7s linear; }
-.p3d-real__card::after { display: none; }
-.p3d-real__sweep { display: none; }
-.p3d-real.is-on .p3d-real__card { opacity: 1; filter: none; transform: rotateX(var(--rx)) rotateY(var(--ry)) scale(1); transition: opacity .6s ease, filter 1.4s var(--ease) .1s, transform .25s linear; }
+.p3d-real__card { position: absolute; inset: 0; border-radius: 20px; overflow: hidden; background: #0d100f;
+  opacity: 0; transform: rotateX(var(--rx)) rotateY(var(--ry)) scale(1.14); filter: blur(22px) brightness(1.9) saturate(.4);
+  clip-path: circle(0% at 50% 55%);
+  -webkit-mask-image: radial-gradient(ellipse 68% 68% at 50% 50%, #000 45%, transparent 100%); mask-image: radial-gradient(ellipse 68% 68% at 50% 50%, #000 45%, transparent 100%);
+  transition: opacity .7s ease, filter 1.3s var(--ease), clip-path 1.5s var(--ease), transform 1.8s var(--ease); }
+.p3d-real__card img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.08); transition: transform 7s linear; }
+.p3d-real__card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 12, 11, .05), rgba(10, 12, 11, .45)), radial-gradient(60% 50% at 20% 100%, rgba(225, 6, 0, .28), transparent 70%), radial-gradient(50% 40% at 90% 0%, rgba(8, 140, 70, .25), transparent 70%); }
+.p3d-real__sweep { position: absolute; inset: -20% -60%; z-index: 2; background: linear-gradient(100deg, transparent 40%, rgba(255, 255, 255, .28) 50%, transparent 60%); transform: translateX(-60%); }
+.p3d-real.is-on .p3d-real__card { opacity: 1; filter: none; clip-path: circle(80% at 50% 50%); transform: rotateX(var(--rx)) rotateY(var(--ry)) scale(1); transition: opacity .6s ease, filter 1.4s var(--ease) .1s, clip-path 1.6s var(--ease), transform .25s linear; }
 .p3d-real.is-on .p3d-real__card img { transform: scale(1); }
-.p3d-real.is-on .p3d-real__sweep { display: none; }
+.p3d-real.is-on .p3d-real__sweep { transform: translateX(60%); transition: transform 1.6s var(--ease) .35s; }
 canvas.p3d-dim { transition: opacity 1.2s ease; opacity: .38 !important; }
 canvas:not(.p3d-dim)[data-scene], .hero__canvas:not(.p3d-dim) { transition: opacity 1s ease; }
 .svc-stage__canvas .p3d-real { opacity: .55; }
 @media (max-width: 720px) { .page-hero canvas.p3d-dim { opacity: .3 !important; } }
 @media (prefers-reduced-motion: reduce) { .p3d-real__card, .p3d-real.is-on .p3d-real__card { transition: opacity .3s; filter: none; clip-path: none; transform: none; } }
+
+/* ---------- Animated service art (transparent) instead of photos ---------- */
+.p3d-real--art .p3d-real__card { background: none; border-radius: 0; overflow: visible; -webkit-mask-image: none; mask-image: none;
+  clip-path: none; transform: rotateX(var(--rx)) rotateY(var(--ry)) translateY(18px) scale(.78); filter: blur(16px) brightness(1.6) saturate(.3); }
+.p3d-real--art .p3d-real__card::after, .p3d-real--art .p3d-real__sweep { display: none; }
+.p3d-real--art .p3d-real__card img { object-fit: contain; transform: none; transition: none;
+  filter: drop-shadow(0 26px 40px rgba(0, 0, 0, .55)) drop-shadow(0 0 28px rgba(225, 6, 0, .22)); }
+.p3d-real--art::before { content: ""; position: absolute; left: 8%; right: 8%; top: 14%; bottom: 10%; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(225, 6, 0, .28), rgba(8, 140, 70, .12) 60%, transparent); opacity: 0; transition: opacity 1.2s ease; filter: blur(10px); }
+.p3d-real--art.is-on::before { opacity: 1; }
+.p3d-real--art.is-on .p3d-real__card { opacity: 1; filter: none; transform: rotateX(var(--rx)) rotateY(var(--ry)) translateY(0) scale(1);
+  transition: opacity .5s ease, filter 1s var(--ease), transform .9s cubic-bezier(.2, 1.4, .4, 1); }
+canvas.p3d-dim { opacity: .22 !important; }
+
 
 /* ---------- Content v2: deliver cards, production process, contact extras ---------- */
 .cap .cap__title { font-size: clamp(22px, 1.9vw, 30px); margin-top: 4px; }

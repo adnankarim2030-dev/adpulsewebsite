@@ -490,16 +490,20 @@
     catch (e) { return false; }
   }
 
-  /* Custom service badge icon revealed once the 3D particles have formed (scene index → image) */
+  /* animated service illustration revealed once the dots have formed (scene index → self-hosted SVG) */
+  var ART_BASE = (function () {
+    var sc = document.currentScript || document.querySelector('script[src*="hero3d"]');
+    return sc && sc.src ? sc.src.replace(/js\/hero3d\.js.*$/, "img/services/") : "/assets/img/services/";
+  })();
   var IMAGES = {
-    0: "/assets/img/services/tvc-production.png",     // TVC Production
-    1: "/assets/img/services/outdoor-media.png",      // Outdoor Media (OOH)
-    2: "/assets/img/services/media-buying.png",       // Media Buying & Planning
-    3: "/assets/img/services/corporate-events.png",   // Corporate Events
-    4: "/assets/img/services/pr-promotion.png",       // PR & Promotion
-    5: "/assets/img/services/btl-marketing.png",       // BTL Marketing
-    6: "/assets/img/services/digital-marketing.png",  // Digital Marketing
-    7: "/assets/img/services/ai-video-ads.png"        // AI Video Ads Creative
+    0: ART_BASE + "tvc-production.svg",
+    1: ART_BASE + "outdoor-media.svg",
+    2: ART_BASE + "media-buying.svg",
+    3: ART_BASE + "corporate-events.svg",
+    4: ART_BASE + "pr-promotion.svg",
+    5: ART_BASE + "btl-marketing.svg",
+    6: ART_BASE + "digital-marketing.svg",
+    7: ART_BASE + "ai-video-ads.svg"
   };
 
   /**
@@ -563,9 +567,24 @@
       var narrow = w < 720;
       var ox = narrow ? 0 : (opts.offsetX !== undefined ? opts.offsetX : 2.3);
       var sc = (opts.scale || 1) * (narrow ? 0.66 : Math.min(1, w / 1400 + 0.12));
-      group.position.set(ox * Math.min(1, camera.aspect / 1.6), narrow ? (opts.mobileOffsetY !== undefined ? opts.mobileOffsetY : 1.6) : 0, 0);
-      group.scale.setScalar(sc);
+      tgt.pos.set(ox * Math.min(1, camera.aspect / 1.6), narrow ? (opts.mobileOffsetY !== undefined ? opts.mobileOffsetY : 1.6) : 0, 0);
+      tgt.sc = sc; tgt.inner.set(0, 0, 0);
+      frameRect = opts.frame ? opts.frame() : null;
+      fitTo(current);
+      if (!fitted) { group.position.copy(tgt.pos); group.scale.setScalar(tgt.sc); points.position.copy(tgt.inner); fitted = true; }
       if (typeof realOn !== "undefined" && realOn) placeReal(current);
+    }
+    /* frame mode: the formed object (and then the photo) fills a rectangle aligned to the page text */
+    var tgt = { pos: new THREE.Vector3(), inner: new THREE.Vector3(), sc: 1 }, frameRect = null, fitted = false;
+    function fitTo(idx) {
+      if (!frameRect || !cache[idx]) return;
+      var cw = canvas.clientWidth, ch = canvas.clientHeight, f = frameRect;
+      var wpp = 2 * camera.position.z * Math.tan(camera.fov * Math.PI / 360) / ch;
+      var b = bbox(cache[idx]), bw = b.x1 - b.x0, bh = b.y1 - b.y0;
+      var sc = Math.min(f.w * wpp / bw, f.h * wpp / bh) * 0.9;
+      tgt.sc = sc;
+      tgt.inner.set(-(b.x0 + b.x1) / 2, -(b.y0 + b.y1) / 2, 0);
+      tgt.pos.set((f.x + f.w / 2 - cw / 2) * wpp, -(f.y + f.h / 2 - ch / 2) * wpp, 0);
     }
     layout();
     var ro = window.ResizeObserver ? new ResizeObserver(layout) : null;
@@ -573,10 +592,14 @@
 
     /* ---- real-image reveal ---- */
     var imgs = opts.images === false ? {} : (opts.images || IMAGES);
+    var preloaded = {};
+    function preload(i) { if (!imgs[i] || preloaded[i]) return; var im = new Image(); im.decoding = "async"; im.src = imgs[i]; preloaded[i] = im; }
+    preload(start);
+    if (opts.preloadAll) setTimeout(function () { Object.keys(imgs).forEach(function (k) { preload(+k); }); }, 1200);
     var real = null, realImg = null, realOn = false, realTimer = 0, realTok = 0, V3 = THREE.Vector3;
     {
       real = document.createElement("div");
-      real.className = "p3d-real"; real.setAttribute("aria-hidden", "true");
+      real.className = "p3d-real p3d-real--art"; real.setAttribute("aria-hidden", "true");
       real.innerHTML = '<div class="p3d-real__card"><img alt="" decoding="async"><i class="p3d-real__sweep"></i></div>';
       realImg = real.querySelector("img");
       var cs = window.getComputedStyle(canvas);
@@ -594,6 +617,11 @@
     }
     function placeReal(idx) {
       if (!real) return;
+      if (frameRect) {
+        real.style.left = (canvas.offsetLeft + frameRect.x) + "px"; real.style.top = (canvas.offsetTop + frameRect.y) + "px";
+        real.style.width = frameRect.w + "px"; real.style.height = frameRect.h + "px";
+        return;
+      }
       var b = bbox(cache[idx]), cw = canvas.clientWidth, ch = canvas.clientHeight;
       var w0 = b.x1 - b.x0, h0 = b.y1 - b.y0, cx = (b.x0 + b.x1) / 2, cy = (b.y0 + b.y1) / 2;
       // card aspect follows the formed object, kept in a sensible photo range
@@ -622,7 +650,7 @@
       var url = imgs[idx]; if (!real || !url) return;
       var tok = ++realTok;
       var go = function () {
-        if (tok !== realTok || idx !== current || busy) return;
+        if (tok !== realTok || idx !== current) return;
         placeReal(idx); realOn = true;
         real.classList.add("is-on"); canvas.classList.add("p3d-dim");
         // static heroes: breathe back to particles, then re-form the photo
@@ -631,6 +659,7 @@
           realTimer = setTimeout(function () { if (t2 === realTok) showReal(idx); }, 3600);
         }, 6500);
       };
+      preload(idx);
       if (realImg.getAttribute("src") === url && realImg.complete && realImg.naturalWidth) go();
       else { realImg.onload = go; realImg.onerror = function () {}; realImg.src = url; }
     }
@@ -642,13 +671,14 @@
     }
     window.addEventListener("pointermove", onMove, { passive: true });
 
-    function tween(dur) {
-      var t0 = performance.now();
+    function tween(dur, near) {
+      var t0 = performance.now(), fired = false;
       busy = true;
       return new Promise(function (res) {
         (function step(now) {
           var k = Math.min(1, (now - t0) / dur);
           progress.v = k; mat.uniforms.uP.value = k;
+          if (near && !fired && k >= 0.78) { fired = true; near(); }
           if (k < 1) requestAnimationFrame(step); else { busy = false; res(); }
         })(t0);
       });
@@ -666,8 +696,9 @@
       geo.attributes.cFrom.needsUpdate = true; geo.attributes.cTo.needsUpdate = true;
       mat.uniforms.uP.value = 0; mat.uniforms.uScatter.value = 1.6;
       current = idx;
-      tween(reduced ? 10 : (opts.morphMs || 1700)).then(function () {
-        if (queued !== null && queued !== current) { var q = queued; queued = null; goTo(q); } else { queued = null; showReal(current); }
+      fitTo(idx);
+      tween(reduced ? 10 : (opts.morphMs || 1700), function () { if (queued === null) showReal(idx); }).then(function () {
+        if (queued !== null && queued !== current) { var q = queued; queued = null; goTo(q); } else { queued = null; if (!realOn) showReal(current); }
       });
     }
 
@@ -687,22 +718,26 @@
       var t = clock.getElapsedTime();
       mat.uniforms.uTime.value = t;
       mouse.x += (mouse.tx - mouse.x) * 0.05; mouse.y += (mouse.ty - mouse.y) * 0.05;
+      var sway = frameRect ? 0.55 : 1;
       if (!reduced) {
-        group.rotation.y = Math.sin(t * 0.22) * 0.38 + mouse.x * 0.32;
-        group.rotation.x = Math.cos(t * 0.18) * 0.06 + mouse.y * 0.16;
+        group.rotation.y = (Math.sin(t * 0.22) * 0.38 + mouse.x * 0.32) * sway;
+        group.rotation.x = (Math.cos(t * 0.18) * 0.06 + mouse.y * 0.16) * sway;
       }
-      if (realOn) real.style.setProperty("--ry", (group.rotation.y * 22).toFixed(2) + "deg"), real.style.setProperty("--rx", (-group.rotation.x * 30).toFixed(2) + "deg");
+      group.position.lerp(tgt.pos, 0.07); points.position.lerp(tgt.inner, 0.07);
+      group.scale.setScalar(group.scale.x + (tgt.sc - group.scale.x) * 0.07);
+      if (realOn) real.style.setProperty("--ry", (group.rotation.y * 16).toFixed(2) + "deg"), real.style.setProperty("--rx", (-group.rotation.x * 30).toFixed(2) + "deg");
       renderer.render(scene, camera);
       loop();
     }
 
     // intro morph
     mat.uniforms.uScatter.value = 0.4;
-    tween(reduced ? 10 : (opts.introMs || 2200)).then(function () { if (queued !== null && queued !== current) { var q = queued; queued = null; goTo(q); } else { queued = null; showReal(current); } });
+    tween(reduced ? 10 : (opts.introMs || 2200), function () { if (queued === null || queued === current) showReal(current); }).then(function () { if (queued !== null && queued !== current) { var q = queued; queued = null; goTo(q); } else { queued = null; if (!realOn) showReal(current); } });
     loop();
 
     return {
       goTo: goTo,
+      relayout: layout,
       get current() { return current; },
       destroy: function () { running = false; hideReal(); if (real && real.parentNode) real.parentNode.removeChild(real); if (ro) ro.disconnect(); if (io) io.disconnect(); window.removeEventListener("pointermove", onMove); geo.dispose(); mat.dispose(); renderer.dispose(); }
     };

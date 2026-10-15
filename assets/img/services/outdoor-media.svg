@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="Outdoor media billboard">
+<title>Outdoor media billboard</title>
+<defs>
+<linearGradient id="red" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF3B30"/><stop offset=".55" stop-color="#E10600"/><stop offset="1" stop-color="#8E0400"/></linearGradient>
+<linearGradient id="redH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9E0500"/><stop offset=".5" stop-color="#FF2A1F"/><stop offset="1" stop-color="#9E0500"/></linearGradient>
+<linearGradient id="green" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3BE38F"/><stop offset=".5" stop-color="#0B9A50"/><stop offset="1" stop-color="#04502A"/></linearGradient>
+<linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A524E"/><stop offset=".45" stop-color="#232826"/><stop offset="1" stop-color="#0E1110"/></linearGradient>
+<linearGradient id="metalH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0E1110"/><stop offset=".35" stop-color="#3C4440"/><stop offset=".5" stop-color="#5B6560"/><stop offset=".65" stop-color="#2A302D"/><stop offset="1" stop-color="#0E1110"/></linearGradient>
+<linearGradient id="chrome" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F4F6F5"/><stop offset=".5" stop-color="#9AA39F"/><stop offset="1" stop-color="#E6EAE8"/></linearGradient>
+<linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0F2A1D"/><stop offset=".6" stop-color="#07140E"/><stop offset="1" stop-color="#160505"/></linearGradient>
+<linearGradient id="white" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9DEDB"/></linearGradient>
+<radialGradient id="glowR"><stop offset="0" stop-color="#FF2A1F" stop-opacity=".9"/><stop offset="1" stop-color="#FF2A1F" stop-opacity="0"/></radialGradient>
+<radialGradient id="glowG"><stop offset="0" stop-color="#2FCB7C" stop-opacity=".85"/><stop offset="1" stop-color="#2FCB7C" stop-opacity="0"/></radialGradient>
+<radialGradient id="glowW"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+<radialGradient id="shadow"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".75"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+<linearGradient id="beamR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF3B30" stop-opacity=".8"/><stop offset="1" stop-color="#FF3B30" stop-opacity="0"/></linearGradient>
+<linearGradient id="beamG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2FCB7C" stop-opacity=".8"/><stop offset="1" stop-color="#2FCB7C" stop-opacity="0"/></linearGradient>
+<linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<filter id="blur6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="blur14" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+<filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs>
+<style>
+[class]{transform-box:fill-box}
+.orb{transform-box:view-box}
+.bars rect,.conf rect{transform-box:fill-box}
+.float{animation:float 5s ease-in-out infinite}
+.float2{animation:float 6.5s ease-in-out -2s infinite}
+.float3{animation:float 4.2s ease-in-out -1s infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.blink{animation:blink 1.2s steps(1) infinite}
+@keyframes blink{0%,55%{opacity:1}56%,100%{opacity:.15}}
+.pulse{transform-origin:center;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.45;transform:scale(.92)}50%{opacity:1;transform:scale(1.06)}}
+.spin{transform-origin:center;animation:spin 14s linear infinite}
+.spinR{transform-origin:center;animation:spin 22s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sweep{animation:sweep 4.5s ease-in-out infinite}
+@keyframes sweep{0%{transform:translateX(-120%)}55%,100%{transform:translateX(220%)}}
+
+.ad1{animation:ad1 7s ease-in-out infinite}
+.ad2{animation:ad2 7s ease-in-out infinite}
+@keyframes ad1{0%,42%{opacity:1}50%,92%{opacity:0}100%{opacity:1}}
+@keyframes ad2{0%,42%{opacity:0}50%,92%{opacity:1}100%{opacity:0}}
+.lamp{animation:lamp 3s ease-in-out infinite}
+.lamp2{animation-delay:-1.5s}
+@keyframes lamp{0%,100%{opacity:.35}50%{opacity:.85}}
+.win{animation:blink 2.4s steps(1) infinite}
+.win:nth-child(3n){animation-delay:-.8s}.win:nth-child(4n){animation-delay:-1.6s}
+.car{animation:car 6s linear infinite}
+@keyframes car{0%{transform:translateX(-120px)}100%{transform:translateX(720px)}}
+</style>
+
+<!-- skyline -->
+<g opacity=".9">
+  <rect x="30" y="300" width="70" height="230" fill="#0E1110"/><rect x="92" y="250" width="58" height="280" fill="#121614"/>
+  <rect x="444" y="270" width="62" height="260" fill="#121614"/><rect x="498" y="320" width="76" height="210" fill="#0E1110"/>
+  <g fill="#2FCB7C"><rect class="win" x="44" y="320" width="10" height="12"/><rect class="win" x="70" y="350" width="10" height="12"/><rect class="win" x="104" y="280" width="10" height="12"/><rect class="win" x="126" y="330" width="10" height="12"/><rect class="win" x="458" y="300" width="10" height="12"/><rect class="win" x="484" y="350" width="10" height="12"/><rect class="win" x="512" y="340" width="10" height="12"/><rect class="win" x="544" y="380" width="10" height="12"/></g>
+  <g fill="#FF3B30"><rect class="win" x="58" y="400" width="10" height="12"/><rect class="win" x="116" y="380" width="10" height="12"/><rect class="win" x="470" y="410" width="10" height="12"/><rect class="win" x="530" y="430" width="10" height="12"/></g>
+</g>
+<ellipse cx="300" cy="545" rx="250" ry="18" fill="url(#shadow)"/>
+<!-- road + car light -->
+<rect x="0" y="530" width="600" height="6" fill="#1B201E"/>
+<g class="car"><rect x="0" y="514" width="62" height="18" rx="6" fill="#E10600"/><circle cx="62" cy="522" r="10" fill="url(#glowW)"/></g>
+<!-- pole -->
+<rect x="282" y="330" width="36" height="200" fill="url(#metalH)"/>
+<rect x="250" y="520" width="100" height="14" rx="4" fill="url(#metal)"/>
+<!-- light cones -->
+
+<!-- board frame -->
+<rect x="70" y="96" width="460" height="240" rx="8" fill="#0E1110" stroke="#4A524E" stroke-width="4"/>
+<g>
+  <!-- ad 1 -->
+  <g class="ad1">
+    <rect x="82" y="108" width="436" height="216" rx="4" fill="url(#red)"/>
+    <circle cx="470" cy="216" r="110" fill="#FF3B30" opacity=".35"/>
+    <text x="104" y="190" font-family="Impact, 'Arial Black', Arial, sans-serif" font-size="50" font-weight="900" fill="#fff">FUEL YOUR</text>
+    <text x="104" y="250" font-family="Impact, 'Arial Black', Arial, sans-serif" font-size="50" font-weight="900" fill="#fff">BRAND</text>
+    <rect x="104" y="272" width="150" height="30" rx="15" fill="#fff"/>
+    <text x="122" y="293" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="800" fill="#E10600">ADPULSE.PK</text>
+    <circle cx="456" cy="214" r="44" fill="url(#green)"/>
+    <polygon points="444,194 444,234 476,214" fill="#fff"/>
+  </g>
+  <!-- ad 2 -->
+  <g class="ad2">
+    <rect x="82" y="108" width="436" height="216" rx="4" fill="url(#green)"/>
+    <text x="104" y="186" font-family="Impact, 'Arial Black', Arial, sans-serif" font-size="50" font-weight="900" fill="#fff">BIG CITY.</text>
+    <text x="104" y="244" font-family="Impact, 'Arial Black', Arial, sans-serif" font-size="44" font-weight="900" fill="#fff">BIGGER REACH.</text>
+    <rect x="104" y="266" width="132" height="30" rx="15" fill="#E10600"/>
+    <text x="124" y="287" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="800" fill="#fff">24 / 7 OOH</text>
+  </g>
+  <rect x="82" y="108" width="120" height="216" fill="url(#sheen)" class="sweep"/>
+  <polygon class="lamp" points="96,100 112,100 230,324 82,324" fill="url(#beam)" opacity=".4"/>
+  <polygon class="lamp lamp2" points="488,100 504,100 518,324 370,324" fill="url(#beam)" opacity=".4"/>
+</g>
+<!-- lamps + catwalk -->
+<rect x="70" y="336" width="460" height="10" fill="url(#metal)"/>
+<g stroke="#4A524E" stroke-width="3"><line x1="90" y1="346" x2="90" y2="360"/><line x1="510" y1="346" x2="510" y2="360"/></g>
+<rect x="80" y="74" width="40" height="14" rx="4" fill="#2A302D"/><rect x="480" y="74" width="40" height="14" rx="4" fill="#2A302D"/>
+<line x1="100" y1="88" x2="110" y2="100" stroke="#4A524E" stroke-width="4"/><line x1="500" y1="88" x2="490" y2="100" stroke="#4A524E" stroke-width="4"/>
+
+</svg>

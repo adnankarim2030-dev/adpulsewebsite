@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="BTL brand activation booth">
+<title>BTL brand activation booth</title>
+<defs>
+<linearGradient id="red" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF3B30"/><stop offset=".55" stop-color="#E10600"/><stop offset="1" stop-color="#8E0400"/></linearGradient>
+<linearGradient id="redH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9E0500"/><stop offset=".5" stop-color="#FF2A1F"/><stop offset="1" stop-color="#9E0500"/></linearGradient>
+<linearGradient id="green" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3BE38F"/><stop offset=".5" stop-color="#0B9A50"/><stop offset="1" stop-color="#04502A"/></linearGradient>
+<linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A524E"/><stop offset=".45" stop-color="#232826"/><stop offset="1" stop-color="#0E1110"/></linearGradient>
+<linearGradient id="metalH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0E1110"/><stop offset=".35" stop-color="#3C4440"/><stop offset=".5" stop-color="#5B6560"/><stop offset=".65" stop-color="#2A302D"/><stop offset="1" stop-color="#0E1110"/></linearGradient>
+<linearGradient id="chrome" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F4F6F5"/><stop offset=".5" stop-color="#9AA39F"/><stop offset="1" stop-color="#E6EAE8"/></linearGradient>
+<linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0F2A1D"/><stop offset=".6" stop-color="#07140E"/><stop offset="1" stop-color="#160505"/></linearGradient>
+<linearGradient id="white" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9DEDB"/></linearGradient>
+<radialGradient id="glowR"><stop offset="0" stop-color="#FF2A1F" stop-opacity=".9"/><stop offset="1" stop-color="#FF2A1F" stop-opacity="0"/></radialGradient>
+<radialGradient id="glowG"><stop offset="0" stop-color="#2FCB7C" stop-opacity=".85"/><stop offset="1" stop-color="#2FCB7C" stop-opacity="0"/></radialGradient>
+<radialGradient id="glowW"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+<radialGradient id="shadow"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".75"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+<linearGradient id="beamR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF3B30" stop-opacity=".8"/><stop offset="1" stop-color="#FF3B30" stop-opacity="0"/></linearGradient>
+<linearGradient id="beamG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2FCB7C" stop-opacity=".8"/><stop offset="1" stop-color="#2FCB7C" stop-opacity="0"/></linearGradient>
+<linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<filter id="blur6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="blur14" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+<filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs>
+<style>
+[class]{transform-box:fill-box}
+.orb{transform-box:view-box}
+.bars rect,.conf rect{transform-box:fill-box}
+.float{animation:float 5s ease-in-out infinite}
+.float2{animation:float 6.5s ease-in-out -2s infinite}
+.float3{animation:float 4.2s ease-in-out -1s infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.blink{animation:blink 1.2s steps(1) infinite}
+@keyframes blink{0%,55%{opacity:1}56%,100%{opacity:.15}}
+.pulse{transform-origin:center;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.45;transform:scale(.92)}50%{opacity:1;transform:scale(1.06)}}
+.spin{transform-origin:center;animation:spin 14s linear infinite}
+.spinR{transform-origin:center;animation:spin 22s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sweep{animation:sweep 4.5s ease-in-out infinite}
+@keyframes sweep{0%{transform:translateX(-120%)}55%,100%{transform:translateX(220%)}}
+
+.bal{animation:bal 4.5s ease-in-out infinite;transform-origin:50% 100%}
+.bal2{animation-delay:-1.5s}.bal3{animation-delay:-3s}
+@keyframes bal{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-14px) rotate(4deg)}}
+.steam{animation:steam 2.6s ease-out infinite;opacity:0}
+.s2{animation-delay:.9s}.s3{animation-delay:1.8s}
+@keyframes steam{0%{opacity:0;transform:translateY(6px)}30%{opacity:.8}100%{opacity:0;transform:translateY(-34px)}}
+.badge{transform-origin:center;animation:badge 2.2s ease-in-out infinite}
+@keyframes badge{0%,100%{transform:rotate(-8deg) scale(1)}50%{transform:rotate(-8deg) scale(1.1)}}
+.spark{transform-origin:center;animation:pulse 1.8s ease-in-out infinite}
+</style>
+
+<ellipse cx="300" cy="556" rx="230" ry="22" fill="url(#shadow)"/>
+<!-- back wall -->
+<rect x="130" y="150" width="340" height="250" rx="10" fill="url(#metal)"/>
+<rect x="150" y="200" width="300" height="150" rx="8" fill="url(#screen)" stroke="#2FCB7C" stroke-opacity=".45"/>
+<text x="170" y="262" font-family="Impact, 'Arial Black', Arial, sans-serif" font-size="40" fill="#fff">TASTE IT.</text>
+<text x="170" y="310" font-family="Impact, 'Arial Black', Arial, sans-serif" font-size="40" fill="#2FCB7C">LOVE IT.</text>
+<rect x="150" y="200" width="70" height="150" fill="url(#sheen)" class="sweep"/>
+<!-- poles + awning -->
+<rect x="112" y="120" width="12" height="420" fill="url(#metalH)"/><rect x="476" y="120" width="12" height="420" fill="url(#metalH)"/>
+<path d="M96 108 h408 v34 H96z" fill="url(#red)"/>
+<path d="M96 142 q17 26 34 0 q17 26 34 0 q17 26 34 0 q17 26 34 0 q17 26 34 0 q17 26 34 0 q17 26 34 0 q17 26 34 0 q17 26 34 0 q17 26 34 0 q17 26 34 0 q17 26 34 0" fill="#fff"/>
+<path d="M130 142 q17 26 34 0 M198 142 q17 26 34 0 M266 142 q17 26 34 0 M334 142 q17 26 34 0 M402 142 q17 26 34 0 M470 142 q17 26 34 0" fill="#E10600"/>
+<text x="232" y="132" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="800" fill="#fff" letter-spacing="4">ADPULSE</text>
+<!-- counter -->
+<path d="M120 400 h360 l14 22 H106z" fill="#2A302D"/>
+<rect x="106" y="422" width="388" height="120" rx="6" fill="url(#red)"/>
+<rect x="106" y="470" width="388" height="16" fill="#fff" opacity=".92"/>
+<circle cx="300" cy="478" r="36" fill="#fff"/><circle cx="300" cy="478" r="28" fill="url(#green)"/>
+<path d="M288 478 l9 9 l17 -19" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<!-- products on counter -->
+<g>
+  <rect x="150" y="350" width="34" height="52" rx="6" fill="url(#green)"/><rect x="154" y="362" width="26" height="16" fill="#fff" opacity=".85"/>
+  <rect x="192" y="340" width="34" height="62" rx="6" fill="url(#red)"/><rect x="196" y="354" width="26" height="16" fill="#fff" opacity=".85"/>
+  <rect x="234" y="356" width="34" height="46" rx="6" fill="url(#green)"/><rect x="238" y="366" width="26" height="14" fill="#fff" opacity=".85"/>
+  <!-- sample cups -->
+  <path d="M370 372 h30 l-4 30 h-22z" fill="url(#white)"/><path d="M408 372 h30 l-4 30 h-22z" fill="url(#white)"/>
+  <path class="steam" d="M384 364 q-6 -10 0 -20 q6 -10 0 -20" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  <path class="steam s2" d="M422 364 q-6 -10 0 -20 q6 -10 0 -20" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  <path class="steam s3" d="M403 360 q-6 -10 0 -20 q6 -10 0 -20" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+</g>
+<!-- balloons -->
+<g class="bal"><line x1="70" y1="160" x2="112" y2="300" stroke="#9AA39F" stroke-width="2"/><ellipse cx="70" cy="128" rx="34" ry="42" fill="url(#red)"/><ellipse cx="58" cy="112" rx="8" ry="12" fill="#fff" opacity=".45"/></g>
+<g class="bal bal2"><line x1="40" y1="236" x2="112" y2="320" stroke="#9AA39F" stroke-width="2"/><ellipse cx="40" cy="206" rx="28" ry="34" fill="url(#green)"/><ellipse cx="31" cy="193" rx="6" ry="10" fill="#fff" opacity=".45"/></g>
+<g class="bal bal3"><line x1="540" y1="166" x2="488" y2="300" stroke="#9AA39F" stroke-width="2"/><ellipse cx="540" cy="132" rx="34" ry="42" fill="url(#green)"/><ellipse cx="528" cy="116" rx="8" ry="12" fill="#fff" opacity=".45"/></g>
+<g class="bal bal2"><line x1="566" y1="240" x2="488" y2="320" stroke="#9AA39F" stroke-width="2"/><ellipse cx="566" cy="210" rx="26" ry="32" fill="url(#red)"/></g>
+<!-- badge -->
+<g class="badge"><circle cx="470" cy="70" r="46" fill="#fff"/><circle cx="470" cy="70" r="40" fill="url(#green)"/>
+<text x="470" y="66" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="900" fill="#fff">FREE</text>
+<text x="470" y="85" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="800" fill="#fff">SAMPLE</text></g>
+<g class="spark" fill="#fff"><path d="M200 70 l5 14 l14 5 l-14 5 l-5 14 l-5 -14 l-14 -5 l14 -5z"/></g>
+
+</svg>

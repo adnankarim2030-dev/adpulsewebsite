@@ -328,11 +328,70 @@
     qa(".reveal").forEach(function (el, i) { el.style.transitionDelay = (el.dataset.delay || 0) + "ms"; rio.observe(el); });
   } else qa(".reveal").forEach(function (el) { el.classList.add("is-in"); });
 
+  var relayoutAll = function () { [q(".hero__canvas"), ].concat(qa("canvas[data-scene]")).forEach(function (c) { if (c && c._ctrl && c._ctrl.relayout) c._ctrl.relayout(); }); };
+  w.addEventListener("load", function () { setTimeout(relayoutAll, 300); });
+  if (d.fonts && d.fonts.ready) d.fonts.ready.then(function () { setTimeout(relayoutAll, 200); });
+
+  /* ---------- Hero photo frame: keeps the 3D object + real photo aligned with the hero text ---------- */
+  function textRight(els) {
+    var r = 0;
+    els.forEach(function (el) {
+      if (!el) return;
+      var rg = d.createRange(); rg.selectNodeContents(el);
+      var b = rg.getBoundingClientRect(); if (b.width) r = Math.max(r, b.right);
+    });
+    return r;
+  }
+  function makeFrame(canvas, scope, o) {
+    var last = null, lastW = 0;
+    var calc = function () {
+      var cr = canvas.getBoundingClientRect(), vw = w.innerWidth;
+      if (!cr.width || !cr.height) return null;
+      var hdr = q(".site-header"), hb = hdr ? hdr.getBoundingClientRect().bottom - cr.top : 80;
+      var box = q(o.textBox, scope), cont = q(".container", scope), cb = cont.getBoundingClientRect();
+      var bb = { top: 1e9, bottom: -1e9 };
+      Array.prototype.forEach.call(box.children, function (k) { var r = k.getBoundingClientRect(); if (r.height) { bb.top = Math.min(bb.top, r.top); bb.bottom = Math.max(bb.bottom, r.bottom); } });
+      if (bb.top > bb.bottom) bb = box.getBoundingClientRect();
+      var pad = parseFloat(w.getComputedStyle(cont).paddingRight) || 16;
+      var R = function (x, y, ww, hh) { return { x: Math.round(x), y: Math.round(y), w: Math.round(ww), h: Math.round(hh) }; };
+      if (vw < 900) {
+        // stacked: photo sits in the open space above the text
+        var top = Math.max(hb + 14, 70), bottom = bb.top - cr.top - 22, left = cb.left - cr.left + pad, right = cb.right - cr.left - pad;
+        var hh = Math.min(bottom - top, (right - left) * 0.8);
+        if (hh < 130) return null;
+        return R(left, bottom - hh, right - left, hh);
+      }
+      var tr = textRight(qa(o.textEls, scope)) - cr.left;
+      var colL = Math.max(tr + 56, cr.width * 0.5);
+      var idx = o.avoid ? q(o.avoid, scope) : null, ir = idx && idx.offsetParent ? idx.getBoundingClientRect() : null;
+      var colR = (ir && ir.width ? ir.left - cr.left - 40 : cb.right - cr.left - pad);
+      var t = (o.topEl ? q(o.topEl, scope).getBoundingClientRect().top : bb.top) - cr.top;
+      var b = bb.bottom - cr.top;
+      if (colR - colL < 280) {
+        // headline is too wide: use the space above it on the right
+        colL = cr.width * 0.5; colR = cb.right - cr.left - pad; b = bb.top - cr.top - 26; t = hb + 24;
+        if (b - t < 200) return null;
+      }
+      var fw = colR - colL, fh = b - t;
+      if (fh > fw * 1.55) { var nh = fw * 1.55; t += (fh - nh) / 2; fh = nh; }
+      if (fw > fh * 1.6) { var nw = fh * 1.6; colL += (fw - nw) / 2; fw = nw; }
+      return R(colL, t, fw, fh);
+    };
+    // keep the last good frame if a transient state (headline glitch, font swap) makes the measure fail
+    return function () {
+      var r = calc(), vw = w.innerWidth;
+      if (r) { last = r; lastW = vw; return r; }
+      return lastW === vw ? last : null;
+    };
+  }
+
   /* ---------- Home hero: service-wise 3D ---------- */
   var hero = q("#hero");
   if (hero) {
     var slides = qa(".hero__index button", hero), nameEl = q(".now__name", hero), subEl = q(".now__sub", hero), linkEl = q(".now__link", hero), chEl = q(".onair b", hero), bar = q(".now__progress i", hero), iconEl = q(".now__icon", hero);
-    var ctrl = w.AdPulse3D ? w.AdPulse3D.mount(q(".hero__canvas", hero), { from: 0, offsetX: 2.6, mobileOffsetY: 1.7, rightPad: 190, cycle: false }) : null;
+    var ctrl = w.AdPulse3D ? w.AdPulse3D.mount(q(".hero__canvas", hero), { from: 0, offsetX: 2.6, mobileOffsetY: 1.7, rightPad: 190, cycle: false, preloadAll: true,
+      frame: makeFrame(q(".hero__canvas", hero), hero, { textBox: ".hero__copy", textEls: ".hero__copy h1, .hero__text, .hero__actions", topEl: ".hero__copy h1", avoid: ".hero__index" }) }) : null;
+    if (ctrl) q(".hero__canvas", hero)._ctrl = ctrl;
     var idx = 0, DUR = 8000, t0 = performance.now(), paused = false, pausedAt = 0;
     function show(i, user) {
       idx = (i + slides.length) % slides.length;
@@ -388,7 +447,9 @@
   /* ---------- Inner-page single-scene hero ---------- */
   qa("canvas[data-scene]").forEach(function (c) {
     if (!w.AdPulse3D) return;
-    var ctrl = w.AdPulse3D.mount(c, { from: +c.dataset.scene, offsetX: +(c.dataset.offset || 2.4), scale: +(c.dataset.scale || 1), mobileOffsetY: 1.2 });
+    var ph = c.closest(".page-hero");
+    var ctrl = w.AdPulse3D.mount(c, { from: +c.dataset.scene, offsetX: +(c.dataset.offset || 2.4), scale: +(c.dataset.scale || 1), mobileOffsetY: 1.2,
+      frame: ph ? makeFrame(c, ph, { textBox: ".page-hero__inner", textEls: ".page-hero__inner > *" }) : null });
     c._ctrl = ctrl;
   });
   /* services overview: rows drive the stage scene */

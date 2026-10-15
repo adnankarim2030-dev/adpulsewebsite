@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="Digital marketing on mobile">
+<title>Digital marketing on mobile</title>
+<defs>
+<linearGradient id="red" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF3B30"/><stop offset=".55" stop-color="#E10600"/><stop offset="1" stop-color="#8E0400"/></linearGradient>
+<linearGradient id="redH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9E0500"/><stop offset=".5" stop-color="#FF2A1F"/><stop offset="1" stop-color="#9E0500"/></linearGradient>
+<linearGradient id="green" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3BE38F"/><stop offset=".5" stop-color="#0B9A50"/><stop offset="1" stop-color="#04502A"/></linearGradient>
+<linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A524E"/><stop offset=".45" stop-color="#232826"/><stop offset="1" stop-color="#0E1110"/></linearGradient>
+<linearGradient id="metalH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0E1110"/><stop offset=".35" stop-color="#3C4440"/><stop offset=".5" stop-color="#5B6560"/><stop offset=".65" stop-color="#2A302D"/><stop offset="1" stop-color="#0E1110"/></linearGradient>
+<linearGradient id="chrome" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F4F6F5"/><stop offset=".5" stop-color="#9AA39F"/><stop offset="1" stop-color="#E6EAE8"/></linearGradient>
+<linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0F2A1D"/><stop offset=".6" stop-color="#07140E"/><stop offset="1" stop-color="#160505"/></linearGradient>
+<linearGradient id="white" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9DEDB"/></linearGradient>
+<radialGradient id="glowR"><stop offset="0" stop-color="#FF2A1F" stop-opacity=".9"/><stop offset="1" stop-color="#FF2A1F" stop-opacity="0"/></radialGradient>
+<radialGradient id="glowG"><stop offset="0" stop-color="#2FCB7C" stop-opacity=".85"/><stop offset="1" stop-color="#2FCB7C" stop-opacity="0"/></radialGradient>
+<radialGradient id="glowW"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+<radialGradient id="shadow"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".75"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+<linearGradient id="beamR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF3B30" stop-opacity=".8"/><stop offset="1" stop-color="#FF3B30" stop-opacity="0"/></linearGradient>
+<linearGradient id="beamG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2FCB7C" stop-opacity=".8"/><stop offset="1" stop-color="#2FCB7C" stop-opacity="0"/></linearGradient>
+<linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<filter id="blur6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="blur14" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+<filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs>
+<style>
+[class]{transform-box:fill-box}
+.orb{transform-box:view-box}
+.bars rect,.conf rect{transform-box:fill-box}
+.float{animation:float 5s ease-in-out infinite}
+.float2{animation:float 6.5s ease-in-out -2s infinite}
+.float3{animation:float 4.2s ease-in-out -1s infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.blink{animation:blink 1.2s steps(1) infinite}
+@keyframes blink{0%,55%{opacity:1}56%,100%{opacity:.15}}
+.pulse{transform-origin:center;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.45;transform:scale(.92)}50%{opacity:1;transform:scale(1.06)}}
+.spin{transform-origin:center;animation:spin 14s linear infinite}
+.spinR{transform-origin:center;animation:spin 22s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sweep{animation:sweep 4.5s ease-in-out infinite}
+@keyframes sweep{0%{transform:translateX(-120%)}55%,100%{transform:translateX(220%)}}
+
+.heart{animation:rise 3.2s ease-out infinite;opacity:0}
+.h2{animation-delay:.8s}.h3{animation-delay:1.6s}.h4{animation-delay:2.4s}
+@keyframes rise{0%{opacity:0;transform:translateY(20px) scale(.6)}20%{opacity:1}100%{opacity:0;transform:translateY(-170px) scale(1.1)}}
+.notif{transform-origin:left center;animation:pop 4s ease-in-out infinite}
+.n2{animation-delay:-2s}
+@keyframes pop{0%,10%{opacity:0;transform:scale(.6)}18%,80%{opacity:1;transform:scale(1)}90%,100%{opacity:0;transform:scale(.9)}}
+.like{transform-origin:center;animation:likep 2s ease-in-out infinite}
+@keyframes likep{0%,100%{transform:scale(1)}15%{transform:scale(1.35)}30%{transform:scale(1)}}
+.chart{animation:line 3.2s ease-in-out infinite}
+@keyframes line{0%{stroke-dashoffset:300}55%,100%{stroke-dashoffset:0}}
+.orb{transform-origin:300px 300px;animation:spin 18s linear infinite}
+.scroll{animation:scroll 6s ease-in-out infinite}
+@keyframes scroll{0%,35%{transform:translateY(0)}50%,85%{transform:translateY(-120px)}100%{transform:translateY(0)}}
+</style>
+
+<ellipse cx="300" cy="560" rx="170" ry="20" fill="url(#shadow)"/>
+<!-- orbit tokens -->
+<g class="orb">
+  <circle cx="300" cy="300" r="250" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="2" stroke-dasharray="4 10"/>
+  <g><circle cx="300" cy="50" r="26" fill="url(#red)"/><text x="300" y="60" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="900" fill="#fff">#</text></g>
+  <g><circle cx="50" cy="300" r="26" fill="url(#green)"/><text x="50" y="310" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900" fill="#fff">@</text></g>
+  <g><circle cx="550" cy="300" r="22" fill="#fff"/><path d="M542 290 v20 l18 -10z" fill="#E10600"/></g>
+</g>
+<!-- phone -->
+<g transform="rotate(-6 300 300)"><g class="float">
+  <rect x="182" y="70" width="236" height="470" rx="38" fill="#0A0C0B" stroke="#5B6560" stroke-width="4"/>
+  <rect x="196" y="84" width="208" height="442" rx="28" fill="#F4F6F5"/>
+  <rect x="268" y="92" width="64" height="16" rx="8" fill="#0A0C0B"/>
+  <svg x="196" y="116" width="208" height="404" viewBox="0 0 208 404">
+    <g class="scroll">
+      <!-- post 1 -->
+      <circle cx="26" cy="22" r="14" fill="url(#red)"/><rect x="48" y="14" width="80" height="8" rx="4" fill="#0A0C0B"/><rect x="48" y="27" width="50" height="6" rx="3" fill="#9AA39F"/>
+      <rect x="10" y="44" width="188" height="176" rx="10" fill="url(#red)"/>
+      <text x="22" y="120" font-family="Impact, 'Arial Black', Arial, sans-serif" font-size="34" fill="#fff">NEW</text>
+      <text x="22" y="158" font-family="Impact, 'Arial Black', Arial, sans-serif" font-size="34" fill="#fff">LAUNCH</text>
+      <circle cx="158" cy="80" r="26" fill="url(#green)"/><polygon points="150,68 150,92 170,80" fill="#fff"/>
+      <g class="like"><path d="M24 248 c-8 -10 -22 -2 -14 10 l14 14 l14 -14 c8 -12 -6 -20 -14 -10z" fill="#E10600"/></g>
+      <path d="M60 240 h22 a6 6 0 0 1 6 6 v12 a6 6 0 0 1 -6 6 h-14 l-8 7z" fill="none" stroke="#0A0C0B" stroke-width="3"/>
+      <path d="M104 246 l20 8 l-20 8 v-5 l10 -3 l-10 -3z" fill="#0A0C0B"/>
+      <rect x="10" y="282" width="120" height="8" rx="4" fill="#0A0C0B"/><rect x="10" y="298" width="170" height="6" rx="3" fill="#9AA39F"/>
+      <!-- post 2 -->
+      <circle cx="26" cy="338" r="14" fill="url(#green)"/><rect x="48" y="330" width="80" height="8" rx="4" fill="#0A0C0B"/>
+      <rect x="10" y="360" width="188" height="176" rx="10" fill="url(#green)"/>
+      <text x="22" y="440" font-family="Impact, 'Arial Black', Arial, sans-serif" font-size="34" fill="#fff">+240%</text>
+      <text x="22" y="474" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800" fill="#fff">ENGAGEMENT</text>
+    </g>
+  </svg>
+</g></g>
+<!-- notifications -->
+<g class="notif"><rect x="372" y="150" width="170" height="54" rx="27" fill="#fff"/><circle cx="398" cy="177" r="18" fill="url(#red)"/><path d="M398 186 c-6 -6 -14 -1 -9 6 l9 8 l9 -8 c5 -7 -3 -12 -9 -6z" fill="#fff" transform="translate(0 -10)"/><text x="424" y="184" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="900" fill="#0A0C0B">+1.2K likes</text></g>
+<g class="notif n2"><rect x="42" y="250" width="176" height="54" rx="27" fill="#fff"/><circle cx="68" cy="277" r="18" fill="url(#green)"/><path d="M60 277 l6 6 l11 -12" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/><text x="94" y="284" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="900" fill="#0A0C0B">New lead!</text></g>
+<!-- rising hearts -->
+<g fill="#E10600">
+  <path class="heart" d="M470 470 c-10 -12 -28 -2 -18 12 l18 18 l18 -18 c10 -14 -8 -24 -18 -12z"/>
+  <path class="heart h2" d="M510 490 c-8 -10 -22 -2 -14 10 l14 14 l14 -14 c8 -12 -6 -20 -14 -10z" fill="#2FCB7C"/>
+  <path class="heart h3" d="M448 500 c-7 -9 -20 -2 -13 9 l13 13 l13 -13 c7 -11 -6 -18 -13 -9z"/>
+  <path class="heart h4" d="M500 520 c-9 -11 -24 -2 -16 11 l16 16 l16 -16 c8 -13 -7 -22 -16 -11z" fill="#fff"/>
+</g>
+<!-- growth chart -->
+<g class="float2"><rect x="40" y="420" width="150" height="100" rx="16" fill="#0E1110" stroke="#4A524E"/>
+<polyline class="chart" points="56,500 84,486 108,492 132,466 156,456 176,434" fill="none" stroke="#2FCB7C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="300"/>
+<path d="M164 432 l14 0 l0 14" fill="none" stroke="#2FCB7C" stroke-width="5" stroke-linecap="round"/></g>
+
+</svg>
