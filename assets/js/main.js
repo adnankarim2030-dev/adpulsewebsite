@@ -590,31 +590,67 @@
     if (!reduced) auto = setInterval(function () { if (inView && !hover && !d.hidden && !(lb && lb.classList.contains("is-open"))) go(active + 1); }, 5200);
     go(0);
     w.addEventListener("resize", function () { go(active); });
+  }
 
-    /* Auto-sync latest uploads directly from YouTube channel */
+  /* Auto-sync latest uploads directly from YouTube channel (Coverflow + Media Gallery) */
+  if (cf || q("#gal")) {
     (function syncYouTube() {
-      function applyVideos(videos) {
-        if (!videos || !videos.length) return;
-        videos.slice(0, cards.length).forEach(function (v, k) {
-          if (!v || !v.id || !cards[k]) return;
-          cards[k].dataset.video = v.id;
-          cards[k].dataset.title = v.title;
-          var img = cards[k].querySelector("img");
-          if (img) img.src = "https://i.ytimg.com/vi/" + v.id + "/hqdefault.jpg";
-          var h3 = cards[k].querySelector("figcaption h3");
-          if (h3) h3.textContent = v.title;
-          var dot = dots[k];
-          if (dot) dot.setAttribute("aria-label", "Show " + v.title);
-        });
+      function inferCat(title) {
+        var t = (title || "").toLowerCase();
+        if (t.indexOf("out of home") >= 0 || t.indexOf("out-of-home") >= 0 || t.indexOf("ooh") >= 0 || t.indexOf("billboard") >= 0 || t.indexOf("streamers") >= 0) {
+          return { cat: "ooh", label: "OOH", chip: "chip" };
+        }
+        if (t.indexOf("commercial") >= 0 || t.indexOf("tvc") >= 0 || t.indexOf("sale") >= 0 || t.indexOf("clearance") >= 0) {
+          return { cat: "tvc", label: "TVC", chip: "chip" };
+        }
+        return { cat: "events", label: "Events", chip: "chip chip--green" };
       }
 
-      fetch("/api/youtube")
+      function applyVideos(videos) {
+        if (!videos || !videos.length) return;
+        if (cf && !cf.closest(".pf-feat")) {
+          var cfCards = qa(".cf-card", cf), cfDots = qa(".cf-dots button");
+          videos.slice(0, cfCards.length).forEach(function (v, k) {
+            if (!v || !v.id || !cfCards[k]) return;
+            cfCards[k].dataset.video = v.id;
+            cfCards[k].dataset.title = v.title;
+            var img = cfCards[k].querySelector("img");
+            if (img) img.src = "https://i.ytimg.com/vi/" + v.id + "/hqdefault.jpg";
+            var h3 = cfCards[k].querySelector("figcaption h3");
+            if (h3) h3.textContent = v.title;
+            if (cfDots[k]) cfDots[k].setAttribute("aria-label", "Show " + v.title);
+          });
+        }
+        var gal = q("#gal");
+        if (gal) {
+          videos.slice().reverse().forEach(function (v) {
+            if (!v || !v.id || q('[data-video="' + v.id + '"]', gal)) return;
+            var info = inferCat(v.title);
+            var art = d.createElement("article");
+            art.className = "vcard reveal is-in";
+            art.dataset.cat = info.cat + " showreel";
+            art.dataset.video = v.id;
+            art.dataset.title = v.title;
+            art.dataset.label = info.label;
+            art.dataset.cursor = "PLAY";
+            art.setAttribute("tabindex", "0");
+            art.setAttribute("role", "button");
+            art.innerHTML =
+              '<div class="thumb"><img src="https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.parentNode.classList.add(\'no-thumb\')"><div class="thumb-fallback" aria-hidden="true"><span>' + info.label + '</span></div><span class="proj__play" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z" fill="currentColor"/></svg></span></div>' +
+              '<div class="vcard__body"><span class="' + info.chip + '">' + info.label + '</span><h3></h3></div>';
+            q("h3", art).textContent = v.title;
+            gal.insertBefore(art, gal.firstChild);
+          });
+        }
+      }
+
+      fetch("/api/youtube/")
         .then(function (res) { return res.json(); })
         .then(function (data) {
           if (data && data.videos && data.videos.length) applyVideos(data.videos);
+          else throw new Error("Empty");
         })
         .catch(function () {
-          // Fallback if accessed as purely static page without backend server
           fetch("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3DUCJfBhcCIDi1nuhFsdvqQLcg")
             .then(function (res) { return res.json(); })
             .then(function (data) {
