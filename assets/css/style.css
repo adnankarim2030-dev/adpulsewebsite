@@ -1136,7 +1136,7 @@ html.has-cursor, html.has-cursor a, html.has-cursor button { cursor: none; }
 
 /* ---------- Portfolio / gallery grids ---------- */
 .grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); gap: 20px; }
-.vcard { position: relative; border-radius: 22px; overflow: hidden; background: var(--white); box-shadow: 0 0 0 1px var(--line); display: flex; flex-direction: column; transition: transform .45s var(--ease), box-shadow .4s; cursor: pointer; }
+.vcard { position: relative; border-radius: 22px; overflow: hidden; background: var(--white); box-shadow: 0 0 0 1px var(--line); display: flex; flex-direction: column; transition: transform .3s var(--ease), box-shadow .3s; cursor: pointer; content-visibility: auto; contain-intrinsic-size: 320px 240px; }
 .vcard:hover { transform: translateY(-6px); box-shadow: 0 0 0 1.5px var(--red), 0 30px 60px -40px rgba(10, 12, 11, .6); }
 .vcard .thumb { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--ink-2); }
 .vcard .thumb img { transition: transform 1s var(--ease); }
@@ -1255,9 +1255,9 @@ html.has-cursor, html.has-cursor a, html.has-cursor button { cursor: none; }
 
 /* ---------- Clip reveal for media cards ---------- */
 .js .proj.reveal, .js .vcard.reveal { opacity: 1; transform: none; clip-path: inset(22% 0 0 0 round 22px); }
-.js .proj.reveal .thumb, .js .vcard.reveal .thumb img { transform: scale(1.25); }
-.js .proj.reveal.is-in, .js .vcard.reveal.is-in { clip-path: inset(0 0 0 0 round 22px); transition: clip-path 1.2s var(--ease); }
-.js .proj.reveal.is-in .thumb, .js .vcard.reveal.is-in .thumb img { transform: scale(1); transition: transform 1.6s var(--ease); }
+.js .proj.reveal .thumb, .js .vcard.reveal .thumb img { transform: scale(1.15); }
+.js .proj.reveal.is-in, .js .vcard.reveal.is-in { clip-path: inset(0 0 0 0 round 22px); transition: clip-path .4s var(--ease); }
+.js .proj.reveal.is-in .thumb, .js .vcard.reveal.is-in .thumb img { transform: scale(1); transition: transform .6s var(--ease); }
 .js .proj.reveal.is-in:hover .thumb { transform: scale(1.07); }
 
 /* ---------- Smooth scroll (Lenis) ---------- */

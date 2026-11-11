@@ -324,7 +324,7 @@
   if ("IntersectionObserver" in w) {
     var rio = new IntersectionObserver(function (en) {
       en.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add("is-in"); rio.unobserve(x.target); } });
-    }, { rootMargin: "0px 0px -8% 0px" });
+    }, { rootMargin: "250px 0px 100px 0px" });
     qa(".reveal").forEach(function (el, i) { el.style.transitionDelay = (el.dataset.delay || 0) + "ms"; rio.observe(el); });
   } else qa(".reveal").forEach(function (el) { el.classList.add("is-in"); });
 
@@ -519,7 +519,7 @@
   function openVideo(id, title, cat) {
     if (!lb) return;
     lastFocus = d.activeElement;
-    lbFrame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="' + (title || "Video") + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    lbFrame.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&enablejsapi=1&rel=0&modestbranding=1&playsinline=1" title="' + (title || "Video") + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen></iframe>';
     q(".lightbox__title", lb).textContent = title || "";
     q(".lightbox__cat", lb).textContent = cat || "";
     q(".lightbox__yt", lb).href = "https://www.youtube.com/watch?v=" + id;
@@ -556,7 +556,7 @@
   /* ---------- Coverflow ---------- */
   var cf = q(".coverflow");
   if (cf) {
-    var cards = qa(".cf-card", cf), dotsWrap = q(".cf-dots"), active = 0, n = cards.length, auto, hover = false, inView = false;
+    var cards = qa(".cf-card", cf), dotsWrap = q(".cf-dots"), active = 0, n = cards.length, auto, hover = false, inView = true;
     cards.forEach(function (c, i) {
       var b = d.createElement("button"); b.type = "button"; b.setAttribute("aria-label", "Show " + c.dataset.title);
       b.addEventListener("click", function () { go(i); }); dotsWrap.appendChild(b);
@@ -586,8 +586,10 @@
     cf.addEventListener("pointerup", function (e) { if (px === null) return; var dx = e.clientX - px; px = null; if (Math.abs(dx) > 50) { go(active + (dx < 0 ? 1 : -1)); } });
     cf.addEventListener("mouseenter", function () { hover = true; });
     cf.addEventListener("mouseleave", function () { hover = false; });
-    if ("IntersectionObserver" in w) new IntersectionObserver(function (en) { inView = en[0].isIntersecting; }).observe(cf);
-    if (!reduced) auto = setInterval(function () { if (inView && !hover && !d.hidden && !(lb && lb.classList.contains("is-open"))) go(active + 1); }, 5200);
+    cf.addEventListener("touchstart", function () { hover = false; }, { passive: true });
+    cf.addEventListener("touchend", function () { hover = false; }, { passive: true });
+    if ("IntersectionObserver" in w) new IntersectionObserver(function (en) { inView = en[0].isIntersecting; }, { threshold: 0.15 }).observe(cf);
+    if (!reduced) auto = setInterval(function () { if (inView && !hover && !d.hidden && !(lb && lb.classList.contains("is-open"))) go(active + 1); }, 4000);
     go(0);
     w.addEventListener("resize", function () { go(active); });
   }
@@ -644,26 +646,14 @@
         }
       }
 
-      fetch("/api/youtube/")
-        .then(function (res) { return res.json(); })
+      var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+      var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 1800) : null;
+      fetch("/api/youtube/", { signal: ctrl ? ctrl.signal : undefined })
+        .then(function (res) { if (timer) clearTimeout(timer); return res.json(); })
         .then(function (data) {
           if (data && data.videos && data.videos.length) applyVideos(data.videos);
-          else throw new Error("Empty");
         })
-        .catch(function () {
-          fetch("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3DUCJfBhcCIDi1nuhFsdvqQLcg")
-            .then(function (res) { return res.json(); })
-            .then(function (data) {
-              if (data && data.items && data.items.length) {
-                var list = data.items.map(function (it) {
-                  var vidId = (it.guid || it.link || "").split("/").pop().replace("watch?v=", "");
-                  return { id: vidId, title: it.title };
-                });
-                applyVideos(list);
-              }
-            })
-            .catch(function () {});
-        });
+        .catch(function () { if (timer) clearTimeout(timer); });
     })();
   }
 
